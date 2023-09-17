@@ -1,0 +1,59 @@
+.task-container{
+    position: sticky;
+    top: -300px;
+}
+
+
+.gem-container,
+.heart-container,
+.streak-container {
+    font-size: 16px;
+    font-weight: 700;
+    
+}
+.heart-container{
+    color: rgb(255,75,75);
+}
+.gem-container{
+    color: rgb(28,176,246);
+}
+.streak-container {
+    color: rgb(255,150,0);
+}
+
+.premium-card-container {
+    .premium-card-title{
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 2.75rem;
+        text-transform: capitalize;
+        color: #333;
+        
+    }
+    .premium-card-text{
+
+    }
+    .premium-submit-btn{
+        background-color: rgb(60,77,255);
+        width: 100%;
+        padding: 1.5rem;
+        box-shadow: 0 2px 0 rgb(6, 20, 172);
+        font-size: 16px;
+        color: #fff;
+        font-weight: 700;
+        text-transform: uppercase;
+        &:hover{
+            background-color: rgb(92, 105, 255);
+            color: #fff;
+        }
+        &:active{
+            box-shadow: none;
+            transform: translate(0, 5%);
+            
+        }
+        
+        
+    }
+    
+}
+

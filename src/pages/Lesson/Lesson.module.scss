@@ -1,0 +1,55 @@
+.lesson-container{
+    padding : 3rem 7rem 0px 7rem;;
+    margin-top: 3rem;
+    min-height: 10vh;
+    .close-btn-container{
+        .close-btn{
+            font-size: 20px;
+            color: #ccc;
+        }
+    }
+    .progess-bar-container{
+        padding: 0 2.5rem;
+        .progess-bar{
+            width: 100%;
+            height: 16px;
+            background-color: #ccc;
+            border-radius: 8px;
+            
+        }
+    }
+    .heart-container{
+        .heart{
+            
+        }
+        .heart-count{
+            color: rgb(255,75,75);
+            font-size: 15;
+            font-weight: 700;
+        }
+    }
+}
+.content-section{
+    min-height: 61vh;
+   
+}
+.lesson-footer{
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    border-top: 1px solid #ccc;
+    min-height: 19vh;
+    .skip-btn,
+    .check-btn{  
+        border: 1px solid #ccc;
+        padding: 1.25rem 4rem;
+        font-size: 15px;
+        font-weight: 700;
+        color: #999;
+        text-transform: uppercase;
+        border-radius: 1.5rem;
+        box-shadow: 0 0 2px 0;
+    }
+    
+}

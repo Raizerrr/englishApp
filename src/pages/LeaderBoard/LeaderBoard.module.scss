@@ -1,0 +1,48 @@
+.leaderboard-logo{
+    
+}
+.leaderboard-title h1{
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 3rem;
+
+}
+.leaderboard-desc p{
+    font-size: 16px;
+    line-height: 2rem;
+}
+.leaderboard-start-btn{
+    padding: 8px 80px;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 0 2px #ccc;
+    font-size: 18px;
+    background-color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: rgb(28,176,246);
+    &:active {
+        transform: translate(0 , 2%);
+        box-shadow: none;
+    }
+}
+.user-background-show{
+    display: grid;
+    grid-template-columns: min-content 1fr min-content;
+    max-width: 592px;
+    overflow: hidden;
+    padding: 0px 24px 0px 28px;
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 5rem;
+    &::after{
+        background: linear-gradient(0deg,#fff ,rgba(255,255,255,0));
+    bottom: 0px;
+    content: "";
+    height: 360px;
+    left: 0px;
+    position: absolute;
+    width: 100%;
+    }
+}

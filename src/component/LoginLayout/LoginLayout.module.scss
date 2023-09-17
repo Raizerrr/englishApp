@@ -1,0 +1,111 @@
+.form-container {
+    max-width: 375px;
+}
+.content-container{
+    min-height: 100vh;
+}
+.close-modal-btn {
+    background-color: #fff;
+}
+.register-tab{
+    width: 90px;
+    height: 100%;
+    line-height: 45px;
+    text-align: center;
+    box-shadow: 1px 1px 2px 2px #ccc;  
+    &:hover {
+        background-color: #cccccc29 ;
+    }
+}
+.register-tab a{
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;  
+}
+
+
+
+.sign-in-container{
+
+}
+
+
+
+.sign-in-heading{
+    font-weight: 700;
+    font-size: 26px;
+}
+
+.username-input,
+.password-input{
+    font-size: 1.5rem;
+    background: none;
+}
+.forgot-pw a{
+    position: absolute;
+    bottom: 35%;
+    right: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #ccc;
+    font-size: 16px;
+    &:hover{
+        color: #555;
+    }
+}
+
+.line-contaner{
+    height: 50px;
+    width: 100%;
+    line-height: 50px;
+    
+}
+.text-container{
+    width: 60px;
+    height: 100%;
+    margin: 0 auto;
+    background-color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ccc;
+    text-transform: uppercase;
+    
+    
+}
+.straight-line {
+    border-bottom: 2px solid #ccc;
+    position: absolute;
+    bottom: 50%;
+    width: 100%;
+    z-index: -1;
+}
+.sign-in-submit-btn{
+    background-color: #5896f9;
+    color: #fff;
+    font-weight: 700;
+    border-color: transparent;
+    text-transform: uppercase;
+    box-shadow: 0 2px 0 #2d5ba4;
+    &:hover{
+        background-color: #6ba3fc;
+    }
+}
+.sign-in-by-social{
+    background-color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-color: transparent;
+    border: 2px solid rgb(229,229,229);  
+    box-shadow: 0 2px 0 #ccc;
+    &:hover {
+        background-color: #cccccc29 ;
+    }
+}
+
+.google-color{
+    color: rgb(66,133,244);
+}
+.facebook-color {
+    color: rgb(59,89,152);
+}

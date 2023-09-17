@@ -1,0 +1,59 @@
+.quest-container{
+    max-width: 600px;
+}
+
+.quest-bange{
+    min-height: 225px;
+    border-radius: 12px;
+    background-color: rgb(144,105,205);
+    
+    .quest-bange-text{
+        font-size: 16px;
+        line-height: 2.25rem;
+        font-weight: 500;
+    }
+}
+.daily-quest-title,
+.quest-bange-title{
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 3rem;
+    
+}
+.dally-quest-container{
+border-radius: 12px;
+border: 1px solid #ccc;
+
+    .quest-list{
+        list-style-type: none;
+        padding: 0;
+       
+    }
+    .quest-list-item{       
+        border-bottom: .1px solid #cccccc8a;
+        padding: 0 1.5rem;
+        .list-item-title{
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 2.22rem;
+
+        }
+        .quest-progess-bar{
+            background-color: #cccccc6a;
+            width: 100%;
+            height: 20px;      
+            border-radius: 20px;    
+            
+            .progess{
+                left: 50%;
+                transform: translate(-50%,0%);
+                font-weight: 600;
+                color: #ccc;
+                
+            }
+        }
+        &:last-child{
+            border: none;
+        }
+    }
+}
