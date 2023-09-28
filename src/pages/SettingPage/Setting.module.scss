@@ -30,6 +30,20 @@ html{
         font-weight: 700;
         line-height: 44px;
     }
+    .upload-file-btn{
+        border: 2px solid #cccccc5b;
+        padding: 1.25rem;
+        box-shadow: 0 4px 2px 0 #ccc;
+        border-radius: 16px;
+        font-size: 15px;
+        font-weight: 700;
+        color: rgb(28,176,246);
+        margin-bottom: 12px;
+        &:active {
+            box-shadow: none;
+            transform: translate(0, 4px);
+        }
+    }
     .input-setting{
         border: 1px solid #ccc !important;
         background-color: #cccccc3a;

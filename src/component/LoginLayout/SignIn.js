@@ -1,9 +1,38 @@
 import classNames from "classnames/bind";
 import LoginLayoutScss from "./LoginLayout.module.scss";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const cx = classNames.bind(LoginLayoutScss);
 
 function SignIn() {
+  const [user, setUser] = useState({});
+  const [userList, setUserList] = useState([]);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleCheckUserLogin = async (e) => {
+    e.preventDefault();
+
+    const requestUser = {
+      username: username,
+      password: password,
+    };
+
+    const { data: response } = await axios.post(
+      "http://localhost:8870/api/user/checklogin",
+      requestUser
+    );
+
+    if (response.data) {
+      navigate("/");
+    } else {
+      navigate("/sdfsdf");
+    }
+  };
+
   return (
     <div className={cx("container", "sign-in-container")}>
       <h2 className={cx("sign-in-heading", "text-center", "pb-5")}>
@@ -12,7 +41,7 @@ function SignIn() {
       <form>
         <div className="mb-3">
           <input
-            type="email"
+            type="text"
             className={cx(
               "username-input",
               "form-control",
@@ -22,6 +51,8 @@ function SignIn() {
             )}
             aria-describedby="emailHelp"
             placeholder="Email hoặc tên đăng nhập"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </div>
         <div className={cx("mb-5", "position-relative")}>
@@ -35,6 +66,8 @@ function SignIn() {
               "rounded-4"
             )}
             placeholder="Mật Khẩu"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <div className={cx("forgot-pw")}>
             <a href="">Quên?</a>
@@ -42,6 +75,7 @@ function SignIn() {
         </div>
 
         <button
+          onClick={handleCheckUserLogin}
           className={cx("sign-in-submit-btn", "w-100", "py-3", "rounded-4")}
         >
           Đăng Nhập
