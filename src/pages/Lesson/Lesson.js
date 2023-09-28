@@ -6,6 +6,7 @@ import ListenLayout from "./ListenLayout";
 import ReadLayout from "./ReadLayout";
 import SpeakLayout from "./SpeakLayout";
 import WriteLayout from "./WriteLayout";
+import LessonComplete from "./LessonComplete";
 
 const cx = classNames.bind(Style);
 
@@ -26,7 +27,7 @@ function Lesson() {
                     "align-items-center"
                   )}
                 >
-                  <a href="" className={cx("btn", "close-btn")}>
+                  <a href="/" className={cx("btn", "close-btn")}>
                     <FontAwesomeIcon icon={faClose} />
                   </a>
                 </div>
@@ -66,7 +67,7 @@ function Lesson() {
 
           {/* content */}
           <div className={cx("content-section")}>
-            <ReadLayout />
+            <LessonComplete />
           </div>
           {/* content */}
 
@@ -79,10 +80,10 @@ function Lesson() {
               "align-items-center"
             )}
           >
-            <a href="" className={cx("skip-btn", "btn")}>
+            <a href="/" className={cx("skip-btn", "btn")}>
               Bỏ qua
             </a>
-            <a href="" className={cx("check-btn", "btn", "disabled")}>
+            <a href="/" className={cx("check-btn", "btn", "disabled")}>
               kiểm tra
             </a>
           </div>
@@ -134,7 +135,7 @@ function Lesson() {
                   )}
                 >
                   <a
-                    href=""
+                    href="/"
                     className={cx("btn", "wrong-next-question-btn", "p-3")}
                   >
                     Tiếp tục
@@ -188,7 +189,7 @@ function Lesson() {
                     "justify-content-center"
                   )}
                 >
-                  <a href="" className={cx("btn", "next-question-btn", "p-3")}>
+                  <a href="/" className={cx("btn", "next-question-btn", "p-3")}>
                     Tiếp tục
                   </a>
                 </div>
