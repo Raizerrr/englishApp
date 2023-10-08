@@ -3,33 +3,43 @@ import LoginLayoutScss from "./LoginLayout.module.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { login } from "../../axios/userAxios";
+import { SocialLogin } from "./SocialLogin";
+import { ErrorNotification } from "./ErrorNotification";
 
 const cx = classNames.bind(LoginLayoutScss);
 
 function SignIn() {
-  const [user, setUser] = useState({});
-  const [userList, setUserList] = useState([]);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  // Hook
+  const [formValue, setFormValue] = useState({
+    username: "",
+    password: ""
+  });
+  const [errorNotification, setErrorNotification] = useState("");
   const navigate = useNavigate();
+
+
+  // variables 
+  const { username, password } = formValue;
+
+
+  // functions
+  // Function for change value input in field 
+  const handleChangeField = (e) => {
+    setFormValue({...formValue, [e.target.name]: e.target.value});
+  }
 
   const handleCheckUserLogin = async (e) => {
     e.preventDefault();
 
-    const requestUser = {
-      username: username,
-      password: password,
-    };
+    const {data} = await login(formValue);
+    console.log(data);
 
-    const { data: response } = await axios.post(
-      "http://localhost:8870/api/user/checklogin",
-      requestUser
-    );
 
-    if (response.data) {
+    if (data?.data?.token) {
       navigate("/");
     } else {
-      navigate("/sdfsdf");
+      setErrorNotification(data.data.message);
     }
   };
 
@@ -51,8 +61,10 @@ function SignIn() {
             )}
             aria-describedby="emailHelp"
             placeholder="Email hoặc tên đăng nhập"
+            name="username"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={handleChangeField}
+            required
           />
         </div>
         <div className={cx("mb-5", "position-relative")}>
@@ -65,13 +77,17 @@ function SignIn() {
               " py-3",
               "rounded-4"
             )}
+            name="password"
             placeholder="Mật Khẩu"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handleChangeField}
+            required
           />
           <div className={cx("forgot-pw")}>
             <a href="">Quên?</a>
           </div>
+          {/* Below stack is error message when don't sign in successfully */}
+          <ErrorNotification errorNotification={errorNotification}/>
         </div>
 
         <button
@@ -80,42 +96,7 @@ function SignIn() {
         >
           Đăng Nhập
         </button>
-        <div className={cx("line-contaner", "position-relative", "mt-2")}>
-          <div className={cx("text-container", "px-2")}>Hoặc</div>
-          <div className={cx("straight-line")}></div>
-        </div>
-        <div
-          className={cx(
-            "d-flex",
-            "justify-content-between",
-            "align-items-center"
-          )}
-        >
-          <button
-            className={cx(
-              "sign-in-by-social",
-              "facebook-color",
-              "py-3",
-              "rounded-4",
-              "w-50",
-              "me-3"
-            )}
-          >
-            FaceBook
-          </button>
-          <button
-            className={cx(
-              "sign-in-by-social",
-              "google-color",
-              "py-3",
-              "rounded-4",
-              "w-50",
-              "ms-3"
-            )}
-          >
-            Google
-          </button>
-        </div>
+        <SocialLogin/>
       </form>
     </div>
   );
