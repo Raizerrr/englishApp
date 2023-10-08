@@ -106,6 +106,10 @@
 .google-color{
     color: rgb(66,133,244);
 }
+.google-color > * {
+    //  display: none !important;
+    overflow: hidden;
+}
 .facebook-color {
     color: rgb(59,89,152);
 }

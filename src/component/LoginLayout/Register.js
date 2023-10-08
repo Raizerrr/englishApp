@@ -5,10 +5,12 @@ import LoginLayoutScss from "./LoginLayout.module.scss";
 import { register } from "../../axios/userAxios";
 import { ErrorNotification } from "./ErrorNotification";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../../context/UserContext";
 
 const cx = classNames.bind(LoginLayoutScss);
 
 function Register() {
+  const {registerUser} = useUserContext();
   const [formValue, setFormValue] = useState({
     username: "",
     password: "",
@@ -33,6 +35,8 @@ function Register() {
     }
     const {data} = await register(formValue);
     if(data.data.token){
+      localStorage.setItem("token", data?.data?.token);
+      await registerUser();
       navigate("/");
     }
     else {

@@ -13,3 +13,4 @@ API.interceptors.request.use((req) => {
 // Authentication
 export const login = (formValue) => API.post("/user/checklogin", formValue);
 export const register = (formValue) => API.post("/user/insertuser", formValue);
+export const getUser = () => API.get("/user/getUser");
