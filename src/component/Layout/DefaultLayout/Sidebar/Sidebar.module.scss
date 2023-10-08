@@ -33,29 +33,36 @@
         width: 250px;
         padding: 1rem 0;
         position: absolute;
-        top: 0px;
-        left: 230px;
+        top: -10px;
+        left: 190px;
         border: 1px solid #ccc;
         background-color: #fff;
         .sub-menu-list{
             list-style-type: none;
             padding: 0;
+            
             .sub-menu-item{
-                padding: 1rem 0;
-                width: 100%;
                 
+                width: 100%;
                 &:hover {
                     background-color: #cccccc2a;
                 }
-                &:active {
-                    border-color: rgb(66,133,244);
-                }
+                
+                
                 .item-link{
+                   
+                    padding: .5rem 0 0 3rem;
+                    width: 250px;
+                    text-align: left;
                     font-size: 13px;
                     font-weight: 700;
                     text-decoration: none;
                     color: #555 !important;
                     text-transform: uppercase;
+                    &:active {
+                        border-color: rgb(66,133,244);
+                    }
+                    
                 }
             }
         }

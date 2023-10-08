@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const cx = classNames.bind(Style);
 
-function SettingNav() {
+function SettingNav({ avatar }) {
   return (
     <div>
       <div className="container">
@@ -14,16 +14,18 @@ function SettingNav() {
               <div className="row">
                 <div className="col-2">
                   <div className={cx("setting-display-img")}>
-                    <img
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"
-                      className={cx(
-                        "w-100",
-                        "rounded-circle",
-                        " h-100",
-                        "p-1 "
-                      )}
-                      alt=""
-                    />
+                    {avatar && (
+                      <img
+                        src={avatar.preview}
+                        className={cx(
+                          "w-100",
+                          "rounded-circle",
+                          " h-100",
+                          "p-1 "
+                        )}
+                        alt=""
+                      />
+                    )}
                   </div>
                 </div>
                 <div className="col-10 ps-3">

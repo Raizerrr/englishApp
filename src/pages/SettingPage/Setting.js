@@ -17,7 +17,9 @@ function Setting() {
 
   useEffect(() => {
     //clean up
-    return () => {};
+    return () => {
+      avatar && <img src={avatar.preview} alt="" />;
+    };
   }, [avatar]);
 
   return (
@@ -60,9 +62,11 @@ function Setting() {
                       hidden
                     />
                     <p>
-                      <small className={cx("upload-img-status", "ms-5")}>
-                        chưa chọn file
-                      </small>
+                      {avatar && (
+                        <small className={cx("upload-img-status", "ms-5")}>
+                          {avatar.name}
+                        </small>
+                      )}
                     </p>
                     <p className={cx("file-space-rqment", "ms-5")}>
                       kích cỡ ảnh tối đa là 1 MB
@@ -185,7 +189,7 @@ function Setting() {
           </div>
         </div>
         <div className="col-4">
-          <SettingNav />
+          <SettingNav avatar={avatar} />
         </div>
       </div>
     </div>

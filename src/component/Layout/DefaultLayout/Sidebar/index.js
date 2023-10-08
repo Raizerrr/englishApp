@@ -60,39 +60,39 @@ function Sidebar() {
               Xem Thêm{" "}
               <div className={cx("sub-menu", "rounded-5")}>
                 <ul className={cx("sub-menu-list")}>
-                  <li className={cx("rounded-4", "my-2", "sub-menu-item")}>
+                  <li className={cx("rounded-4", "sub-menu-item")}>
                     <Link
                       to={"/signin"}
-                      className={cx("ms-5", "btn", "item-link")}
+                      className={cx("btn", "item-link", "py-3")}
                     >
                       Tạo Hồ Sơ
                     </Link>
                   </li>
-                  <li className={cx("rounded-4", "my-2", "sub-menu-item")}>
-                    <Link to={"/"} className={cx("ms-5", "btn", "item-link")}>
+                  <li className={cx("rounded-4", "sub-menu-item")}>
+                    <Link to={"/"} className={cx("btn", "item-link", "py-3")}>
                       Giới Thiệu
                     </Link>
                   </li>
-                  <li className={cx("rounded-4", "my-2", "sub-menu-item")}>
+                  <li className={cx("rounded-4", "sub-menu-item")}>
                     <Link
                       to={"/setting"}
-                      className={cx("ms-5", "btn", "item-link")}
+                      className={cx("btn", "item-link", "py-3")}
                     >
                       cài đặt
                     </Link>
                   </li>
-                  <li className={cx("rounded-4", "my-2", "sub-menu-item")}>
+                  <li className={cx("rounded-4", "sub-menu-item")}>
                     <Link
                       to={"/signin"}
-                      className={cx("ms-5", "btn", "item-link")}
+                      className={cx("btn", "item-link", "py-3")}
                     >
                       Đăng Xuất
                     </Link>
                   </li>
-                  <li className={cx("rounded-4", "my-2", "sub-menu-item")}>
+                  <li className={cx("rounded-4", "sub-menu-item")}>
                     <Link
                       to={"/signin"}
-                      className={cx("ms-5", "btn", "item-link")}
+                      className={cx("btn", "item-link", "py-3")}
                     >
                       Đăng Nhập
                     </Link>
