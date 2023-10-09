@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SocialLogin } from "./SocialLogin";
 import LoginLayoutScss from "./LoginLayout.module.scss";
 import { register } from "../../axios/userAxios";
@@ -21,6 +21,12 @@ function Register() {
   // variables 
   const { username, password, email } = formValue;
 
+  useEffect(() => {
+    if(localStorage.getItem("token")){
+      navigate("/");
+    }
+  }, [])
+
   // functions
   // Function for change value input in field 
   const handleChangeField = (e) => {
@@ -35,7 +41,7 @@ function Register() {
     }
     const {data} = await register(formValue);
     if(data.data.token){
-      localStorage.setItem("token", data?.data?.token);
+      localStorage.setItem("token", JSON.stringify(data?.data?.token));
       await registerUser();
       navigate("/");
     }

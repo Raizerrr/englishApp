@@ -27,7 +27,7 @@ export const SocialLogin = () => {
 
         const {data} = await register(loginWithSocial);
         if(data.data.token || data.data.message==="This user is exist"){
-            localStorage.setItem("token", data?.data?.token);
+            localStorage.setItem("token", JSON.stringify(data?.data?.token));
             await registerUser();
             navigate("/");
         }

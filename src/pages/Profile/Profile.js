@@ -1,9 +1,12 @@
 import classNames from "classnames/bind";
 import Style from "./Profile.module.scss";
+import { useUserContext } from "../../context/UserContext";
 
 const cx = classNames.bind(Style);
 
 function Profile() {
+  const {user} = useUserContext();
+
   return (
     <div
       className={cx(
@@ -19,8 +22,8 @@ function Profile() {
         <div className={cx("user-infor-section", "my-3", "pb-4")}>
           <div className="row">
             <div className="col-9">
-              <h1 className={cx("user-name")}>Phú Lê</h1>
-              <small className={cx("user-nickname")}>phule2211</small>
+              <h1 className={cx("user-name")}>{user?.username}</h1>
+              <small className={cx("user-nickname")}>{user?.email}</small>
               <p className={cx("date-to-join", "my-3")}>
                 Đã tham gia vào tháng 8 2023
               </p>
@@ -30,7 +33,7 @@ function Profile() {
             </div>
             <div className="col-3">
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"
+                src={user?.avatar?user?.avatar:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"}
                 alt=""
                 className={cx(
                   "user-avatar",

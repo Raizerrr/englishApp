@@ -1,10 +1,14 @@
 import classNames from "classnames/bind";
 import Style from "./Setting.module.scss";
 import { Link } from "react-router-dom";
+import { useUserContext } from "../../context/UserContext";
 
 const cx = classNames.bind(Style);
 
 function SettingNav() {
+  const {user} = useUserContext();
+
+
   return (
     <div>
       <div className="container">
@@ -15,7 +19,7 @@ function SettingNav() {
                 <div className="col-2">
                   <div className={cx("setting-display-img")}>
                     <img
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"
+                      src={user?.avatar?user?.avatar:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"}
                       className={cx(
                         "w-100",
                         "rounded-circle",
@@ -27,7 +31,7 @@ function SettingNav() {
                   </div>
                 </div>
                 <div className="col-10 ps-3">
-                  <div className={cx("user-nickname", "ps-2")}>PhL837775</div>
+                  <div className={cx("user-nickname", "ps-2")}>{user?.username}</div>
                   <h1>
                     <Link
                       to={"/profile"}

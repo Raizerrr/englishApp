@@ -20,6 +20,12 @@ function SignIn() {
   const [errorNotification, setErrorNotification] = useState("");
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if(localStorage.getItem("token")){
+      navigate("/");
+    }
+  }, [])
+
 
   // variables 
   const { username, password } = formValue;
@@ -38,8 +44,8 @@ function SignIn() {
 
 
     if (data?.data?.token) {
-      localStorage.setItem("token", data?.data?.token);
-      // await registerUser();
+      localStorage.setItem("token", JSON.stringify(data?.data?.token));
+      await registerUser();
       navigate("/");
     } else {
       setErrorNotification(data.data.message);

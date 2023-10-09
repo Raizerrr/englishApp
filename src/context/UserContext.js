@@ -3,23 +3,22 @@ import { createContext } from "react";
 import { getUser } from "../axios/userAxios";
 
 const UserContext = createContext();
-
 export const UserProvider = ({children}) => {
     const [user, setUser] = useState(null);
 
-    // useEffect(() => {
-    //     registerUser();
-    // }, [])
+    useEffect(() => {
+        registerUser();
+    }, [])
     
 
     const registerUser = async() => {
         const newUser = await getUser();
-        console.log(newUser);
-        setUser(newUser);
+        setUser(newUser.data.data);
     }
 
     const logout = () => {
         setUser(null);
+        localStorage.removeItem("token");
     }
 
     return (
@@ -27,7 +26,8 @@ export const UserProvider = ({children}) => {
             value={{
                 user,
                 setUser,
-                registerUser
+                registerUser,
+                logout
             }}
         >
             {children}

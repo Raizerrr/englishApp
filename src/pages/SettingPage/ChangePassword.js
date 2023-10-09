@@ -2,9 +2,12 @@ import classNames from "classnames/bind";
 import Style from "./Setting.module.scss";
 import Sidebar from "../../component/Layout/DefaultLayout/Sidebar";
 import SettingNav from "./SettingNav";
+import { useUserContext } from "../../context/UserContext";
 
 const cx = classNames.bind(Style);
 function ChangePassword() {
+  const {user} = useUserContext();
+
   return (
     <div>
       <Sidebar />

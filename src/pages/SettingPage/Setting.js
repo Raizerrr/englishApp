@@ -3,11 +3,23 @@ import Style from "./Setting.module.scss";
 import Sidebar from "../../component/Layout/DefaultLayout/Sidebar";
 import SettingNav from "./SettingNav";
 import { useEffect, useState } from "react";
+import { useUserContext } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const cx = classNames.bind(Style);
 
 function Setting() {
+  const {user, setUser, logout} = useUserContext();
   const [avatar, setAvatar] = useState();
+  const navigate = useNavigate();
+
+  
+
+  const {username, email} = user;
+
+  const handleChangeField = (e) => {
+    setUser({...user, [e.target.name]: e.target.value})
+  }
 
   const changeAvatarHandel = (e) => {
     const file = e.target.files[0];
@@ -91,7 +103,8 @@ function Setting() {
                         "ms-5"
                       )}
                       name="username"
-                      // value="Phú Lê"
+                      value={username}
+                      onChange={handleChangeField}
                     />
                   </div>
                 </div>
@@ -117,7 +130,8 @@ function Setting() {
                         "ms-5"
                       )}
                       name="user-nickname"
-                      // value="PhL837775"
+                      value={username}
+                      onChange={handleChangeField}
                     />
                   </div>
                 </div>
@@ -142,15 +156,19 @@ function Setting() {
                         "rounded-4",
                         "ms-5"
                       )}
-                      name="user-gmail"
-                      // value="phuledz2211@gmail.com"
+                      name="email"
+                      value={email}
+                      onChange={handleChangeField}
                     />
                   </div>
                 </div>
               </div>
               <div className="row">
                 <div className="col-3"></div>
-                <div className="col-9 ps-5 mb-4">
+                <div className="col-9 ps-5 mb-4" onClick={() => {
+                  navigate("/signin")
+                  logout();
+                }}>
                   <h1>
                     <a
                       href=""

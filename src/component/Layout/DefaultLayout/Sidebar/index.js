@@ -1,9 +1,20 @@
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import classNames from "classnames/bind";
 import Style from "./Sidebar.module.scss";
+import { useUserContext } from "../../../../context/UserContext";
+import { useEffect, useState } from "react";
 
 const cx = classNames.bind(Style);
 function Sidebar() {
+  const {logout} = useUserContext();
+  const [checked, setChecked] = useState(true);
+
+  useEffect(() => {
+    if(localStorage.getItem("token")){
+      setChecked(false);
+    }
+  }, [])
+
   return (
     <div>
       <div className={cx("nav")}>
@@ -41,11 +52,13 @@ function Sidebar() {
               {" "}
               Cửa Hàng{" "}
             </Link>
+            {!checked && (
 
-            <Link className={cx("my-2", "nav-item", "rounded-4")} to="/profile">
-              {" "}
-              Hồ Sơ{" "}
-            </Link>
+              <Link className={cx("my-2", "nav-item", "rounded-4")} to="/profile">
+                {" "}
+                Hồ Sơ{" "}
+              </Link>
+            )}
 
             <div
               className={cx(
@@ -60,14 +73,17 @@ function Sidebar() {
               Xem Thêm{" "}
               <div className={cx("sub-menu", "rounded-5")}>
                 <ul className={cx("sub-menu-list")}>
-                  <li className={cx("rounded-4", "my-2", "sub-menu-item")}>
-                    <Link
-                      to={"/signin"}
-                      className={cx("ms-5", "btn", "item-link")}
-                    >
-                      Tạo Hồ Sơ
-                    </Link>
-                  </li>
+                  {checked && (
+                    <li className={cx("rounded-4", "my-2", "sub-menu-item")}>
+                      <Link
+                        to={"/signin"}
+                        className={cx("ms-5", "btn", "item-link")}
+                      >
+                        Tạo Hồ Sơ
+                      </Link>
+                    </li>
+
+                  )}
                   <li className={cx("rounded-4", "my-2", "sub-menu-item")}>
                     <Link to={"/"} className={cx("ms-5", "btn", "item-link")}>
                       Giới Thiệu
@@ -81,22 +97,27 @@ function Sidebar() {
                       cài đặt
                     </Link>
                   </li>
-                  <li className={cx("rounded-4", "my-2", "sub-menu-item")}>
-                    <Link
-                      to={"/signin"}
-                      className={cx("ms-5", "btn", "item-link")}
-                    >
-                      Đăng Xuất
-                    </Link>
-                  </li>
-                  <li className={cx("rounded-4", "my-2", "sub-menu-item")}>
-                    <Link
-                      to={"/signin"}
-                      className={cx("ms-5", "btn", "item-link")}
-                    >
-                      Đăng Nhập
-                    </Link>
-                  </li>
+                  {!checked&& (
+                    <li onClick={logout} className={cx("rounded-4", "my-2", "sub-menu-item")}>
+                      <Link
+                        to={"/signin"}
+                        className={cx("ms-5", "btn", "item-link")}
+                      >
+                        Đăng Xuất
+                      </Link>
+                    </li>
+                  )}
+                  {checked && (
+
+                    <li className={cx("rounded-4", "my-2", "sub-menu-item")}>
+                      <Link
+                        to={"/signin"}
+                        className={cx("ms-5", "btn", "item-link")}
+                      >
+                        Đăng Nhập
+                      </Link>
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>
