@@ -89,14 +89,17 @@ function Sidebar() {
                       Giới Thiệu
                     </Link>
                   </li>
-                  <li className={cx("rounded-4", "my-2", "sub-menu-item")}>
-                    <Link
-                      to={"/setting"}
-                      className={cx("ms-5", "btn", "item-link")}
-                    >
-                      cài đặt
-                    </Link>
-                  </li>
+                  {!checked && (
+
+                    <li className={cx("rounded-4", "my-2", "sub-menu-item")}>
+                      <Link
+                        to={"/setting"}
+                        className={cx("ms-5", "btn", "item-link")}
+                      >
+                        cài đặt
+                      </Link>
+                    </li>
+                  )}
                   {!checked&& (
                     <li onClick={logout} className={cx("rounded-4", "my-2", "sub-menu-item")}>
                       <Link

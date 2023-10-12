@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { createContext } from "react";
-import { getUser } from "../axios/userAxios";
+import { getUser, udpateUser } from "../axios/userAxios";
 
 const UserContext = createContext();
 export const UserProvider = ({children}) => {
@@ -12,13 +12,23 @@ export const UserProvider = ({children}) => {
     
 
     const registerUser = async() => {
-        const newUser = await getUser();
-        setUser(newUser.data.data);
+        try {
+            const newUser = await getUser();
+            setUser(newUser.data.data);
+            
+        } catch (error) {
+            localStorage.removeItem('token');
+            setUser(null);
+        }
     }
 
     const logout = () => {
         setUser(null);
         localStorage.removeItem("token");
+    }
+
+    const updateUserContext = async() => {
+        await udpateUser(user);
     }
 
     return (
@@ -27,7 +37,8 @@ export const UserProvider = ({children}) => {
                 user,
                 setUser,
                 registerUser,
-                logout
+                logout,
+                updateUserContext
             }}
         >
             {children}

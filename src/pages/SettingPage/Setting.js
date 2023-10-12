@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const cx = classNames.bind(Style);
 
 function Setting() {
-  const {user, setUser, logout} = useUserContext();
+  const {user, setUser, logout, updateUserContext} = useUserContext();
   const [avatar, setAvatar] = useState();
   const navigate = useNavigate();
 
@@ -29,7 +29,7 @@ function Setting() {
 
   useEffect(() => {
     //clean up
-    return () => {};
+    
   }, [avatar]);
 
   return (

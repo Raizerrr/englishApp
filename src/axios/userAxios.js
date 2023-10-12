@@ -14,3 +14,4 @@ API.interceptors.request.use((req) => {
 export const login = (formValue) => API.post("/user/checklogin", formValue);
 export const register = (formValue) => API.post("/user/insertuser", formValue);
 export const getUser = () => API.get("/user/getUser");
+export const udpateUser = (formValue) => API.put("/user/updateUser", formValue);
