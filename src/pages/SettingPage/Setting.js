@@ -5,11 +5,12 @@ import SettingNav from "./SettingNav";
 import { useEffect, useState } from "react";
 import { useUserContext } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
+import { SaveButton } from "../../component/Buttons/SaveButton";
 
 const cx = classNames.bind(Style);
 
 function Setting() {
-  const {user, setUser, logout, updateUserContext} = useUserContext();
+  const {user, setUser, logout} = useUserContext();
   const [avatar, setAvatar] = useState();
   const navigate = useNavigate();
 
@@ -198,6 +199,9 @@ function Setting() {
                     </a>
                   </h1>
                 </div>
+              </div>
+              <div className="">
+                <SaveButton/>
               </div>
             </div>
           </div>

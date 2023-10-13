@@ -89,7 +89,6 @@ export const SocialLogin = () => {
                         "ms-3"
                         )}
                     >
-                        Google
                         <GoogleLogin 
                             onSuccess={handleSuccessOauth}
                             onError={handleErrorOauth}
