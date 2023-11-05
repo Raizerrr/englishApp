@@ -37,7 +37,7 @@ function Profile() {
                 className={cx("avatar-img-container", "w-100", "h-100", "px-3")}
               >
                 <img
-                src={user?.avatar?user?.avatar:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"}
+                src={user?.avatar ? user?.avatar : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"}
                 alt=""
                 className={cx(
                   "user-avatar",

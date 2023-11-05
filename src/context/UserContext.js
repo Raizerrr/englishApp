@@ -31,7 +31,7 @@ export const UserProvider = ({children}) => {
         }
 
         const {data} = await login(admin);
-        localStorage.setItem("tokenAdmin", data.data.token);
+        sessionStorage.setItem("tokenAdmin", data.data.token);
     }
 
     const logout = () => {

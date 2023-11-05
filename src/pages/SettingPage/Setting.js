@@ -187,7 +187,8 @@ function Setting() {
               </div>
               <div className="row">
                 <div className="col-3"></div>
-                <div className="col-9 ps-5 mb-4" onClick={() => {
+                <div className="col-9 ps-5 mb-4" onClick={(e) => {
+                  e.preventDefault();
                   navigate("/signin")
                   logout();
                 }}>

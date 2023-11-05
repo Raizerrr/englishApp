@@ -5,7 +5,7 @@ import { faMicrophone, faVolumeHigh } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(Style);
 
-function SpeakLayout() {
+function SpeakLayout({question}) {
   return (
     <>
       <div className="container d-flex justify-content-center align-items-center">

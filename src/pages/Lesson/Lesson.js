@@ -1,5 +1,3 @@
-import classNames from "classnames/bind";
-import Style from "./Lesson.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faClose } from "@fortawesome/free-solid-svg-icons";
 import ListenLayout from "./ListenLayout";
@@ -7,10 +5,81 @@ import ReadLayout from "./ReadLayout";
 import SpeakLayout from "./SpeakLayout";
 import WriteLayout from "./WriteLayout";
 import LessonComplete from "./LessonComplete";
+import { useNavigate, useParams } from "react-router";
+import { useTestContext } from "../../context/TestContext";
+import { useEffect, useState } from "react";
+import classNames from "classnames/bind";
+import Style from "./Lesson.module.scss";
+import { ReaheardButton } from "../../component/Buttons/ReheardButton";
 
 const cx = classNames.bind(Style);
 
 function Lesson() {
+  const {type, questionType} = useParams();
+  const {testDetail,
+          questionNumber,
+          score,
+          exp,
+          answerQuestion,
+          hearts,
+          setHearts,
+          setScore,
+          setExp,
+          setAnswerQuestion,
+          getQuestion,
+          setQuestionNumber,
+          getTestByType
+        } 
+    = useTestContext();
+  const [question, setQuestion] = useState();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async() => {
+      await getTestByType(type);
+      
+    }
+    fetchData();
+  }, [])
+
+  useEffect(() => {
+    const questionDetail = getQuestion();
+    setQuestion(questionDetail);
+  }, [testDetail, questionNumber]);
+
+
+  const checkQuestion = () => {
+    setQuestionNumber(questionNumber+1);
+  }
+
+  const skipQuestion = () => {
+    setQuestionNumber(questionNumber+1);
+  }
+
+  const returnHome = () => {
+    navigate("/");
+  }
+
+
+  const getSuitableLayout = () => {
+    if(type === "complete") {
+      return <LessonComplete/>
+    } 
+    else if(questionType === "read"){
+      return <ReadLayout question={question}/>
+    }
+    else if(questionType === "write") {
+      return <WriteLayout question={question}/>
+    }
+    else if(questionType === "listen") {
+      return <ListenLayout question={question}/>
+    }
+    else {
+      return <SpeakLayout question={question}/>
+    }
+  }
+
+
   return (
     <>
       <div className="container-fluid p-0">
@@ -67,7 +136,7 @@ function Lesson() {
 
           {/* content */}
           <div className={cx("content-section")}>
-            <ReadLayout />
+            {getSuitableLayout()}
           </div>
           {/* content */}
 
@@ -80,12 +149,25 @@ function Lesson() {
               "align-items-center"
             )}
           >
-            <a href="/" className={cx("skip-btn", "btn")}>
-              Bỏ qua
-            </a>
-            <a href="/" className={cx("check-btn", "btn", "disabled")}>
-              kiểm tra
-            </a>
+            {type==="complete" ? (
+              <>
+                <ReaheardButton/>
+                <button className={cx("check-btn", "btn", "disabled")} onClick={returnHome}>
+                  Trở về
+                </button>
+              </>
+            ): (
+              <>
+                <button className={cx("skip-btn", "btn")} onClick={skipQuestion}>
+                  Bỏ qua
+                </button>
+                <button className={cx("check-btn", "btn", "disabled")} onClick={checkQuestion}>
+                  kiểm tra
+                </button>
+              </>
+
+            )}
+            
           </div>
           {/* footer */}
 

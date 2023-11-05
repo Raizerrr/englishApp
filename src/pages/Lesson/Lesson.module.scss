@@ -127,6 +127,10 @@
             appearance: none;
             
         }
+
+        :hover {
+            cursor: pointer;
+        }
     }
 }
 // listen-layout
@@ -306,6 +310,10 @@
                     color: rgb(24,153,214);
                     
                 }
+            }
+
+            :hover {
+                cursor: pointer;
             }
         }
         

@@ -30,7 +30,7 @@ const publicRoutes = [
   { path: "/changePassword", component: ChangePassword, layout: null },
   { path: "/superInfomation", component: SuperInfomation, layout: null },
   { path: "/notification", component: Notification, layout: null },
-  { path: "/lesson", component: Lesson, layout: null },
+  { path: "/lesson/:type/:questionType", component: Lesson, layout: null },
   { path: "/signin", component: LoginLayout, layout: null },
   { path: "register", component: Register, layout: null },
 ];

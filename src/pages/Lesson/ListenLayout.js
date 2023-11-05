@@ -5,7 +5,7 @@ import { faVolumeHigh } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(Style);
 
-function ListenLayout() {
+function ListenLayout({question}) {
   return (
     <>
       <div className="container d-flex justify-content-center align-items-center">

@@ -2,10 +2,42 @@ import classNames from "classnames/bind";
 import Style from "./Lesson.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVolumeHigh } from "@fortawesome/free-solid-svg-icons";
+import getRandomNumber from "../../extra/algorithms/randomCode";
+import { useEffect, useState } from "react";
 
 const cx = classNames.bind(Style);
 
-function ReadLayout() {
+function ReadLayout({question}) {
+  
+  const [answerResult, setAnswerResult] = useState([]);
+  const [answerActive, setAnswerActive] = useState([false, false, false, false]);
+  const randomAnswer = () => {
+    let answers = [question?.correctAnswer, question?.wrongAnswer1, question?.wrongAnswer2, question?.wrongAnswer3];
+    let answerSet = [];
+    
+    
+
+    while(answers.length > 0){
+      const randomIndex = getRandomNumber(0, answers.length-1);
+      answerSet.push(answers[randomIndex]);
+      answers.splice(randomIndex, 1);
+    }
+    
+
+    setAnswerResult(answerSet);
+  }
+
+  useEffect(() => {
+    randomAnswer();
+  }, [question]);
+
+  const determineAnswer = (index) => {
+    let answer = [false, false, false, false];
+    answer[index] = true;
+    setAnswerActive(answer);
+  }
+
+  
   return (
     <>
       <div className="container d-flex justify-content-center align-items-center">
@@ -14,34 +46,18 @@ function ReadLayout() {
             Điền vào chỗ trống
           </h1>
           <div className={cx("question-container", "mb-5")}>
-            <p className={cx("question")}>My birthday ... in January.</p>
+            <p className={cx("question")}>{question?.description}</p>
           </div>
 
           <div className={cx("type-answer-area-container")}>
             <ul className={cx("answer-list")}>
-              <li
-                className={cx(
-                  "answer-item",
-                  "position-relative",
-                  "my-3",
-                  "answer-active"
-                )}
-              >
-                <div className={cx("answer-number", "m-3", "rounded-3")}>1</div>
-                is
-              </li>
-              <li className={cx("answer-item", "position-relative", "mb-3")}>
-                <div className={cx("answer-number", "m-3", "rounded-3")}>2</div>
-                on
-              </li>
-              <li className={cx("answer-item", "position-relative", "mb-3")}>
-                <div className={cx("answer-number", "m-3", "rounded-3")}>3</div>
-                at
-              </li>
-              <li className={cx("answer-item", "position-relative", "mb-3")}>
-                <div className={cx("answer-number", "m-3", "rounded-3")}>4</div>
-                at
-              </li>
+              {answerResult?.map((answer, index) => (
+                <li onClick={() => determineAnswer(index)} className={answerActive[index] ? cx("answer-item", "position-relative", "mb-3", "answer-active") : cx("answer-item", "position-relative", "mb-3")}>
+                  <div className={cx("answer-number", "m-3", "rounded-3")}>{index+1}</div>
+                  {answer}
+                </li>
+              ))}
+             
             </ul>
           </div>
         </div>
