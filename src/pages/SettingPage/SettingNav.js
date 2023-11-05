@@ -5,29 +5,28 @@ import { useUserContext } from "../../context/UserContext";
 
 const cx = classNames.bind(Style);
 
-function SettingNav() {
-  const {user} = useUserContext();
-
-
+function SettingNav({ avatar }) {
   return (
     <div>
-      <div className="container">
+      <div className="container position-relative">
         <div className={cx("setting-nav-container", "rounded-5", "py-3")}>
           <ul className={cx("setting-nav-list")}>
             <li className={cx("settting-nav-item")}>
               <div className="row">
                 <div className="col-2">
                   <div className={cx("setting-display-img")}>
-                    <img
-                      src={user?.avatar?user?.avatar:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"}
-                      className={cx(
-                        "w-100",
-                        "rounded-circle",
-                        " h-100",
-                        "p-1 "
-                      )}
-                      alt=""
-                    />
+                    {avatar && (
+                      <img
+                        src={avatar.preview}
+                        className={cx(
+                          "w-100",
+                          "rounded-circle",
+                          " h-100",
+                          "p-1 "
+                        )}
+                        alt=""
+                      />
+                    )}
                   </div>
                 </div>
                 <div className="col-10 ps-3">

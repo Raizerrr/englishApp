@@ -1,8 +1,15 @@
 .container{
     overflow: none;
 }
+.course-section{
+    border: 1px solid #ccc;
+    border-radius: 1.5rem;
+    
+}
 
 .bange{
+    border-top-left-radius:  1rem;
+    border-top-right-radius: 1rem ;
     
     padding: 1.5rem 5rem 1.5rem 1.5rem;
     .section-title {

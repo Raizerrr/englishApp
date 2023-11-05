@@ -67,7 +67,7 @@ function Lesson() {
 
           {/* content */}
           <div className={cx("content-section")}>
-            <LessonComplete />
+            <ReadLayout />
           </div>
           {/* content */}
 

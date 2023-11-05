@@ -32,17 +32,22 @@ function Profile() {
               </p>
             </div>
             <div className="col-3">
-              <img
-                src={user?.avatar?user?.avatar:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"}
-                alt=""
-                className={cx(
-                  "user-avatar",
-                  "rounded-circle",
-                  "w-100",
-                  "h-100",
-                  "p-3"
-                )}
-              />
+
+              <div
+                className={cx("avatar-img-container", "w-100", "h-100", "px-3")}
+              >
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"
+                  alt=""
+                  className={cx(
+                    "user-avatar",
+                    "rounded-circle",
+                    "w-100",
+                    "h-100",
+                    "p-3"
+                  )}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -54,28 +59,33 @@ function Profile() {
                 className={cx(
                   "process-display-container",
                   "py-3",
-                  "px-5",
+                  "px-3",
+                  "px-md-5",
                   "rounded-5"
                 )}
               >
-                <div className="row">
-                  <div className="col-2 d-flex justify-content-center">
-                    <img
-                      src="https://d35aaqx5ub95lt.cloudfront.net/images/icons/ba95e6081679d9d7e8c132da5cfce1ec.svg"
-                      alt=""
-                      className={cx("process-icon")}
-                    />
-                  </div>
-                  <div className="col-10">
-                    <h1
-                      className={cx(
-                        "process-count-display",
-                        "disabled-process"
-                      )}
-                    >
-                      0
-                    </h1>
-                    <h1 className={cx("process-name-display")}>Ngày Streak</h1>
+                <div className={cx("process-display", "row")}>
+                  <div className="row">
+                    <div className="col-2 d-flex justify-content-center">
+                      <img
+                        src="https://d35aaqx5ub95lt.cloudfront.net/images/icons/ba95e6081679d9d7e8c132da5cfce1ec.svg"
+                        alt=""
+                        className={cx("process-icon")}
+                      />
+                    </div>
+                    <div className="col-10">
+                      <h1
+                        className={cx(
+                          "process-count-display",
+                          "disabled-process"
+                        )}
+                      >
+                        0
+                      </h1>
+                      <h1 className={cx("process-name-display")}>
+                        Ngày Streak
+                      </h1>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -85,21 +95,26 @@ function Profile() {
                 className={cx(
                   "process-display-container",
                   "py-3",
-                  "px-5",
+                  "px-3",
+                  "px-md-5",
                   "rounded-5"
                 )}
               >
-                <div className="row">
-                  <div className="col-2 d-flex justify-content-center">
-                    <img
-                      src="https://d35aaqx5ub95lt.cloudfront.net/images/profile/01ce3a817dd01842581c3d18debcbc46.svg"
-                      alt=""
-                      className={cx("process-icon")}
-                    />
-                  </div>
-                  <div className="col-10">
-                    <h1 className={cx("process-count-display")}>178</h1>
-                    <h1 className={cx("process-name-display")}>Tổng điểm KN</h1>
+                <div className={cx("process-display", "row")}>
+                  <div className="row">
+                    <div className="col-2 d-flex justify-content-center">
+                      <img
+                        src="https://d35aaqx5ub95lt.cloudfront.net/images/profile/01ce3a817dd01842581c3d18debcbc46.svg"
+                        alt=""
+                        className={cx("process-icon")}
+                      />
+                    </div>
+                    <div className="col-10">
+                      <h1 className={cx("process-count-display")}>178</h1>
+                      <h1 className={cx("process-name-display")}>
+                        Tổng điểm KN
+                      </h1>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -109,12 +124,13 @@ function Profile() {
                 className={cx(
                   "process-display-container",
                   "py-3",
-                  "px-5",
+                  "px-3",
+                  "px-md-5",
                   "rounded-5"
                 )}
               >
-                <div className="row">
-                  <div className="col-2 d-flex justify-content-center">
+                <div className={cx("process-display", "row")}>
+                  <div className="col-2 d-flex justify-content-center ">
                     <img
                       src="https://d35aaqx5ub95lt.cloudfront.net/images/leagues/1b4fb092de75e4ecefd8e92f10b4ddd2.svg"
                       alt=""
@@ -142,30 +158,33 @@ function Profile() {
                 className={cx(
                   "process-display-container",
                   "py-3",
-                  "px-5",
+                  "px-3",
+                  "px-md-5",
                   "rounded-5"
                 )}
               >
-                <div className="row">
-                  <div className="col-2 d-flex justify-content-center">
-                    <img
-                      src="https://d35aaqx5ub95lt.cloudfront.net/images/profile/105f8a43d07cdbbe393f9588eba784f8.svg"
-                      alt=""
-                      className={cx("process-icon")}
-                    />
-                  </div>
-                  <div className="col-10">
-                    <h1
-                      className={cx(
-                        "process-count-display",
-                        "disabled-process"
-                      )}
-                    >
-                      0
-                    </h1>
-                    <h1 className={cx("process-name-display")}>
-                      Số lần đạt top 3
-                    </h1>
+                <div className={cx("process-display", "row")}>
+                  <div className="row ">
+                    <div className="col-2 d-flex justify-content-center">
+                      <img
+                        src="https://d35aaqx5ub95lt.cloudfront.net/images/profile/105f8a43d07cdbbe393f9588eba784f8.svg"
+                        alt=""
+                        className={cx("process-icon")}
+                      />
+                    </div>
+                    <div className="col-10">
+                      <h1
+                        className={cx(
+                          "process-count-display",
+                          "disabled-process"
+                        )}
+                      >
+                        0
+                      </h1>
+                      <h1 className={cx("process-name-display")}>
+                        Số lần đạt top 3
+                      </h1>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -180,11 +199,13 @@ function Profile() {
               <li className={cx("achievment-item")}>
                 <div className={cx("row")}>
                   <div className={cx("col-2")}>
-                    <img
-                      src="https://d35aaqx5ub95lt.cloudfront.net/images/achievements/217492e7baf0961abdd2ddfb5881e7f9.svg"
-                      className="w-100 p-3 h-100"
-                      alt=""
-                    />
+                    <div className={cx("achievment-banner-container")}>
+                      <img
+                        src="https://d35aaqx5ub95lt.cloudfront.net/images/achievements/217492e7baf0961abdd2ddfb5881e7f9.svg"
+                        className="w-100 p-3 h-100"
+                        alt=""
+                      />
+                    </div>
                   </div>
                   <div className={cx("col-10", "py-3", "px-5")}>
                     <h1 className={cx("achievment-title", "py-4")}>Lửa rừng</h1>
@@ -210,11 +231,13 @@ function Profile() {
               <li className={cx("achievment-item")}>
                 <div className={cx("row")}>
                   <div className={cx("col-2")}>
-                    <img
-                      src="https://d35aaqx5ub95lt.cloudfront.net/images/achievements/217492e7baf0961abdd2ddfb5881e7f9.svg"
-                      className="w-100 p-3 h-100"
-                      alt=""
-                    />
+                    <div className={cx("achievment-banner-container")}>
+                      <img
+                        src="https://d35aaqx5ub95lt.cloudfront.net/images/achievements/217492e7baf0961abdd2ddfb5881e7f9.svg"
+                        className="w-100 p-3 h-100"
+                        alt=""
+                      />
+                    </div>
                   </div>
                   <div className={cx("col-10", "py-3", "px-5")}>
                     <h1 className={cx("achievment-title", "py-4")}>Lửa rừng</h1>
@@ -240,11 +263,13 @@ function Profile() {
               <li className={cx("achievment-item")}>
                 <div className={cx("row")}>
                   <div className={cx("col-2")}>
-                    <img
-                      src="https://d35aaqx5ub95lt.cloudfront.net/images/achievements/217492e7baf0961abdd2ddfb5881e7f9.svg"
-                      className="w-100 p-3 h-100"
-                      alt=""
-                    />
+                    <div className={cx("achievment-banner-container")}>
+                      <img
+                        src="https://d35aaqx5ub95lt.cloudfront.net/images/achievements/217492e7baf0961abdd2ddfb5881e7f9.svg"
+                        className="w-100 p-3 h-100"
+                        alt=""
+                      />
+                    </div>
                   </div>
                   <div className={cx("col-10", "py-3", "px-5")}>
                     <h1 className={cx("achievment-title", "py-4")}>Lửa rừng</h1>
