@@ -2,3 +2,9 @@
 .course-container{
     margin-left: 275px;
 }
+
+@media screen and (max-width : 768px){
+    .course-container{
+        margin-left: 75px;
+    }
+}

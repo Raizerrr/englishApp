@@ -9,15 +9,16 @@ function DefaultLayout({ children }) {
   return (
     <>
       <div className="container-fluid">
-        <Sidebar />
-
         <div className={cx("row", "course-container")}>
-          <div className="col-8">
+          <div className="">
+            <Sidebar />
+          </div>
+          <div className="col-12 col-lg-8">
             <div className="content" style={{ height: " 2000px" }}>
               {children}
             </div>
           </div>
-          <div className={cx("sticky", "col-4")}>
+          <div className={cx("d-none", "sticky", "col-lg-4", "d-lg-block")}>
             <Task />
           </div>
         </div>

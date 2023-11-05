@@ -12,6 +12,31 @@ html{
     flex-direction: row;
    
 }
+.save-setting-btn-container{
+    position: absolute;
+    right: -50%;
+    top: -10%;
+}
+
+
+.upload-file-btn,
+.save-setting-btn{
+    text-transform: uppercase;
+    border: none;
+    background: #fff;
+    border: 2px solid #cccccc5b;
+    padding: 1.25rem;
+    box-shadow: 0 4px 2px 0 #ccc;
+    border-radius: 16px;
+    font-size: 15px;
+    font-weight: 700;
+    color: rgb(28,176,246);
+    margin-bottom: 12px;
+    &:active {
+        box-shadow: none;
+        transform: translate(0, 4px);
+    }
+}
 
 .setting-container{
     max-width: 600px;
@@ -30,20 +55,7 @@ html{
         font-weight: 700;
         line-height: 44px;
     }
-    .upload-file-btn{
-        border: 2px solid #cccccc5b;
-        padding: 1.25rem;
-        box-shadow: 0 4px 2px 0 #ccc;
-        border-radius: 16px;
-        font-size: 15px;
-        font-weight: 700;
-        color: rgb(28,176,246);
-        margin-bottom: 12px;
-        &:active {
-            box-shadow: none;
-            transform: translate(0, 4px);
-        }
-    }
+    
     .input-setting{
         border: 1px solid #ccc !important;
         background-color: #cccccc3a;
@@ -60,6 +72,7 @@ html{
     }
     .delete-account{
         color: rgb(255,75,75) !important;
+        white-space: nowrap;
         &:hover{
             opacity: .7;
         }
@@ -121,6 +134,7 @@ html{
     width: 368px;
     border: 1px solid #ccc;
     top: 12%;
+    margin-left:70px ;
     .setting-nav-list{
         list-style-type: none;
         padding: 0;
@@ -237,5 +251,16 @@ html{
             }
             
         }
+    }
+}
+
+@media screen and (max-width : 768px){
+    .setting-container{
+        margin-left: 100px;
+    }
+    .save-setting-btn-container{
+        position: absolute;
+        right: 0;
+        top: 0%;
     }
 }

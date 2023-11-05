@@ -85,6 +85,7 @@ function Task() {
                 <div className="col-4">
                   <img
                     src="https://d35aaqx5ub95lt.cloudfront.net/images/goals/e07e459ea20aef826b42caa71498d85f.svg"
+                    className="img-fluid"
                     alt=""
                   />
                 </div>

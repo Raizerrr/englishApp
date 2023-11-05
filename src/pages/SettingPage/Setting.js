@@ -26,7 +26,7 @@ function Setting() {
     <div>
       <Sidebar />
       <div className="row">
-        <div className="col-8">
+        <div className="col-12 col-md-9 col-lg-8">
           <div
             className={cx(
               "container",
@@ -36,7 +36,23 @@ function Setting() {
             )}
           >
             <div className={cx("setting-container", "my-3")}>
-              <h1 className={cx("setting-title", "my-3")}>Tài Khoản</h1>
+              <div className="position-relative">
+                <h1 className={cx("setting-title", "my-3")}>Tài Khoản</h1>
+
+                <div
+                  className={cx(
+                    "d-flex",
+                    "justify-content-center",
+                    "align-items-center",
+                    "my-3",
+                    "save-setting-btn-container"
+                  )}
+                >
+                  <button className={cx("save-setting-btn", "disabled")}>
+                    lưu thay đổi
+                  </button>
+                </div>
+              </div>
               <div className="py-5">
                 <div className="row">
                   <div className="col-3">
@@ -188,7 +204,7 @@ function Setting() {
             </div>
           </div>
         </div>
-        <div className="col-4">
+        <div className="d-none col-md-3 col-lg-4 d-md-block">
           <SettingNav avatar={avatar} />
         </div>
       </div>

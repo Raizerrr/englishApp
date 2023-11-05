@@ -7,7 +7,7 @@ const cx = classNames.bind(Style);
 function SettingNav({ avatar }) {
   return (
     <div>
-      <div className="container">
+      <div className="container position-relative">
         <div className={cx("setting-nav-container", "rounded-5", "py-3")}>
           <ul className={cx("setting-nav-list")}>
             <li className={cx("settting-nav-item")}>

@@ -72,3 +72,11 @@
 .show-sub-menu:hover .sub-menu{
     display: block;
 }
+@media screen and (max-width : 768px){
+    .nav{
+        width: 75px !important;
+    }
+    .sub-menu{
+        left: 45px !important;
+    }
+}

@@ -18,6 +18,11 @@
         .folower{       
             color: #777;
         }
+        .avatar-img-container{
+            
+            min-width: 150px;
+            min-height: 100px;
+        }
     }
     
     .process-section{
@@ -30,6 +35,11 @@
         
         .process-display-container{
             border: 1px solid #ccc;
+            .process-display{
+                white-space: nowrap;
+                overflow-x: hidden;
+                
+            }
             
             .process-count-display{
                 font-size: 20px;
@@ -57,6 +67,10 @@
                 border-bottom: 1px solid #ccc;
                 &:last-child{
                     border: none;
+                }
+                .achievment-banner-container{
+                    min-height: 70px;
+                    min-width: 70px;
                 }
                .achievment-title{
                 font-size: 22px;

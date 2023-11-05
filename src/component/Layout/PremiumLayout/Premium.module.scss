@@ -1,0 +1,87 @@
+.premium-container{
+    min-height: 100vh;
+    min-width: 100vh;
+    background: radial-gradient(216% 106% at 6% 3%,rgba(38,246,99,.3) 0,rgba(38,138,255,.3) 52%,rgba(252,85,255,.3) 100%),rgb(0,4,55);
+
+    .premium-header{
+        .close-btn{
+            background-color: transparent;
+            outline: none;
+            font-size: 20px;
+            border: none;
+        }
+    }
+
+
+
+    .premium-intro-container{
+       
+        max-width: 660px;
+        .premium-intro-title{
+            padding: .5rem 1rem;
+            font-size: 38px;
+            font-weight: 700;          
+            line-height: 1.25;         
+            text-align: center;
+        }
+        .premium-content-container{
+            padding: 3rem;
+            background-color: #cccccc1d;
+            border-radius: 1.5rem;
+            .hightlight-background{
+                position: absolute;
+                top: 10%;
+                bottom: 10%;
+                background-color: #cccccc6d;
+                width: 20%;
+                right: 4%;
+                border-radius: 1.5rem;
+              }
+            .premium-content{
+              
+                td,th{
+                    text-align: center;
+                    padding: 1.5rem !important;                 
+                    font-size: 16px;
+                    color: #fff;
+                    font-weight: 600;
+                    line-height: 1.75rem;
+                    &:first-child{
+                        text-align: left;
+                    }
+                }
+                tr{
+                    border-color: #cccccc5d;
+                    &:last-child {
+                        border-color: transparent !important;
+                    }
+                }
+                
+                th{
+                    border-color: transparent;
+                    font-size: 20px;
+                    color: #fff;
+                    line-height: 2.25rem;
+                    text-transform: uppercase;
+                }
+                
+            }
+        }
+    }
+    .premium-submit-container{
+        .premium-submit-btn{
+            border-radius: 2rem;
+            padding: 13px 45px;
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            box-shadow: 1px 5px 0px 2px rgb(163, 163, 163);
+            outline: none;
+            border: none;
+            &:active{
+                transform: translate(0, 5px);
+                box-shadow: none;
+            }
+        }
+    }
+}
