@@ -93,6 +93,7 @@
 }
 .sign-in-by-social{
     background-color: #fff;
+    height: 5rem;
     font-weight: 700;
     text-transform: uppercase;
     border-color: transparent;
@@ -105,6 +106,10 @@
 
 .google-color{
     color: rgb(66,133,244);
+}
+.google-color > * {
+    //  display: none !important;
+    overflow: hidden;
 }
 .facebook-color {
     color: rgb(59,89,152);

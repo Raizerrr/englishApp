@@ -6,10 +6,12 @@ import { useNavigate } from "react-router-dom";
 import { login } from "../../axios/userAxios";
 import { SocialLogin } from "./SocialLogin";
 import { ErrorNotification } from "./ErrorNotification";
+import { useUserContext } from "../../context/UserContext";
 
 const cx = classNames.bind(LoginLayoutScss);
 
 function SignIn() {
+  const {registerUser} = useUserContext();
   // Hook
   const [formValue, setFormValue] = useState({
     username: "",
@@ -17,6 +19,12 @@ function SignIn() {
   });
   const [errorNotification, setErrorNotification] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if(localStorage.getItem("token")){
+      navigate("/");
+    }
+  }, [])
 
 
   // variables 
@@ -33,10 +41,11 @@ function SignIn() {
     e.preventDefault();
 
     const {data} = await login(formValue);
-    console.log(data);
 
 
     if (data?.data?.token) {
+      localStorage.setItem("token", JSON.stringify(data?.data?.token));
+      await registerUser();
       navigate("/");
     } else {
       setErrorNotification(data.data.message);
