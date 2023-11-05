@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { createContext } from "react";
-import { getUser, updateUserApi } from "../axios/userAxios";
+import { getUser, login, updateUserApi } from "../axios/userAxios";
 
 const UserContext = createContext();
 export const UserProvider = ({children}) => {
@@ -9,6 +9,7 @@ export const UserProvider = ({children}) => {
 
     useEffect(() => {
         registerUser();
+        registerAdmin();
     }, [])
     
 
@@ -21,6 +22,16 @@ export const UserProvider = ({children}) => {
             localStorage.removeItem('token');
             setUser(null);
         }
+    }
+
+    const registerAdmin = async() => {
+        const admin  = {
+            "username": "kenny",
+            "password": "123"
+        }
+
+        const {data} = await login(admin);
+        localStorage.setItem("tokenAdmin", data.data.token);
     }
 
     const logout = () => {
@@ -43,6 +54,7 @@ export const UserProvider = ({children}) => {
             localStorage.setItem('token', JSON.stringify(data.data.token));
         }
         else {
+            
             setErrorMesage(data.data.message);
         }
 
