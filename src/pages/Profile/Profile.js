@@ -37,16 +37,16 @@ function Profile() {
                 className={cx("avatar-img-container", "w-100", "h-100", "px-3")}
               >
                 <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"
-                  alt=""
-                  className={cx(
-                    "user-avatar",
-                    "rounded-circle",
-                    "w-100",
-                    "h-100",
-                    "p-3"
-                  )}
-                />
+                src={user?.avatar?user?.avatar:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"}
+                alt=""
+                className={cx(
+                  "user-avatar",
+                  "rounded-circle",
+                  "w-100",
+                  "h-100",
+                  "p-3"
+                )}
+              />
               </div>
             </div>
           </div>

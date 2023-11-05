@@ -6,6 +6,9 @@ import { useUserContext } from "../../context/UserContext";
 const cx = classNames.bind(Style);
 
 function SettingNav({ avatar }) {
+  const {user} = useUserContext();
+
+
   return (
     <div>
       <div className="container position-relative">
@@ -15,17 +18,18 @@ function SettingNav({ avatar }) {
               <div className="row">
                 <div className="col-2">
                   <div className={cx("setting-display-img")}>
+
                     {avatar && (
                       <img
-                        src={avatar.preview}
-                        className={cx(
-                          "w-100",
-                          "rounded-circle",
-                          " h-100",
-                          "p-1 "
-                        )}
-                        alt=""
-                      />
+                      src={user?.avatar?user?.avatar:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"}
+                      className={cx(
+                        "w-100",
+                        "rounded-circle",
+                        " h-100",
+                        "p-1 "
+                      )}
+                      alt=""
+                    />
                     )}
                   </div>
                 </div>

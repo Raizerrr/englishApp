@@ -10,7 +10,7 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import Style from "./Sidebar.module.scss";
-import { useUserContext } from "../../../../context/UserContext";
+import { useUserContext } from "../../../../context/UserContext.js";
 import { useEffect, useState } from "react";
 
 const cx = classNames.bind(Style);
@@ -101,14 +101,7 @@ function Sidebar() {
             </Link>
             {!checked && (
 
-<<<<<<< HEAD
-              <Link className={cx("my-2", "nav-item", "rounded-4")} to="/profile">
-                {" "}
-                Hồ Sơ{" "}
-              </Link>
-            )}
-=======
-            <Link
+              <Link
               className={cx(
                 "my-2",
                 "text-center",
@@ -117,11 +110,11 @@ function Sidebar() {
                 "rounded-4"
               )}
               to="/profile"
-            >
+              >
               <FontAwesomeIcon style={{ fontSize: "20px" }} icon={faUser} />
               <span className="d-none d-md-inline-block ms-md-4">Hồ Sơ</span>
-            </Link>
->>>>>>> frontend-fix
+              </Link>
+            )}
 
             <div
               className={cx(
@@ -138,94 +131,58 @@ function Sidebar() {
               <span className="d-none d-md-inline-block ms-md-4">Xem Thêm</span>
               <div className={cx("sub-menu", "rounded-5")}>
                 <ul className={cx("sub-menu-list")}>
-<<<<<<< HEAD
                   {checked && (
-                    <li className={cx("rounded-4", "my-2", "sub-menu-item")}>
+                    <li className={cx("rounded-4", "sub-menu-item")}>
                       <Link
                         to={"/signin"}
-                        className={cx("ms-5", "btn", "item-link")}
+                        className={cx("btn", "item-link", "py-3")}
                       >
                         Tạo Hồ Sơ
                       </Link>
                     </li>
 
                   )}
-                  <li className={cx("rounded-4", "my-2", "sub-menu-item")}>
-                    <Link to={"/"} className={cx("ms-5", "btn", "item-link")}>
-                      Giới Thiệu
-                    </Link>
-                  </li>
                   {!checked && (
-
-                    <li className={cx("rounded-4", "my-2", "sub-menu-item")}>
+                      <li className={cx("rounded-4", "sub-menu-item")}>
+                        <Link to={"/"} className={cx("btn", "item-link", "py-3")}>
+                          Giới Thiệu
+                        </Link>
+                      </li>
+                    
+                    )}
+                  {!checked && (
+                    <li className={cx("rounded-4", "sub-menu-item")}>
                       <Link
                         to={"/setting"}
-                        className={cx("ms-5", "btn", "item-link")}
+                        className={cx("btn", "item-link", "py-3")}
                       >
                         cài đặt
                       </Link>
                     </li>
+                  
                   )}
-                  {!checked&& (
-                    <li onClick={logout} className={cx("rounded-4", "my-2", "sub-menu-item")}>
+                  {!checked && (
+                    <li className={cx("rounded-4", "sub-menu-item")}>
                       <Link
                         to={"/signin"}
-                        className={cx("ms-5", "btn", "item-link")}
+                        className={cx("btn", "item-link", "py-3")}
                       >
                         Đăng Xuất
                       </Link>
                     </li>
+
                   )}
                   {checked && (
-
-                    <li className={cx("rounded-4", "my-2", "sub-menu-item")}>
-                      <Link
-                        to={"/signin"}
-                        className={cx("ms-5", "btn", "item-link")}
-                      >
-                        Đăng Nhập
-                      </Link>
-                    </li>
-                  )}
-=======
-                  <li className={cx("rounded-4", "sub-menu-item")}>
-                    <Link
-                      to={"/signin"}
-                      className={cx("btn", "item-link", "py-3")}
-                    >
-                      Tạo Hồ Sơ
-                    </Link>
-                  </li>
-                  <li className={cx("rounded-4", "sub-menu-item")}>
-                    <Link to={"/"} className={cx("btn", "item-link", "py-3")}>
-                      Giới Thiệu
-                    </Link>
-                  </li>
-                  <li className={cx("rounded-4", "sub-menu-item")}>
-                    <Link
-                      to={"/setting"}
-                      className={cx("btn", "item-link", "py-3")}
-                    >
-                      cài đặt
-                    </Link>
-                  </li>
-                  <li className={cx("rounded-4", "sub-menu-item")}>
-                    <Link
-                      to={"/signin"}
-                      className={cx("btn", "item-link", "py-3")}
-                    >
-                      Đăng Xuất
-                    </Link>
-                  </li>
-                  <li className={cx("rounded-4", "sub-menu-item")}>
-                    <Link
-                      to={"/signin"}
-                      className={cx("btn", "item-link", "py-3")}
-                    >
-                      Đăng Nhập
-                    </Link>
-                  </li>
->>>>>>> frontend-fix
+                    
+                      <li className={cx("rounded-4", "sub-menu-item")}>
+                        <Link
+                          to={"/signin"}
+                          className={cx("btn", "item-link", "py-3")}
+                        >
+                          Đăng Nhập
+                        </Link>
+                      </li>
+                    )}
                 </ul>
               </div>
             </div>

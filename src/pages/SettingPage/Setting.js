@@ -30,13 +30,10 @@ function Setting() {
 
   useEffect(() => {
     //clean up
-<<<<<<< HEAD
-    
-=======
+
     return () => {
       avatar && <img src={avatar.preview} alt="" />;
     };
->>>>>>> frontend-fix
   }, [avatar]);
 
   return (

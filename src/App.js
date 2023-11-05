@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-
+        <UserProvider>
         <Routes>
           {publicRoutes.map((route, index) => {
             const Page = route.component;
@@ -29,6 +29,8 @@ function App() {
             );
           })}
         </Routes>
+        </UserProvider>
+
       </Router>
     </div>
   );
