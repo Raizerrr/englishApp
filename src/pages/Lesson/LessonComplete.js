@@ -1,8 +1,26 @@
 import classNames from "classnames/bind";
 import Style from "./Lesson.module.scss";
+import { useTestContext } from "../../context/TestContext";
 const cx = classNames.bind(Style);
 
 function LessonComplete() {
+  const {testDetail,
+    questionNumber,
+    questionsTotal,
+    scoreTotalOfTest,
+    score,
+    exp,
+    answerQuestion,
+    hearts,
+    setHearts,
+    setScore,
+    setExp,
+    setAnswerQuestion,
+    getQuestion,
+    setQuestionNumber,
+    getTestByType
+  } 
+= useTestContext();
   return (
     <>
       <div className="container justify-content-center align-items-center d-flex">
@@ -36,7 +54,7 @@ function LessonComplete() {
                       alt=""
                       className="me-3"
                     />
-                    <span>12</span>
+                    <span>{exp}</span>
                   </div>
                 </div>
               </div>
@@ -57,7 +75,7 @@ function LessonComplete() {
                       alt=""
                       className="me-3"
                     />
-                    <span>100%</span>
+                    <span>{Math.floor(score/scoreTotalOfTest*100)}%</span>
                   </div>
                 </div>
               </div>

@@ -22,7 +22,7 @@ export const TestProvider = ({children}) => {
     }
 
     const getQuestion = () => {
-        if(questionNumber > questions.length) {
+        if(questionNumber > questions?.length) {
             navigate("/lesson/complete/normal");
         }
         return questions[questionNumber];
@@ -37,6 +37,10 @@ export const TestProvider = ({children}) => {
             exp,
             answerQuestion,
             hearts,
+            questionsTotal: questions?.length,
+            scoreTotalOfTest: questions?.reduce((accumulator, currentValue) => {
+                return accumulator + currentValue.score;
+              }, 0),
             setHearts,
             setScore,
             setExp,

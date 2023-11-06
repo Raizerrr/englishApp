@@ -18,6 +18,7 @@ function Lesson() {
   const {type, questionType} = useParams();
   const {testDetail,
           questionNumber,
+          questionsTotal,
           score,
           exp,
           answerQuestion,
@@ -31,8 +32,14 @@ function Lesson() {
           getTestByType
         } 
     = useTestContext();
+  const [answerRemain, setAnswerRemain] = useState({
+    answer: 0,
+    remain: 100
+  });
   const [question, setQuestion] = useState();
   const navigate = useNavigate();
+  // This state use for storing choose answer
+  const [answerActive, setAnswerActive] = useState([]);
 
   useEffect(() => {
     const fetchData = async() => {
@@ -40,7 +47,7 @@ function Lesson() {
       
     }
     fetchData();
-  }, [])
+  }, []);
 
   useEffect(() => {
     const questionDetail = getQuestion();
@@ -49,12 +56,36 @@ function Lesson() {
 
 
   const checkQuestion = () => {
-    setQuestionNumber(questionNumber+1);
+    addNewAnswerQuestionItem();
+    if(answerActive.indexOf(true) === 0){
+      setScore(score+question?.score);
+      setExp(exp+2);
+    }
   }
 
   const skipQuestion = () => {
-    setQuestionNumber(questionNumber+1);
+    if(hearts>0) {
+      addNewAnswerQuestionItem();
+      setHearts(hearts-1);
+    
+    }
+    else {
+      alert("Bạn đã hết mạng");
+    }
   }
+
+  const addNewAnswerQuestionItem = () => {
+    setQuestionNumber(questionNumber+1);
+
+    setQuestionNumber(questionNumber+1);
+    const answerQuestionItem = {
+      question,
+      answer: [question?.correctAnswer, question?.wrongAnswer1, question?.wrongAnswer2, question?.wrongAnswer3],
+      choosenAnswer: null
+    }
+    setAnswerQuestion([...answerQuestion, answerQuestionItem]);
+  }
+
 
   const returnHome = () => {
     navigate("/");
@@ -66,7 +97,7 @@ function Lesson() {
       return <LessonComplete/>
     } 
     else if(questionType === "read"){
-      return <ReadLayout question={question}/>
+      return <ReadLayout question={question} answerActive={answerActive} setAnswerActive={setAnswerActive}/>
     }
     else if(questionType === "write") {
       return <WriteLayout question={question}/>
@@ -110,7 +141,8 @@ function Lesson() {
                     "align-items-center"
                   )}
                 >
-                  <div className={cx("progess-bar")}></div>
+                  <div style={{width: `${100/questionsTotal*answerQuestion.length}%`}} className={cx("progess-bar")}></div>
+                  <div style={{width: `${100-100/questionsTotal*answerQuestion.length}%`}} className={cx("progress-bar-remain")}></div>
                 </div>
               </div>
               <div className="col-1">
@@ -127,7 +159,7 @@ function Lesson() {
                     alt=""
                     className="heart pe-3"
                   />
-                  <span className={cx("heart-count")}>5</span>
+                  <span className={cx("heart-count")}>{hearts}</span>
                 </div>
               </div>
             </div>
@@ -161,7 +193,9 @@ function Lesson() {
                 <button className={cx("skip-btn", "btn")} onClick={skipQuestion}>
                   Bỏ qua
                 </button>
-                <button className={cx("check-btn", "btn", "disabled")} onClick={checkQuestion}>
+                <button disabled={answerActive.indexOf(true)!==-1?false:true} 
+                  style={answerActive.indexOf(true)!==-1?{backgroundColor:"rgb(221,244,255)", color: "rgb(24,153,214)"}:null}
+                 className={cx("check-btn", "btn", "disabled")} onClick={checkQuestion}>
                   kiểm tra
                 </button>
               </>

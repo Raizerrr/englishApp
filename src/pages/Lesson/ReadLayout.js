@@ -4,18 +4,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVolumeHigh } from "@fortawesome/free-solid-svg-icons";
 import getRandomNumber from "../../extra/algorithms/randomCode";
 import { useEffect, useState } from "react";
-
 const cx = classNames.bind(Style);
+const initialActive = [false, false, false, false];
 
-function ReadLayout({question}) {
+function ReadLayout({question, answerActive, setAnswerActive}) {
   
   const [answerResult, setAnswerResult] = useState([]);
-  const [answerActive, setAnswerActive] = useState([false, false, false, false]);
+  
+
+  useEffect(() => {
+    setAnswerActive(initialActive);
+  }, [question])
+
   const randomAnswer = () => {
     let answers = [question?.correctAnswer, question?.wrongAnswer1, question?.wrongAnswer2, question?.wrongAnswer3];
     let answerSet = [];
-    
-    
 
     while(answers.length > 0){
       const randomIndex = getRandomNumber(0, answers.length-1);
