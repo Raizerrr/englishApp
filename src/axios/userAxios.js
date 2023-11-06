@@ -4,7 +4,7 @@ const API = axios.create({baseURL: "http://localhost:8870/api"});
 const APICourse = axios.create({baseURL: "http://localhost:8871/api"});
 
 API.interceptors.request.use((req) => {
-    if(localStorage.getItem("token")){
+    if(sessionStorage.getItem("token")){
         req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem("token"))}`;
     }
     return req;
@@ -38,3 +38,4 @@ export const updateUserApi = (formValue) => API.put("/user/updateUser", formValu
 
 // For course admin
 export const getQuestions = () => APICourse.get("/question");
+export const getTest = (testType) => APICourse.get(`/test/deploy/${testType}`);

@@ -10,12 +10,18 @@
     }
     .progess-bar-container{
         padding: 0 2.5rem;
+        display: flex;
         .progess-bar{
-            width: 100%;
+            height: 16px;
+            background-color: rgb(24,153,214);
+            border-radius: 8px;
+            
+        }
+
+        .progress-bar-remain {
             height: 16px;
             background-color: #ccc;
             border-radius: 8px;
-            
         }
     }
     .heart-container{
@@ -126,6 +132,10 @@
             font-weight: 500;
             appearance: none;
             
+        }
+
+        :hover {
+            cursor: pointer;
         }
     }
 }
@@ -306,6 +316,10 @@
                     color: rgb(24,153,214);
                     
                 }
+            }
+
+            :hover {
+                cursor: pointer;
             }
         }
         
