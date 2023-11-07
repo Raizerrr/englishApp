@@ -166,6 +166,7 @@ function Sidebar() {
                       <Link
                         to={"/signin"}
                         className={cx("btn", "item-link", "py-3")}
+                        onClick={logout}
                       >
                         Đăng Xuất
                       </Link>

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { getTest } from "../axios/userAxios";
 import { useNavigate } from "react-router";
 
@@ -11,7 +11,12 @@ export const TestProvider = ({children}) => {
     const [score, setScore] = useState(0);
     const [exp, setExp] = useState(0);
     const [answerQuestion, setAnswerQuestion] = useState([]);
-    const [hearts, setHearts] = useState(5);
+
+    useEffect(() => {
+        if(!(localStorage.getItem("token") || localStorage.getItem("account"))){
+            navigate("/lesson/entry/read");
+        }
+    }, [])
 
     
 
@@ -21,10 +26,27 @@ export const TestProvider = ({children}) => {
         setTestDetail(data?.data?.testDetails);
     }
 
+    const determineLevel = () => {
+        const scoreTotal = questions?.reduce((accumulator, currentValue) => {
+            return accumulator + currentValue.score;
+          }, 0);
+        const percent = Math.floor(score/scoreTotal*100);
+        return Math.floor(percent/20);
+    }
+
     const getQuestion = () => {
         if(questionNumber > questions?.length) {
             navigate("/lesson/complete/normal");
+            const account = {
+                currentCourse: null,
+                currentBlock: null,
+                currentLesson: null,
+                level: determineLevel()+1
+            }
+            localStorage.setItem("account", JSON.stringify(account));
         }
+
+
         return questions[questionNumber];
     }
 
@@ -36,12 +58,10 @@ export const TestProvider = ({children}) => {
             score,
             exp,
             answerQuestion,
-            hearts,
             questionsTotal: questions?.length,
             scoreTotalOfTest: questions?.reduce((accumulator, currentValue) => {
                 return accumulator + currentValue.score;
               }, 0),
-            setHearts,
             setScore,
             setExp,
             setAnswerQuestion,

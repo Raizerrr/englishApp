@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import Style from "./Lesson.module.scss";
 import { ReaheardButton } from "../../component/Buttons/ReheardButton";
+import { useUserContext } from "../../context/UserContext";
 
 const cx = classNames.bind(Style);
 
@@ -22,8 +23,6 @@ function Lesson() {
           score,
           exp,
           answerQuestion,
-          hearts,
-          setHearts,
           setScore,
           setExp,
           setAnswerQuestion,
@@ -32,10 +31,7 @@ function Lesson() {
           getTestByType
         } 
     = useTestContext();
-  const [answerRemain, setAnswerRemain] = useState({
-    answer: 0,
-    remain: 100
-  });
+  const {hearts, setHearts, updatePlayer, player} = useUserContext();
   const [question, setQuestion] = useState();
   const navigate = useNavigate();
   // This state use for storing choose answer
@@ -67,7 +63,8 @@ function Lesson() {
     if(hearts>0) {
       addNewAnswerQuestionItem();
       setHearts(hearts-1);
-    
+      player.heart = hearts-1;
+      updatePlayer(player);
     }
     else {
       alert("Bạn đã hết mạng");

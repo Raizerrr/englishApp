@@ -1,7 +1,6 @@
 import classNames from "classnames/bind";
 import LoginLayoutScss from "./LoginLayout.module.scss";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../axios/userAxios";
 import { SocialLogin } from "./SocialLogin";

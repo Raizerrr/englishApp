@@ -4,6 +4,8 @@ import Style from "./learn.module.scss";
 const cx = classNames.bind(Style);
 
 function learn() {
+  
+
   return (
     <div>
       <div className={cx("container", "my-4")}>

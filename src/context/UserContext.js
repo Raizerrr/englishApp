@@ -1,22 +1,32 @@
 import { useContext, useEffect, useState } from "react";
 import { createContext } from "react";
-import { getUser, login, updateUserApi } from "../axios/userAxios";
+import { getPlayer, getStreaks, getUser, login, updateUserApi } from "../axios/userAxios";
 
 const UserContext = createContext();
 export const UserProvider = ({children}) => {
     const [user, setUser] = useState(null);
+    const [player, setPlayer] = useState({});
     const [errorMessage, setErrorMesage] = useState("");
+    const [streak, setStreak] = useState([]);
+    const [hearts, setHearts] = useState(0);
+
 
     useEffect(() => {
         registerUser();
         registerAdmin();
+        
     }, [])
     
 
     const registerUser = async() => {
         try {
-            const newUser = await getUser();
-            setUser(newUser.data.data);
+            const {data} = await getUser();
+            const playerData = await getPlayer("English");
+            const streakData = await getStreaks("English");
+            setUser(data.data);
+            setPlayer(playerData.data.data);
+            setHearts(playerData.data.data.heart)
+            setStreak(streakData.data.data);
             
         } catch (error) {
             localStorage.removeItem('token');
@@ -31,12 +41,23 @@ export const UserProvider = ({children}) => {
         }
 
         const {data} = await login(admin);
-        sessionStorage.setItem("tokenAdmin", data.data.token);
+        localStorage.setItem("tokenAdmin", JSON.stringify(data.data.token));
     }
 
     const logout = () => {
         setUser(null);
         localStorage.removeItem("token");
+    }
+
+    const updatePlayer = async(player) => {
+        try {
+            const {data} = await updatePlayer(player);
+            setPlayer(data.data);
+        } catch (error) {
+            localStorage.removeItem('token');
+            setPlayer(null);
+            setUser(null);
+        }
     }
 
     const updateUser = async(oldPassword) => {
@@ -65,7 +86,11 @@ export const UserProvider = ({children}) => {
             value={{
                 user,
                 errorMessage,
+                player,
+                streakTotal: streak.length,
+                hearts,
                 setUser,
+                updatePlayer,
                 registerUser,
                 logout,
                 updateUser,

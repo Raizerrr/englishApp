@@ -1,9 +1,12 @@
 import classNames from "classnames/bind";
 import Style from "./Task.module.scss";
+import { useUserContext } from "../../../../context/UserContext";
+import { useTestContext } from "../../../../context/TestContext";
 
 const cx = classNames.bind(Style);
 
 function Task() {
+  const {player, streakTotal, hearts} = useUserContext();
   return (
     <div>
       <div className="container my-4">
@@ -23,7 +26,7 @@ function Task() {
                 src="https://d35aaqx5ub95lt.cloudfront.net/images/icons/398e4298a3b39ce566050e5c041949ef.svg"
                 alt=""
               />
-              1
+              {streakTotal}
             </div>
             <div
               className={cx(
@@ -38,7 +41,7 @@ function Task() {
                 src="https://d35aaqx5ub95lt.cloudfront.net/images/gems/45c14e05be9c1af1d7d0b54c6eed7eee.svg"
                 alt=""
               />
-              500
+              {player?.expPoint}
             </div>
             <div
               className={cx(
@@ -53,7 +56,7 @@ function Task() {
                 src="https://d35aaqx5ub95lt.cloudfront.net/images/hearts/8fdba477c56a8eeb23f0f7e67fdec6d9.svg"
                 alt=""
               />
-              5
+              {hearts}
             </div>
           </div>
           {/*  */}

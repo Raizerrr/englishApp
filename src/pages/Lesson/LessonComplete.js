@@ -1,6 +1,8 @@
 import classNames from "classnames/bind";
 import Style from "./Lesson.module.scss";
 import { useTestContext } from "../../context/TestContext";
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
 const cx = classNames.bind(Style);
 
 function LessonComplete() {
@@ -21,6 +23,7 @@ function LessonComplete() {
     getTestByType
   } 
 = useTestContext();
+
   return (
     <>
       <div className="container justify-content-center align-items-center d-flex">

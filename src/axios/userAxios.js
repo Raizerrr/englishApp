@@ -4,7 +4,7 @@ const API = axios.create({baseURL: "http://localhost:8870/api"});
 const APICourse = axios.create({baseURL: "http://localhost:8871/api"});
 
 API.interceptors.request.use((req) => {
-    if(sessionStorage.getItem("token")){
+    if(localStorage.getItem("token")){
         req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem("token"))}`;
     }
     return req;
@@ -12,7 +12,7 @@ API.interceptors.request.use((req) => {
 
 APICourse.interceptors.request.use((req) => {
     if(localStorage.getItem("tokenAdmin")){
-        req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem("token"))}`;
+        req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem("tokenAdmin"))}`;
     }
     return req;
 })
@@ -22,7 +22,10 @@ APICourse.interceptors.request.use((req) => {
 export const login = (formValue) => API.post("/user/checklogin", formValue);
 export const register = (formValue) => API.post("/user/insertuser", formValue);
 export const getUser = () => API.get("/user/getUser");
+export const getPlayer = (language) => API.get(`/player/getplayer/${language}`);    
+export const getStreaks = (language) =>  API.get(`/streak/getstreak/${language}`);
 export const updateUserApi = (formValue) => API.put("/user/updateUser", formValue);
+export const updatePlayer = (player) => API.put("/player/updatePlayer", player);
 
 
 
