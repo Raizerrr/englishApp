@@ -1,0 +1,124 @@
+
+
+
+
+.add-friend-modal-wrapper{
+    
+    position: fixed;
+    z-index: 3;
+    min-width: 100%;
+    min-height: 100vh;
+    .add-friend-overlay{
+        background-color: #3333337f;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        .add-friend-container{
+            background-color: #252d3f;
+            min-height: 60%;
+            min-width: 50%;
+            border-radius: 1rem;
+            
+            .close-btn{
+                position: absolute;
+                top: 4px;
+                right: 4px;
+                padding: 1rem;
+                font-size: 17px;
+                color: #aaa;
+                background-color: transparent;
+                border: transparent;
+                &:hover{
+                    opacity: .5;
+                }
+            }
+            .search-friend-to-add-input-container{
+                .search-friend-to-add-input{
+                    outline: none;
+                    font-size: 15px;
+                    color: #252d3f;
+                    font-weight: 600;
+                }
+                .search-user-btn{
+                    position: absolute;
+                    right: 14%;
+                    top: 12%;
+                    border-color: transparent;
+                    background-color: transparent;
+                    &:hover{
+                        opacity: .5;
+                    }
+                }
+            }
+
+            .user-searched-list-container{
+                background-color: #fff;
+                min-height: 250px;
+                max-height: 250px;
+                min-width: 80%;
+                overflow-y: auto;
+                overflow-x: hidden;
+                scrollbar-gutter: stable;
+                &::-webkit-scrollbar{
+                    width: 1px ;
+                   }
+                  
+                   &::-webkit-scrollbar-thumb {
+                    border-radius: 1rem;
+                    background: #aaa; 
+                    height: 20px;
+                  }
+                  &::-webkit-scrollbar-track-piece:end{
+                    margin-bottom: 2px;
+                  }
+                  &::-webkit-scrollbar-track-piece:start{
+                    margin-top: 2px;
+                  }
+        
+
+                    .friend-list{
+                        list-style-type: none;
+                        padding: 0;
+                        .friend-display{
+                            &:hover{
+                                background-color: #cccccc3a;
+                                .friend-name {
+                                    color: #000 !important;
+                                }
+                            }
+                            .friend-avatar-container{
+                                position: relative;
+                                width: 40px;
+                                height: 40px;
+                                
+                                .friend-avatar{
+                                    min-height: 100%;
+                                }
+                               
+                                
+                                
+                            }
+                        
+                            .friend-name{
+                                font-size: 15px;
+                                font-weight: 700;
+                                line-height: 1.5rem;
+                                color: #aaa;
+                            }
+                            .friend-nick-name{
+                                font-size: 10px;
+                                font-weight: 400;
+                                color: #aaa;
+                                line-height: 0.5rem;
+                            }
+                        }
+                    }
+            
+                   
+                
+            }
+        }
+    }
+}

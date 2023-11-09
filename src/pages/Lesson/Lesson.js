@@ -1,91 +1,47 @@
 import classNames from "classnames/bind";
 import Style from "./Lesson.module.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faClose } from "@fortawesome/free-solid-svg-icons";
 import ListenLayout from "./ListenLayout";
 import ReadLayout from "./ReadLayout";
 import SpeakLayout from "./SpeakLayout";
 import WriteLayout from "./WriteLayout";
 import LessonComplete from "./LessonComplete";
+import LessonFooter from "../../component/LessonFooter";
+import LessonCompleteFooter from "../../component/LessonCompleteFooter";
+import LessonHeader from "../../component/LessonHeader";
+import ResultModal from "../../component/ResultModal";
+import { useState } from "react";
 
 const cx = classNames.bind(Style);
 
 function Lesson() {
+  const [showModal, setShowModal] = useState(false);
+
+  const OpenModalHandle = () => {
+    setShowModal(!showModal);
+  };
+
   return (
     <>
       <div className="container-fluid p-0">
+        <div className={cx("result-modal-container", { ["show"]: showModal })}>
+          <ResultModal ClickToOpenModal={OpenModalHandle} />
+        </div>
         <div className="container">
           {/* header */}
           <div className={cx("lesson-container")}>
-            <div className="row justify-content-center align-items-center">
-              <div className="col-1">
-                <div
-                  className={cx(
-                    "close-btn-container",
-                    "d-flex",
-                    "justify-content-end",
-                    "align-items-center"
-                  )}
-                >
-                  <a href="/" className={cx("btn", "close-btn")}>
-                    <FontAwesomeIcon icon={faClose} />
-                  </a>
-                </div>
-              </div>
-              <div className="col-10">
-                <div
-                  className={cx(
-                    "progess-bar-container",
-                    "d-flex",
-                    "justify-content-center",
-                    "align-items-center"
-                  )}
-                >
-                  <div className={cx("progess-bar")}></div>
-                </div>
-              </div>
-              <div className="col-1">
-                <div
-                  className={cx(
-                    "heart-container",
-                    "d-flex",
-                    "justify-content-start",
-                    "align-items-center"
-                  )}
-                >
-                  <img
-                    src="https://d35aaqx5ub95lt.cloudfront.net/images/hearts/7631e3ee734dd4fe7792626b59457fa4.svg"
-                    alt=""
-                    className="heart pe-3"
-                  />
-                  <span className={cx("heart-count")}>5</span>
-                </div>
-              </div>
-            </div>
+            <LessonHeader />/
           </div>
           {/* header */}
 
           {/* content */}
           <div className={cx("content-section")}>
-            <ReadLayout />
+            <LessonComplete />
           </div>
           {/* content */}
 
           {/* footer */}
-          <div
-            className={cx(
-              "lesson-footer",
-              "d-flex",
-              "justify-content-around",
-              "align-items-center"
-            )}
-          >
-            <a href="/" className={cx("skip-btn", "btn")}>
-              Bỏ qua
-            </a>
-            <a href="/" className={cx("check-btn", "btn", "disabled")}>
-              kiểm tra
-            </a>
+          <div className={cx("footer-lesson-container")}>
+            <LessonCompleteFooter ClickToOpenModal={OpenModalHandle} />
           </div>
           {/* footer */}
 

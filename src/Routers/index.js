@@ -1,11 +1,17 @@
 //Layout
-import { OnlySidebarLayout } from "../component/Layout";
-import { PremiumLayout } from "../component/Layout";
+import {
+  OnlySidebarLayout,
+  ProfileLayout,
+  PremiumLayout,
+} from "../component/Layout";
+import LoginLayout from "../component/LoginLayout";
 
+//components
+
+//pages
 import learn from "../pages/Learn/learn";
 import LeaderBoard from "../pages/LeaderBoard/LeaderBoard";
 import Profile from "../pages/Profile/Profile";
-import LoginLayout from "../component/LoginLayout";
 import Register from "../component/LoginLayout/Register";
 import Quest from "../pages/Quest/Quest";
 import Shop from "../pages/Shop/Shop";
@@ -25,7 +31,7 @@ const publicRoutes = [
   { path: "/premium", component: PremiumIntro, layout: PremiumLayout },
   { path: "/quest", component: Quest },
   { path: "/shop", component: Shop },
-  { path: "/profile", component: Profile },
+  { path: "/profile", component: Profile, layout: ProfileLayout },
   { path: "/setting", component: Setting, layout: null },
   { path: "/changePassword", component: ChangePassword, layout: null },
   { path: "/superInfomation", component: SuperInfomation, layout: null },

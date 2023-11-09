@@ -4,6 +4,7 @@
 .course-section{
     border: 1px solid #ccc;
     border-radius: 1.5rem;
+   
     
 }
 
@@ -47,6 +48,7 @@
 .button-to-get-in-lesson {
     border-radius: 50%;
     padding: 1rem;
+    z-index: 0;
     &:active {
         transform: translate(0, 2%);
         box-shadow: none;

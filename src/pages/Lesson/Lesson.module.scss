@@ -1,3 +1,11 @@
+.result-modal-container{
+    display: none;
+    position: relative;
+    z-index: 3;
+}
+.show{
+    display: block;
+}
 .lesson-container{
     padding : 3rem 7rem;
     margin-top: 3rem;
