@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { getTest } from "../axios/userAxios";
 import { useNavigate } from "react-router";
+import { useUserContext } from "./UserContext";
 
 const TestContext = createContext();
 export const TestProvider = ({children}) => {
@@ -11,11 +12,12 @@ export const TestProvider = ({children}) => {
     const [score, setScore] = useState(0);
     const [exp, setExp] = useState(0);
     const [answerQuestion, setAnswerQuestion] = useState([]);
+    const {updateCurrentLevel} = useUserContext();
 
     useEffect(() => {
         if(!(localStorage.getItem("token") || localStorage.getItem("account"))){
-            navigate("/lesson/entry/read");
-        }
+            navigate("/lesson/entry/read/normal");
+        };
     }, [])
 
     
@@ -34,9 +36,18 @@ export const TestProvider = ({children}) => {
         return Math.floor(percent/20);
     }
 
-    const getQuestion = () => {
-        if(questionNumber > questions?.length) {
-            navigate("/lesson/complete/normal");
+    const getQuestion = (testype) => {
+        if(questionNumber > questions?.length || (questions[questionNumber] === undefined && questionNumber !== 0)) {
+            navigate(`/lesson/complete/normal/${testype}`);
+
+            const scoreTotal = questions?.reduce((accumulator, currentValue) => {
+                return accumulator + currentValue.score;
+              }, 0);
+
+            if(score/scoreTotal>75){
+                updateCurrentLevel(testype);    
+            }
+
             const account = {
                 currentCourse: null,
                 currentBlock: null,
@@ -45,10 +56,9 @@ export const TestProvider = ({children}) => {
             }
             localStorage.setItem("account", JSON.stringify(account));
         }
-
-
         return questions[questionNumber];
-    }
+    };
+    
 
     return (
         <TestContext.Provider value={{

@@ -36,6 +36,7 @@ function Lesson() {
   const navigate = useNavigate();
   // This state use for storing choose answer
   const [answerActive, setAnswerActive] = useState([]);
+  const {lessonNumber} = useParams();
 
   useEffect(() => {
     const fetchData = async() => {
@@ -46,7 +47,7 @@ function Lesson() {
   }, []);
 
   useEffect(() => {
-    const questionDetail = getQuestion();
+    const questionDetail = getQuestion(lessonNumber);
     setQuestion(questionDetail);
   }, [testDetail, questionNumber]);
 
@@ -181,9 +182,9 @@ function Lesson() {
             {type==="complete" ? (
               <>
                 <ReaheardButton/>
-                <button className={cx("check-btn", "btn", "disabled")} onClick={returnHome}>
+                <a href="/" className={cx("check-btn", "btn", "disabled")} onClick={returnHome}>
                   Trở về
-                </button>
+                </a>
               </>
             ): (
               <>

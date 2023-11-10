@@ -1,12 +1,14 @@
 import classNames from "classnames/bind";
 import Style from "./Task.module.scss";
 import { useUserContext } from "../../../../context/UserContext";
-import { useTestContext } from "../../../../context/TestContext";
+import { useCourseContext } from "../../../../context/CourseContext";
+import { useNavigate } from "react-router-dom";
 
 const cx = classNames.bind(Style);
 
 function Task() {
   const {player, streakTotal, hearts} = useUserContext();
+  const {checkOpenRank} = useCourseContext();
   return (
     <div>
       <div className="container my-4">
@@ -95,41 +97,44 @@ function Task() {
               </div>
 
               <a
-                href="#"
+                href="/premium"
                 className={cx("premium-submit-btn", "btn", "rounded-4")}
               >
                 Thử 2 tuần miễn phí
               </a>
             </div>
           </div>
-          <div
-            className={cx(
-              "card",
-              "premium-card-container",
-              "rounded-4",
-              "p-3",
-              "mb-5"
-            )}
-          >
-            <div className="card-body">
-              <h5 className={cx("premium-card-title")}>
-                Mở khóa Bảng xếp hạng!
-              </h5>
-              <div className={cx("row", "my-4", "align-items-center")}>
-                <div className="col-3">
-                  <img
-                    src="https://d35aaqx5ub95lt.cloudfront.net/images/leagues/d4280fdf64d66de7390fe84802432a53.svg"
-                    alt=""
-                  />
-                </div>
-                <div className="col-9">
-                  <p className={cx("premium-card-text", "my-4")}>
-                    Hoàn thành thêm 6 bài học để bắt đầu thi đua
-                  </p>
+          {checkOpenRank !== null && (
+            <div
+              className={cx(
+                "card",
+                "premium-card-container",
+                "rounded-4",
+                "p-3",
+                "mb-5"
+              )}
+            >
+              <div className="card-body">
+                <h5 className={cx("premium-card-title")}>
+                  Mở khóa Bảng xếp hạng!
+                </h5>
+                <div className={cx("row", "my-4", "align-items-center")}>
+                  <div className="col-3">
+                    <img
+                      src="https://d35aaqx5ub95lt.cloudfront.net/images/leagues/d4280fdf64d66de7390fe84802432a53.svg"
+                      alt=""
+                    />
+                  </div>
+                  <div className="col-9">
+                    <p className={cx("premium-card-text", "my-4")}>
+                      Hoàn thành thêm {6-checkOpenRank()} bài học để bắt đầu thi đua
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+
+          )}
           <div
             className={cx(
               "card",
@@ -147,7 +152,7 @@ function Task() {
                   </h5>
                 </div>
                 <div className="col-4">
-                  <a href="#">Xem tất cả</a>
+                  <a href="/quest">Xem tất cả</a>
                 </div>
               </div>
               <div className={cx("row", "my-4", "align-items-center")}>

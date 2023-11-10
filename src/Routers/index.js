@@ -2,7 +2,6 @@
 import { OnlySidebarLayout } from "../component/Layout";
 import { PremiumLayout } from "../component/Layout";
 
-import learn from "../pages/Learn/learn";
 import LeaderBoard from "../pages/LeaderBoard/LeaderBoard";
 import Profile from "../pages/Profile/Profile";
 import LoginLayout from "../component/LoginLayout";
@@ -16,10 +15,11 @@ import ChangePassword from "../pages/SettingPage/ChangePassword";
 import SuperInfomation from "../pages/SettingPage/SuperInfomation";
 import Notification from "../pages/SettingPage/Notification";
 import PremiumIntro from "../component/Layout/PremiumLayout/PremiumIntro";
+import Learn from "../pages/Learn/learn";
 //pubic routes
 const publicRoutes = [
-  { path: "/learn", component: learn },
-  { path: "/", component: learn },
+  { path: "/learn", component: Learn },
+  { path: "/", component: Learn },
   { path: "/leaderBoard", component: LeaderBoard },
   { path: "/license", component: License, layout: OnlySidebarLayout },
   { path: "/premium", component: PremiumIntro, layout: PremiumLayout },
@@ -30,7 +30,7 @@ const publicRoutes = [
   { path: "/changePassword", component: ChangePassword, layout: null },
   { path: "/superInfomation", component: SuperInfomation, layout: null },
   { path: "/notification", component: Notification, layout: null },
-  { path: "/lesson/:type/:questionType", component: Lesson, layout: null },
+  { path: "/lesson/:type/:questionType/:lessonNumber", component: Lesson, layout: null },
   { path: "/signin", component: LoginLayout, layout: null },
   { path: "register", component: Register, layout: null },
 ];

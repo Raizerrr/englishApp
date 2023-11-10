@@ -1,22 +1,34 @@
 import { useContext, useEffect, useState } from "react";
 import { createContext } from "react";
 import { getPlayer, getStreaks, getUser, login, updateUserApi } from "../axios/userAxios";
+import { useCourseContext } from "./CourseContext";
 
 const UserContext = createContext();
 export const UserProvider = ({children}) => {
     const [user, setUser] = useState(null);
-    const [player, setPlayer] = useState({});
+    const [player, setPlayer] = useState(null);
     const [errorMessage, setErrorMesage] = useState("");
     const [streak, setStreak] = useState([]);
     const [hearts, setHearts] = useState(0);
+    const {getLessonsAndBlocksAndLessons} = useCourseContext();
 
 
     useEffect(() => {
         registerUser();
         registerAdmin();
-        
     }, [])
     
+    
+
+    useEffect(() => {
+        if(player !== null){
+            getLessonsAndBlocksAndLessons(player.currentLevel);
+        }
+        else {
+            const account = JSON.parse(localStorage.getItem("account"));
+            getLessonsAndBlocksAndLessons(account.level);
+        }
+    }, [player])
 
     const registerUser = async() => {
         try {
@@ -47,6 +59,13 @@ export const UserProvider = ({children}) => {
     const logout = () => {
         setUser(null);
         localStorage.removeItem("token");
+    }
+
+    const updateCurrentLevel = async(level) => {
+        const updatedLevel = "."+player.currentLevel+level;
+        console.log(updatedLevel);
+        player.currentLevel = updatedLevel;
+        await updatePlayer(player);
     }
 
     const updatePlayer = async(player) => {
@@ -81,6 +100,17 @@ export const UserProvider = ({children}) => {
 
     }
 
+    const checkProgressOfPlayer = (lessonIndex, blockIndex) => {
+        const currentLevel = player?.currentLevel+"";
+        if(currentLevel?.indexOf(".") !== -1){
+            const arr = currentLevel?.split(".");
+            if(arr[1].match(""+blockIndex) && arr[2].match(""+lessonIndex)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     return (
         <UserContext.Provider
             value={{
@@ -94,6 +124,8 @@ export const UserProvider = ({children}) => {
                 registerUser,
                 logout,
                 updateUser,
+                checkProgressOfPlayer,
+                updateCurrentLevel
             }}
         >
             {children}

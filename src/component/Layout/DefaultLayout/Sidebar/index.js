@@ -184,7 +184,16 @@ function Sidebar() {
                         </Link>
                       </li>
                     )}
+                <li className={cx("rounded-4", "sub-menu-item")}>
+                    <Link
+                      to={"/license"}
+                      className={cx("btn", "item-link", "py-3")}
+                    >
+                      Chính sách
+                    </Link>
+                  </li>
                 </ul>
+
               </div>
             </div>
 

@@ -39,6 +39,8 @@ export const updatePlayer = (player) => API.put("/player/updatePlayer", player);
 
 
 
+
 // For course admin
 export const getQuestions = () => APICourse.get("/question");
 export const getTest = (testType) => APICourse.get(`/test/deploy/${testType}`);
+export const getCourse = (title) => APICourse.get(`/course/getCourse/${title}`);

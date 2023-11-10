@@ -26,7 +26,7 @@ function Shop() {
                 </div>
               </div>
               <a
-                href="#"
+                href="/premium"
                 className={cx(
                   "btn",
                   "premium-btn",

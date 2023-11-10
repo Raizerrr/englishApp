@@ -1,9 +1,12 @@
 import classNames from "classnames/bind";
 import Style from "./LeaderBoard.module.scss";
+import { useCourseContext } from "../../context/CourseContext";
 
 const cx = classNames.bind(Style);
 
 function LeaderBoard() {
+  const {checkOpenRank} = useCourseContext();
+
   return (
     <div>
       <div className="container">
@@ -21,12 +24,16 @@ function LeaderBoard() {
               alt=""
             />
           </div>
-          <div className={cx("leaderboard-title", "text-center", "py-3")}>
-            <h1>Mở khóa Bảng xếp hạng!</h1>
-          </div>
-          <div className={cx("leaderboard-desc", "text-center")}>
-            <p>Hoàn thành thêm 6 bài học để bắt đầu thi đua</p>
-          </div>
+          {6-checkOpenRank()>0 && (
+            <>
+              <div className={cx("leaderboard-title", "text-center", "py-3")}>
+                <h1>Mở khóa Bảng xếp hạng!</h1>
+              </div>
+              <div className={cx("leaderboard-desc", "text-center")}>
+                <p>Hoàn thành thêm {6-checkOpenRank()>0?6-checkOpenRank():6} bài học để bắt đầu thi đua</p>
+              </div>
+            </>
+          )}
 
           <div className={cx("d-flex", "justify-content-center")}>
             <button className={cx("leaderboard-start-btn", "my-3")}>

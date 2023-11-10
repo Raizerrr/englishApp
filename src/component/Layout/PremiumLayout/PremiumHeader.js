@@ -11,9 +11,9 @@ function PremiumHeader() {
       <div className={cx("premium-header")}>
         <div className="d-flex justify-content-between align-items-center">
           <div className={cx("close-btn-container")}>
-            <button className={cx("close-btn", "p-2")}>
+            <a href="/" className={cx("close-btn", "p-2")}>
               <FontAwesomeIcon icon={faClose} />
-            </button>
+            </a>
           </div>
           <div className={cx("logo-container")}>
             <a href="/">Logo</a>
