@@ -25,7 +25,12 @@ function PremiumIntro() {
               <tr>
                 <th scope="col"></th>
                 <th scope="col">Miễn Phí</th>
-                <th scope="col">Logo</th>
+                <th scope="col">
+                  <img
+                    src="https://d35aaqx5ub95lt.cloudfront.net/images/super/2e50c3e8358914df5285dc8cf45d0b4c.svg"
+                    alt=""
+                  />
+                </th>
               </tr>
             </thead>
             <tbody>
