@@ -16,7 +16,7 @@ function Learn() {
   useEffect(() => {
     if(player === null) {
       const account = JSON.parse(localStorage.getItem("account"));
-      setLevel(account.level);
+      setLevel(account?.level);
     }
     else {
       setLevel(player?.currentLevel);

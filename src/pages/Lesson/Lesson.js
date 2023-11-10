@@ -1,6 +1,4 @@
 
-import classNames from "classnames/bind";
-import Style from "./Lesson.module.scss";
 import ListenLayout from "./ListenLayout";
 import ReadLayout from "./ReadLayout";
 import SpeakLayout from "./SpeakLayout";
@@ -17,7 +15,6 @@ import LessonFooter from "../../component/LessonFooter";
 import LessonCompleteFooter from "../../component/LessonCompleteFooter";
 import LessonHeader from "../../component/LessonHeader";
 import ResultModal from "../../component/ResultModal";
-import { useState } from "react";
 
 const cx = classNames.bind(Style);
 
@@ -125,7 +122,7 @@ function Lesson() {
     <>
       <div className="container-fluid p-0">
         <div className={cx("result-modal-container", { ["show"]: showModal })}>
-          <ResultModal ClickToOpenModal={OpenModalHandle} />
+          <ResultModal ClickToOpenModal={OpenModalHandle}/>
         </div>
         <div className="container">
           {/* header */}
@@ -144,7 +141,7 @@ function Lesson() {
           {/* footer */}
 
           <div className={cx("footer-lesson-container")}>
-            <LessonCompleteFooter ClickToOpenModal={OpenModalHandle} />
+            <LessonCompleteFooter ClickToOpenModal={OpenModalHandle}  checkQuestion={checkQuestion} skipQuestion={skipQuestion} returnHome={returnHome} answerActive={answerActive}/>
           </div>
           {/* footer */}
 

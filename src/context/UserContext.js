@@ -26,7 +26,7 @@ export const UserProvider = ({children}) => {
         }
         else {
             const account = JSON.parse(localStorage.getItem("account"));
-            getLessonsAndBlocksAndLessons(account.level);
+            getLessonsAndBlocksAndLessons(account?.level);
         }
     }, [player])
 

@@ -1,6 +1,5 @@
 import classNames from "classnames/bind";
 import Style from "./Task.module.scss";
-import { useUserContext } from "../../../../context/UserContext";
 import { useCourseContext } from "../../../../context/CourseContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -9,6 +8,7 @@ import UserEnviroment from "../../LayoutsComponent/UserEnviroment";
 const cx = classNames.bind(Style);
 
 function Task() {
+  const {checkOpenRank} = useCourseContext();
   
   return (
     <div>
