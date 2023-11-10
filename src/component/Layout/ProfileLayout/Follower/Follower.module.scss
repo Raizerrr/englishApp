@@ -9,19 +9,19 @@
     border: 1px solid #ccc;
     padding: 2rem ;
     border-radius: 1rem;
-    background-color: #262d3f;
+    background-color: #fff;
     overflow-y: auto;
     scrollbar-gutter: stable;
     max-height: 80vh;
     min-height: 80vh;
     box-shadow: 0  0px 2px #ccc;
    &::-webkit-scrollbar{
-    width: 5px ;
+    width: 2px ;
    }
   
    &::-webkit-scrollbar-thumb {
     border-radius: 1rem;
-    background: #aaa; 
+    background: #262d3f; 
     height: 20px;
   }
   &::-webkit-scrollbar-track-piece:end{
@@ -45,7 +45,7 @@
             border: none;
             color: #aaa;
             &:hover{
-                color: #fff;
+                color: #000;
             }
         }
     }
@@ -59,7 +59,7 @@
             outline: none;
             border: 1px solid transparent;
             &:focus{
-                background-color: #fff;
+                background-color: #000;
 
             }
         }
@@ -72,7 +72,7 @@
             right: 0;
             
             &:hover{
-                color: #fff;
+                color: #000;
             }
         }
     }
@@ -86,7 +86,7 @@
                 &:hover{
                     background-color: #cccccc3a;
                     .friend-name {
-                        color: #fff !important;
+                        color: #000 !important;
                     }
                 }
                 .friend-avatar-container{

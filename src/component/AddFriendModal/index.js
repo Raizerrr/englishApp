@@ -33,15 +33,13 @@ function AddFriendModal(props) {
                 "d-flex",
                 "justify-content-center",
                 "align-items-center",
-                "my-5",
-                "p-2"
+                "my-5"
               )}
             >
               <input
                 type="text"
                 className={cx(
                   "search-friend-to-add-input",
-                  "w-75",
                   "px-3",
                   "py-2",
                   "rounded-3"
@@ -91,9 +89,16 @@ function AddFriendModal(props) {
                   </li> */}
 
                 <ul className={cx("friend-list")}>
-                  <li className={cx("friend-display", "mb-3", "py-2")}>
+                  <li
+                    className={cx(
+                      "friend-display",
+                      "mb-3",
+                      "py-3",
+                      "rounded-3"
+                    )}
+                  >
                     <div className="row">
-                      <div className="col-2">
+                      <div className="col-2 d-flex justify-content-center">
                         <div className={cx("friend-avatar-container")}>
                           <img
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"
@@ -113,9 +118,16 @@ function AddFriendModal(props) {
                       </div>
                     </div>
                   </li>
-                  <li className={cx("friend-display", "mb-3", "py-2")}>
+                  <li
+                    className={cx(
+                      "friend-display",
+                      "mb-3",
+                      "py-3",
+                      "rounded-3"
+                    )}
+                  >
                     <div className="row">
-                      <div className="col-2">
+                      <div className="col-2 d-flex justify-content-center">
                         <div className={cx("friend-avatar-container")}>
                           <img
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"
@@ -139,6 +151,7 @@ function AddFriendModal(props) {
                 {/* </ul> */}
               </div>
             </div>
+            <button className={cx("add-friend-button")}>Add Friend</button>
           </div>
         </div>
       </div>

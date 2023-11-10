@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import Style from "./Setting.module.scss";
+import Style from "./../../../pages/SettingPage/Setting.module.scss";
 import { Link } from "react-router-dom";
 
 const cx = classNames.bind(Style);
