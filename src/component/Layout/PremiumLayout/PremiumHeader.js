@@ -2,6 +2,7 @@ import classNames from "classnames/bind";
 import Style from "../PremiumLayout/Premium.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const cx = classNames.bind(Style);
 
@@ -11,12 +12,16 @@ function PremiumHeader() {
       <div className={cx("premium-header")}>
         <div className="d-flex justify-content-between align-items-center">
           <div className={cx("close-btn-container")}>
-            <button className={cx("close-btn", "p-2")}>
+            <a href="/" className={cx("close-btn", "p-2")}>
               <FontAwesomeIcon icon={faClose} />
-            </button>
+            </a>
+
           </div>
           <div className={cx("logo-container")}>
-            <a href="/">Logo</a>
+            <img
+              src="https://d35aaqx5ub95lt.cloudfront.net/images/super/2e50c3e8358914df5285dc8cf45d0b4c.svg"
+              alt=""
+            />
           </div>
         </div>
       </div>

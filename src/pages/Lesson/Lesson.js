@@ -1,5 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faClose } from "@fortawesome/free-solid-svg-icons";
+
 import ListenLayout from "./ListenLayout";
 import ReadLayout from "./ReadLayout";
 import SpeakLayout from "./SpeakLayout";
@@ -11,6 +10,11 @@ import { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import Style from "./Lesson.module.scss";
 import { ReaheardButton } from "../../component/Buttons/ReheardButton";
+import { useUserContext } from "../../context/UserContext";
+import LessonFooter from "../../component/LessonFooter";
+import LessonCompleteFooter from "../../component/LessonCompleteFooter";
+import LessonHeader from "../../component/LessonHeader";
+import ResultModal from "../../component/ResultModal";
 
 const cx = classNames.bind(Style);
 
@@ -22,8 +26,6 @@ function Lesson() {
           score,
           exp,
           answerQuestion,
-          hearts,
-          setHearts,
           setScore,
           setExp,
           setAnswerQuestion,
@@ -32,14 +34,12 @@ function Lesson() {
           getTestByType
         } 
     = useTestContext();
-  const [answerRemain, setAnswerRemain] = useState({
-    answer: 0,
-    remain: 100
-  });
+  const {hearts, setHearts, updatePlayer, player} = useUserContext();
   const [question, setQuestion] = useState();
   const navigate = useNavigate();
   // This state use for storing choose answer
   const [answerActive, setAnswerActive] = useState([]);
+  const {lessonNumber} = useParams();
 
   useEffect(() => {
     const fetchData = async() => {
@@ -50,7 +50,7 @@ function Lesson() {
   }, []);
 
   useEffect(() => {
-    const questionDetail = getQuestion();
+    const questionDetail = getQuestion(lessonNumber);
     setQuestion(questionDetail);
   }, [testDetail, questionNumber]);
 
@@ -67,7 +67,8 @@ function Lesson() {
     if(hearts>0) {
       addNewAnswerQuestionItem();
       setHearts(hearts-1);
-    
+      player.heart = hearts-1;
+      updatePlayer(player);
     }
     else {
       alert("Bạn đã hết mạng");
@@ -111,58 +112,23 @@ function Lesson() {
   }
 
 
+  const [showModal, setShowModal] = useState(false);
+
+  const OpenModalHandle = () => {
+    setShowModal(!showModal);
+  };
+
   return (
     <>
       <div className="container-fluid p-0">
+        <div className={cx("result-modal-container", { ["show"]: showModal })}>
+          <ResultModal ClickToOpenModal={OpenModalHandle}/>
+        </div>
         <div className="container">
           {/* header */}
           <div className={cx("lesson-container")}>
-            <div className="row justify-content-center align-items-center">
-              <div className="col-1">
-                <div
-                  className={cx(
-                    "close-btn-container",
-                    "d-flex",
-                    "justify-content-end",
-                    "align-items-center"
-                  )}
-                >
-                  <a href="/" className={cx("btn", "close-btn")}>
-                    <FontAwesomeIcon icon={faClose} />
-                  </a>
-                </div>
-              </div>
-              <div className="col-10">
-                <div
-                  className={cx(
-                    "progess-bar-container",
-                    "d-flex",
-                    "justify-content-center",
-                    "align-items-center"
-                  )}
-                >
-                  <div style={{width: `${100/questionsTotal*answerQuestion.length}%`}} className={cx("progess-bar")}></div>
-                  <div style={{width: `${100-100/questionsTotal*answerQuestion.length}%`}} className={cx("progress-bar-remain")}></div>
-                </div>
-              </div>
-              <div className="col-1">
-                <div
-                  className={cx(
-                    "heart-container",
-                    "d-flex",
-                    "justify-content-start",
-                    "align-items-center"
-                  )}
-                >
-                  <img
-                    src="https://d35aaqx5ub95lt.cloudfront.net/images/hearts/7631e3ee734dd4fe7792626b59457fa4.svg"
-                    alt=""
-                    className="heart pe-3"
-                  />
-                  <span className={cx("heart-count")}>{hearts}</span>
-                </div>
-              </div>
-            </div>
+
+            <LessonHeader />
           </div>
           {/* header */}
 
@@ -173,35 +139,9 @@ function Lesson() {
           {/* content */}
 
           {/* footer */}
-          <div
-            className={cx(
-              "lesson-footer",
-              "d-flex",
-              "justify-content-around",
-              "align-items-center"
-            )}
-          >
-            {type==="complete" ? (
-              <>
-                <ReaheardButton/>
-                <button className={cx("check-btn", "btn", "disabled")} onClick={returnHome}>
-                  Trở về
-                </button>
-              </>
-            ): (
-              <>
-                <button className={cx("skip-btn", "btn")} onClick={skipQuestion}>
-                  Bỏ qua
-                </button>
-                <button disabled={answerActive.indexOf(true)!==-1?false:true} 
-                  style={answerActive.indexOf(true)!==-1?{backgroundColor:"rgb(221,244,255)", color: "rgb(24,153,214)"}:null}
-                 className={cx("check-btn", "btn", "disabled")} onClick={checkQuestion}>
-                  kiểm tra
-                </button>
-              </>
 
-            )}
-            
+          <div className={cx("footer-lesson-container")}>
+            <LessonCompleteFooter ClickToOpenModal={OpenModalHandle}  checkQuestion={checkQuestion} skipQuestion={skipQuestion} returnHome={returnHome} answerActive={answerActive}/>
           </div>
           {/* footer */}
 

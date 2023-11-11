@@ -1,61 +1,22 @@
 import classNames from "classnames/bind";
 import Style from "./Task.module.scss";
+import { useCourseContext } from "../../../../context/CourseContext";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import UserEnviroment from "../../LayoutsComponent/UserEnviroment";
 
 const cx = classNames.bind(Style);
 
 function Task() {
+  const {checkOpenRank} = useCourseContext();
+  
   return (
     <div>
       <div className="container my-4">
         {/*  */}
         <div className={cx("task-container")}>
-          <div className="row">
-            <div
-              className={cx(
-                "col-3",
-                "d-flex",
-                "justify-content-around",
-                "align-items-center",
-                "streak-container"
-              )}
-            >
-              <img
-                src="https://d35aaqx5ub95lt.cloudfront.net/images/icons/398e4298a3b39ce566050e5c041949ef.svg"
-                alt=""
-              />
-              1
-            </div>
-            <div
-              className={cx(
-                "col-3",
-                "d-flex",
-                "justify-content-around",
-                "align-items-center",
-                "gem-container"
-              )}
-            >
-              <img
-                src="https://d35aaqx5ub95lt.cloudfront.net/images/gems/45c14e05be9c1af1d7d0b54c6eed7eee.svg"
-                alt=""
-              />
-              500
-            </div>
-            <div
-              className={cx(
-                "col-3",
-                "d-flex",
-                "justify-content-around",
-                "align-items-center",
-                "heart-container"
-              )}
-            >
-              <img
-                src="https://d35aaqx5ub95lt.cloudfront.net/images/hearts/8fdba477c56a8eeb23f0f7e67fdec6d9.svg"
-                alt=""
-              />
-              5
-            </div>
-          </div>
+
+          <UserEnviroment />
           {/*  */}
 
           <div
@@ -91,42 +52,46 @@ function Task() {
                 </div>
               </div>
 
-              <a
-                href="#"
+
+              <Link
+                to={"/premium"}
                 className={cx("premium-submit-btn", "btn", "rounded-4")}
               >
                 Thử 2 tuần miễn phí
-              </a>
+              </Link>
             </div>
           </div>
-          <div
-            className={cx(
-              "card",
-              "premium-card-container",
-              "rounded-4",
-              "p-3",
-              "mb-5"
-            )}
-          >
-            <div className="card-body">
-              <h5 className={cx("premium-card-title")}>
-                Mở khóa Bảng xếp hạng!
-              </h5>
-              <div className={cx("row", "my-4", "align-items-center")}>
-                <div className="col-3">
-                  <img
-                    src="https://d35aaqx5ub95lt.cloudfront.net/images/leagues/d4280fdf64d66de7390fe84802432a53.svg"
-                    alt=""
-                  />
-                </div>
-                <div className="col-9">
-                  <p className={cx("premium-card-text", "my-4")}>
-                    Hoàn thành thêm 6 bài học để bắt đầu thi đua
-                  </p>
+          {checkOpenRank !== null && (
+            <div
+              className={cx(
+                "card",
+                "premium-card-container",
+                "rounded-4",
+                "p-3",
+                "mb-5"
+              )}
+            >
+              <div className="card-body">
+                <h5 className={cx("premium-card-title")}>
+                  Mở khóa Bảng xếp hạng!
+                </h5>
+                <div className={cx("row", "my-4", "align-items-center")}>
+                  <div className="col-3">
+                    <img
+                      src="https://d35aaqx5ub95lt.cloudfront.net/images/leagues/d4280fdf64d66de7390fe84802432a53.svg"
+                      alt=""
+                    />
+                  </div>
+                  <div className="col-9">
+                    <p className={cx("premium-card-text", "my-4")}>
+                      Hoàn thành thêm {6-checkOpenRank()} bài học để bắt đầu thi đua
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+
+          )}
           <div
             className={cx(
               "card",
@@ -144,7 +109,7 @@ function Task() {
                   </h5>
                 </div>
                 <div className="col-4">
-                  <a href="#">Xem tất cả</a>
+                  <a href="/quest">Xem tất cả</a>
                 </div>
               </div>
               <div className={cx("row", "my-4", "align-items-center")}>

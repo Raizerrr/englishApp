@@ -1,16 +1,16 @@
-import classNames from "classnames/bind";
-import Style from "./Setting.module.scss";
-import Sidebar from "../../component/Layout/DefaultLayout/Sidebar";
-import SettingNav from "./SettingNav";
 import { useEffect, useState } from "react";
 import { useUserContext } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import { SaveButton } from "../../component/Buttons/SaveButton";
 
+import classNames from "classnames/bind";
+import Style from "./Setting.module.scss";
+
 const cx = classNames.bind(Style);
 
 function Setting() {
-  const {user, setUser, logout} = useUserContext();
+
+  const {user, setUser, logout, checkChangeProperty} = useUserContext();
   const [avatar, setAvatar] = useState();
   const navigate = useNavigate();
 
@@ -22,11 +22,21 @@ function Setting() {
     setUser({...user, [e.target.name]: e.target.value})
   }
 
+
   const changeAvatarHandel = (e) => {
     const file = e.target.files[0];
-    file.preview = URL.createObjectURL(file);
-    setAvatar(file);
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = function (eg) {
+        setUser({...user, avatar: eg.target.result});
+        setAvatar(eg.target.result);
+      };
+
+      reader.readAsDataURL(file);
   };
+}
 
   useEffect(() => {
     //clean up
@@ -36,35 +46,32 @@ function Setting() {
     };
   }, [avatar]);
 
-  return (
-    <div>
-      <Sidebar />
-      <div className="row">
-        <div className="col-12 col-md-9 col-lg-8">
-          <div
-            className={cx(
-              "container",
-              "d-flex",
-              "justify-content-center",
-              "align-items-center"
-            )}
-          >
-            <div className={cx("setting-container", "my-3")}>
-              <div className="position-relative">
-                <h1 className={cx("setting-title", "my-3")}>Tài Khoản</h1>
 
-                <div
-                  className={cx(
-                    "d-flex",
-                    "justify-content-center",
-                    "align-items-center",
-                    "my-3",
-                    "save-setting-btn-container"
-                  )}
-                >
-                  <button className={cx("save-setting-btn", "disabled")}>
-                    lưu thay đổi
-                  </button>
+  return (
+    <>
+      <div
+        className={cx(
+          "container",
+          "d-flex",
+          "justify-content-center",
+          "align-items-center"
+        )}
+      >
+        <div className={cx("setting-container", "my-3")}>
+          <div className="position-relative">
+            <h1 className={cx("setting-title", "my-3")}>Tài Khoản</h1>
+
+            <div
+              className={cx(
+                "d-flex",
+                "justify-content-center",
+                "align-items-center",
+                "my-3",
+                "save-setting-btn-container"
+              )}
+            >
+                  <SaveButton disableButton={checkChangeProperty()} oldPassword={""}/>  
+                  
                 </div>
               </div>
               <div className="py-5">
@@ -222,17 +229,10 @@ function Setting() {
                   </h1>
                 </div>
               </div>
-              <div className="">
-                <SaveButton/>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="d-none col-md-3 col-lg-4 d-md-block">
-          <SettingNav avatar={avatar} />
+            
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

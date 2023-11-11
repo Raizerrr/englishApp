@@ -1,0 +1,133 @@
+.show{
+    display: block !important;
+}
+.unshow{
+    display: none;
+}
+
+.follower-container{
+    border: 1px solid #ccc;
+    padding: 2rem ;
+    border-radius: 1rem;
+    background-color: #fff;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+    max-height: 80vh;
+    min-height: 80vh;
+    box-shadow: 0  0px 2px #ccc;
+   &::-webkit-scrollbar{
+    width: 2px ;
+   }
+  
+   &::-webkit-scrollbar-thumb {
+    border-radius: 1rem;
+    background: #262d3f; 
+    height: 20px;
+  }
+  &::-webkit-scrollbar-track-piece:end{
+    margin-bottom: 2px;
+  }
+  &::-webkit-scrollbar-track-piece:start{
+    margin-top: 2px;
+  }
+    .friend-header{
+        border-bottom: 1px solid #cccccc9a;
+        .friend-section-title{
+            
+            
+            font-size: 20px;
+            font-weight: 700;
+            color: #aaa;
+            padding-bottom: 10px;
+        }
+        .friend-header-btn{
+            background-color: transparent;
+            border: none;
+            color: #aaa;
+            &:hover{
+                color: #000;
+            }
+        }
+    }
+    .filter-friend-container{
+        display: none;
+        .input-search-filter{
+            background-color: #ccc;
+            font-size: 15px;
+            font-weight: 600;
+            color: #262d3f;
+            outline: none;
+            border: 1px solid transparent;
+            &:focus{
+                background-color: #000;
+
+            }
+        }
+        .close-filter-friend-btn{
+            position: absolute;
+            top: 1rem;
+            color: #aaa;
+            background-color: #262d3f;
+            border-color: transparent;
+            right: 0;
+            
+            &:hover{
+                color: #000;
+            }
+        }
+    }
+    .friend-container{
+        
+
+        .friend-list{
+            list-style-type: none;
+            padding: 0;
+            .friend-display{
+                &:hover{
+                    background-color: #cccccc3a;
+                    .friend-name {
+                        color: #000 !important;
+                    }
+                }
+                .friend-avatar-container{
+                    position: relative;
+                    width: 40px;
+                    height: 40px;
+                    
+                    .friend-avatar{
+                        min-height: 100%;
+                    }
+                    .user-status{
+                        width: 10px;
+                        height: 10px;
+                        border: 2px solid #fff;
+                        position: absolute;
+                        bottom: 1px;
+                        right: 0px;
+                        z-index: 1;
+                        border-radius: 50%;
+                        
+                    }
+                    
+                    
+                }
+            
+                .friend-name{
+                    font-size: 15px;
+                    font-weight: 700;
+                    line-height: 1.5rem;
+                    color: #aaa;
+                }
+                .friend-status{
+                    font-size: 10px;
+                    font-weight: 400;
+                    color: #aaa;
+                    line-height: 0.5rem;
+                }
+            }
+        }
+
+       
+    }
+    
+}

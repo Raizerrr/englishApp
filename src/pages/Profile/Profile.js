@@ -25,7 +25,7 @@ function Profile() {
               <h1 className={cx("user-name")}>{user?.username}</h1>
               <small className={cx("user-nickname")}>{user?.email}</small>
               <p className={cx("date-to-join", "my-3")}>
-                Đã tham gia vào tháng 8 2023
+                Đã tham gia vào {user?.createdAt}
               </p>
               <p className={cx("folower", "my-3")}>
                 Đang theo dõi 0 / 0 Người theo dõi

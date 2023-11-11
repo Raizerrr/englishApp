@@ -1,6 +1,7 @@
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import logo from "../../../../assets/images/logo.png";
 import {
   faEllipsis,
   faHome,
@@ -36,8 +37,20 @@ function Sidebar() {
           )}
         >
           <div className={cx("d-flex", "flex-column", "nav-list")}>
-            <div className={cx("my-4", "nav-item")}>
-              <Link to="/learn"> Logo </Link>
+            <div
+              className={cx(
+                "my-4",
+                "nav-item",
+                "d-flex",
+                "justify-content-center",
+                "align-items-center"
+              )}
+            >
+              <Link to="/learn">
+                <div className={cx("logo-container")}>
+                  <img src={logo} alt="logo" className="img-fluid" />
+                </div>
+              </Link>
             </div>
 
             <Link
@@ -166,6 +179,7 @@ function Sidebar() {
                       <Link
                         to={"/signin"}
                         className={cx("btn", "item-link", "py-3")}
+                        onClick={logout}
                       >
                         Đăng Xuất
                       </Link>
@@ -183,7 +197,16 @@ function Sidebar() {
                         </Link>
                       </li>
                     )}
+                <li className={cx("rounded-4", "sub-menu-item")}>
+                    <Link
+                      to={"/license"}
+                      className={cx("btn", "item-link", "py-3")}
+                    >
+                      Chính sách
+                    </Link>
+                  </li>
                 </ul>
+
               </div>
             </div>
 

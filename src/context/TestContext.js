@@ -1,6 +1,7 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { getTest } from "../axios/userAxios";
 import { useNavigate } from "react-router";
+import { useUserContext } from "./UserContext";
 
 const TestContext = createContext();
 export const TestProvider = ({children}) => {
@@ -11,7 +12,13 @@ export const TestProvider = ({children}) => {
     const [score, setScore] = useState(0);
     const [exp, setExp] = useState(0);
     const [answerQuestion, setAnswerQuestion] = useState([]);
-    const [hearts, setHearts] = useState(5);
+    const {updateCurrentLevel} = useUserContext();
+
+    useEffect(() => {
+        if(!(localStorage.getItem("token") || localStorage.getItem("account"))){
+            navigate("/lesson/entry/read/normal");
+        };
+    }, [])
 
     
 
@@ -21,12 +28,37 @@ export const TestProvider = ({children}) => {
         setTestDetail(data?.data?.testDetails);
     }
 
-    const getQuestion = () => {
-        if(questionNumber > questions?.length) {
-            navigate("/lesson/complete/normal");
+    const determineLevel = () => {
+        const scoreTotal = questions?.reduce((accumulator, currentValue) => {
+            return accumulator + currentValue.score;
+          }, 0);
+        const percent = Math.floor(score/scoreTotal*100);
+        return Math.floor(percent/20);
+    }
+
+    const getQuestion = (testype) => {
+        if(questionNumber > questions?.length || (questions[questionNumber] === undefined && questionNumber !== 0)) {
+            navigate(`/lesson/complete/normal/${testype}`);
+
+            const scoreTotal = questions?.reduce((accumulator, currentValue) => {
+                return accumulator + currentValue.score;
+              }, 0);
+
+            if(score/scoreTotal>75){
+                updateCurrentLevel(testype);    
+            }
+
+            const account = {
+                currentCourse: null,
+                currentBlock: null,
+                currentLesson: null,
+                level: determineLevel()+1
+            }
+            localStorage.setItem("account", JSON.stringify(account));
         }
         return questions[questionNumber];
-    }
+    };
+    
 
     return (
         <TestContext.Provider value={{
@@ -36,12 +68,10 @@ export const TestProvider = ({children}) => {
             score,
             exp,
             answerQuestion,
-            hearts,
             questionsTotal: questions?.length,
             scoreTotalOfTest: questions?.reduce((accumulator, currentValue) => {
                 return accumulator + currentValue.score;
               }, 0),
-            setHearts,
             setScore,
             setExp,
             setAnswerQuestion,
