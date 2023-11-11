@@ -4,11 +4,13 @@ import { useCourseContext } from "../../context/CourseContext";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
+import { useUserContext } from "../../context/UserContext";
 
 const cx = classNames.bind(Style);
 
 function LeaderBoard() {
   const {checkOpenRank} = useCourseContext();
+  const {user, player, ranks, getRankOfCurrentPlayer} = useUserContext();
 
   return (
     <div>
@@ -42,13 +44,15 @@ function LeaderBoard() {
             >
               Bắt Đầu Học
             </Link>
+            {!user?.avatar && (
+              <Link
+                to={"/signin"}
+                className={cx("leaderboard-start-btn", "my-3")}
+              >
+                Đăng Nhập
+              </Link>
 
-            <Link
-              to={"/signin"}
-              className={cx("leaderboard-start-btn", "my-3")}
-            >
-              Đăng Nhập
-            </Link>
+            )}
           </div>
 
           {/* <div className={cx("user-background-show")}>
@@ -79,266 +83,129 @@ function LeaderBoard() {
             </h1>
             <div className={cx("leaderboard", "d-flex", "flex-column", "py-2")}>
               <div className={cx("leaderboard-list", "px-3")}>
-                <div
-                  className={cx(
-                    "leaderboard-item",
-                    "px-5",
-                    "py-3",
-                    "rounded-4",
-                    "top-1"
-                  )}
-                >
-                  <div className="row align-items-center">
-                    <div className={cx("col-1")}>
-                      <div className={cx("leaderboard-number-on")}>1</div>
-                    </div>
-                    <div className={cx("col-9")}>
-                      <div className="row align-items-center">
-                        <div
-                          className={cx(
-                            "col-2",
-                            "d-flex",
-                            "justify-content-center"
-                          )}
-                        >
-                          <div
-                            className={cx("user-avatar-leaderboard-container")}
-                          >
-                            <img
-                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"
-                              alt=""
-                              className={cx(
-                                "user-avatar",
-                                "rounded-circle",
-                                "w-100",
-                                "h-100"
-                              )}
-                            />
+                {ranks?.length > 0 ? (
+                  <>
+                    {ranks?.map((rank, index) => (
+                      <div
+                        className={cx(
+                          "leaderboard-item",
+                          "px-5",
+                          "py-3",
+                          "rounded-4",
+                          `top-${index+1}`
+                        )}
+                      >
+                        <div className="row align-items-center">
+                          <div className={cx("col-1")}>
+                            <div className={cx("leaderboard-number-on")}>{index+1}</div>
                           </div>
-                        </div>
-                        <div className={cx("col-10")}>
-                          <div
-                            className={cx("user-name-leaderboard-container")}
-                          >
-                            Tricky
+                          <div className={cx("col-9")}>
+                            <div className="row align-items-center">
+                              <div
+                                className={cx(
+                                  "col-2",
+                                  "d-flex",
+                                  "justify-content-center"
+                                )}
+                              >
+                                <div
+                                  className={cx("user-avatar-leaderboard-container")}
+                                >
+                                  <img
+                                    src={rank?.avatar?rank.avatar:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"}
+                                    alt=""
+                                    className={cx(
+                                      "user-avatar",
+                                      "rounded-circle",
+                                      "w-100",
+                                      "h-100"
+                                    )}
+                                  />
+                                </div>
+                              </div>
+                              <div className={cx("col-10")}>
+                                <div
+                                  className={cx("user-name-leaderboard-container")}
+                                >
+                                  {rank?.username}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div className={cx("col-2")}>
+                            <div className={cx("user-exp-leaderboard-container")}>
+                              {rank?.expPoint}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div className={cx("col-2")}>
-                      <div className={cx("user-exp-leaderboard-container")}>
-                        10
-                      </div>
-                    </div>
+
+                    ))}
+                  </>
+                ): (
+                  <div style={{textAlign: "center"}}>
+
+                    Số người tham gia chưa đủ để xếp hạng
                   </div>
-                </div>
-                <div
-                  className={cx(
-                    "leaderboard-item",
-                    "px-5",
-                    "py-3",
-                    "rounded-4",
-                    "top-2"
-                  )}
-                >
-                  <div className="row align-items-center">
-                    <div className={cx("col-1")}>
-                      <div className={cx("leaderboard-number-on")}>2</div>
-                    </div>
-                    <div className={cx("col-9")}>
-                      <div className="row align-items-center">
-                        <div
-                          className={cx(
-                            "col-2",
-                            "d-flex",
-                            "justify-content-center"
-                          )}
-                        >
-                          <div
-                            className={cx("user-avatar-leaderboard-container")}
-                          >
-                            <img
-                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"
-                              alt=""
-                              className={cx(
-                                "user-avatar",
-                                "rounded-circle",
-                                "w-100",
-                                "h-100"
-                              )}
-                            />
-                          </div>
-                        </div>
-                        <div className={cx("col-10")}>
-                          <div
-                            className={cx("user-name-leaderboard-container")}
-                          >
-                            Tricky
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className={cx("col-2")}>
-                      <div className={cx("user-exp-leaderboard-container")}>
-                        10
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className={cx(
-                    "leaderboard-item",
-                    "px-5",
-                    "py-3",
-                    "rounded-4",
-                    "top-3"
-                  )}
-                >
-                  <div className="row align-items-center">
-                    <div className={cx("col-1")}>
-                      <div className={cx("leaderboard-number-on")}>3</div>
-                    </div>
-                    <div className={cx("col-9")}>
-                      <div className="row align-items-center">
-                        <div
-                          className={cx(
-                            "col-2",
-                            "d-flex",
-                            "justify-content-center"
-                          )}
-                        >
-                          <div
-                            className={cx("user-avatar-leaderboard-container")}
-                          >
-                            <img
-                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"
-                              alt=""
-                              className={cx(
-                                "user-avatar",
-                                "rounded-circle",
-                                "w-100",
-                                "h-100"
-                              )}
-                            />
-                          </div>
-                        </div>
-                        <div className={cx("col-10")}>
-                          <div
-                            className={cx("user-name-leaderboard-container")}
-                          >
-                            Tricky
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className={cx("col-2")}>
-                      <div className={cx("user-exp-leaderboard-container")}>
-                        10
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className={cx(
-                    "leaderboard-item",
-                    "px-5",
-                    "py-3",
-                    "rounded-4",
-                    "this-user-in-leaderboard-item"
-                  )}
-                >
-                  <div className="row align-items-center">
-                    <div className={cx("col-1")}>
-                      <div className={cx("leaderboard-number-on")}>4</div>
-                    </div>
-                    <div className={cx("col-9")}>
-                      <div className="row align-items-center">
-                        <div
-                          className={cx(
-                            "col-2",
-                            "d-flex",
-                            "justify-content-center"
-                          )}
-                        >
-                          <div
-                            className={cx("user-avatar-leaderboard-container")}
-                          >
-                            <img
-                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"
-                              alt=""
-                              className={cx(
-                                "user-avatar",
-                                "rounded-circle",
-                                "w-100",
-                                "h-100"
-                              )}
-                            />
-                          </div>
-                        </div>
-                        <div className={cx("col-10")}>
-                          <div
-                            className={cx("user-name-leaderboard-container")}
-                          >
-                            Phu le
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className={cx("col-2")}>
-                      <div className={cx("user-exp-leaderboard-container")}>
-                        1
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                )}
               </div>
             </div>
           </div>
-          <div className={cx("this-user")}>
-            <div className={cx("leaderboard-item", "py-4", "rounded-4")}>
-              <div className="row align-items-center w-100 px-5">
-                <div className={cx("col-1")}>
-                  <div className={cx("leaderboard-number-on")}>
-                    <FontAwesomeIcon icon={faMinus} />
-                  </div>
-                </div>
-                <div className={cx("col-9")}>
-                  <div className="row align-items-center">
-                    <div
-                      className={cx(
-                        "col-2",
-                        "d-flex",
-                        "justify-content-center"
+          {user?.avatar && (
+            <div className={cx("this-user")}>
+              <div className={cx("leaderboard-item", "py-4", "rounded-4")}>
+                <div className="row align-items-center w-100 px-5">
+                  <div className={cx("col-1")}>
+                    <div className={cx("leaderboard-number-on")}>
+                      {getRankOfCurrentPlayer()==="-" ? (
+                        <FontAwesomeIcon icon={faMinus} />
+
+                      ): (
+                        <>
+                          {getRankOfCurrentPlayer()}
+                        </>
                       )}
-                    >
-                      <div className={cx("user-avatar-leaderboard-container")}>
-                        <img
-                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"
-                          alt=""
-                          className={cx(
-                            "user-avatar",
-                            "rounded-circle",
-                            "w-100",
-                            "h-100"
-                          )}
-                        />
-                      </div>
                     </div>
-                    <div className={cx("col-10")}>
-                      <div className={cx("user-name-leaderboard-container")}>
-                        Phu le
+                  </div>
+                  <div className={cx("col-9")}>
+                    <div className="row align-items-center">
+                      <div
+                        className={cx(
+                          "col-2",
+                          "d-flex",
+                          "justify-content-center"
+                        )}
+                      >
+                        <div className={cx("user-avatar-leaderboard-container")}>
+                          <img
+                            src={user?.avatar?user.avatar:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"}
+                            alt=""
+                            className={cx(
+                              "user-avatar",
+                              "rounded-circle",
+                              "w-100",
+                              "h-100"
+                            )}
+                          />
+                        </div>
+                      </div>
+                      <div className={cx("col-10")}>
+                        <div className={cx("user-name-leaderboard-container")}>
+                          {user?.username}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className={cx("col-2")}>
-                  <div className={cx("user-exp-leaderboard-container")}>
-                    1 Kn
+                  <div className={cx("col-2")}>
+                    <div className={cx("user-exp-leaderboard-container")}>
+                      {player?.expPoint} Kn
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+
+          )}
         </div>
       </div>
     </div>

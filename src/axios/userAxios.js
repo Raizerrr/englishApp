@@ -29,6 +29,7 @@ export const updatePlayer = (player) => API.put("/player/updatePlayer", player);
 export const getFriend = (userId) => API.get(`/friend/getallfriend/${userId}`);
 export const getUserExceptUserId = () => API.get(`/user/getUserExceptUserId`);
 export const addFriend = (formValue) => API.post('/friend/insertfriend', formValue);
+export const getLeaderBoard = () => API.get("/player/getRanks");
 
 
 

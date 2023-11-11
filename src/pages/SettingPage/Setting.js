@@ -10,9 +10,8 @@ const cx = classNames.bind(Style);
 
 function Setting() {
 
-  const {user, setUser, logout} = useUserContext();
+  const {user, setUser, logout, checkChangeProperty} = useUserContext();
   const [avatar, setAvatar] = useState();
-  const [disableSaveButtion, setDisableSaveButton] = useState(false);
   const navigate = useNavigate();
 
   
@@ -26,9 +25,18 @@ function Setting() {
 
   const changeAvatarHandel = (e) => {
     const file = e.target.files[0];
-    file.preview = URL.createObjectURL(file);
-    setAvatar(file);
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = function (eg) {
+        setUser({...user, avatar: eg.target.result});
+        setAvatar(eg.target.result);
+      };
+
+      reader.readAsDataURL(file);
   };
+}
 
   useEffect(() => {
     //clean up
@@ -62,7 +70,7 @@ function Setting() {
                 "save-setting-btn-container"
               )}
             >
-                  <SaveButton disableButton={disableSaveButtion}/>
+                  <SaveButton disableButton={checkChangeProperty()} oldPassword={""}/>  
                   
                 </div>
               </div>

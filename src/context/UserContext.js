@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { createContext } from "react";
-import { addFriend, getFriend, getPlayer, getStreaks, getUser, getUserExceptUserId, login, updateUserApi } from "../axios/userAxios";
+import { addFriend, getFriend, getLeaderBoard, getPlayer, getStreaks, getUser, getUserExceptUserId, login, updateUserApi } from "../axios/userAxios";
 import { useCourseContext } from "./CourseContext";
 
 const UserContext = createContext();
 export const UserProvider = ({children}) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState({});
+    const [currentUserDetail, setCurrentUserDetail] = useState();
     const [player, setPlayer] = useState(null);
     const [errorMessage, setErrorMesage] = useState("");
     const [streak, setStreak] = useState([]);
@@ -13,6 +14,7 @@ export const UserProvider = ({children}) => {
     const {getLessonsAndBlocksAndLessons} = useCourseContext();
     const [friends, setFriends] = useState([]);
     const [users, setUsers] = useState([]);
+    const [ranks, setRanks] = useState([]);
 
 
     useEffect(() => {
@@ -39,9 +41,11 @@ export const UserProvider = ({children}) => {
             const streakData = await getStreaks("English");
             const friendData = await getFriend(data.data.id);
             const usersData = await getUserExceptUserId(data.data.id);
-            
+            const ranksData = await getLeaderBoard();
+            setRanks(ranksData.data.data);
             setUsers(usersData.data.data);
             setUser(data.data);
+            setCurrentUserDetail(data.data);
             setPlayer(playerData.data.data);
             setHearts(playerData.data.data.heart)
             setStreak(streakData.data.data);
@@ -97,6 +101,7 @@ export const UserProvider = ({children}) => {
             oldPassword
         }
         const {data} = await updateUserApi(userInput);
+        console.log(data);
         if(data.data.token){
             localStorage.setItem('token', JSON.stringify(data.data.token));
         }
@@ -123,6 +128,24 @@ export const UserProvider = ({children}) => {
         console.log(data);
     }
 
+    const checkChangeProperty = () => {
+        return currentUserDetail?.username != user?.username
+                || currentUserDetail?.avatar != user?.avatar
+                || currentUserDetail?.email != user?.email
+                || currentUserDetail?.password != user?.password;
+    }
+
+    const getRankOfCurrentPlayer = () => {
+        
+        for(let i = 0; i < ranks?.length; i++){
+            if(ranks[i].playerId === player?.id) {
+                return i+1;
+            }
+        }
+
+        return "-";
+    }
+
     return (
         <UserContext.Provider
             value={{
@@ -133,6 +156,7 @@ export const UserProvider = ({children}) => {
                 hearts,
                 friends,
                 users,
+                ranks,
                 setUser,
                 updatePlayer,
                 registerUser,
@@ -140,7 +164,9 @@ export const UserProvider = ({children}) => {
                 updateUser,
                 checkProgressOfPlayer,
                 updateCurrentLevel,
-                addNewFriend
+                addNewFriend,
+                checkChangeProperty,
+                getRankOfCurrentPlayer
             }}
         >
             {children}
