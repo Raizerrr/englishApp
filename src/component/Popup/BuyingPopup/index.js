@@ -2,10 +2,19 @@ import classNames from "classnames/bind";
 import Style from "./BuyingPopup.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { useUserContext } from "../../../context/UserContext";
 
 const cx = classNames.bind(Style);
 
 function BuyingPopup(props) {
+
+  const {updatePlayer, player} = useUserContext();
+
+  const handleSubmitBuy = async() => {
+    player.score -= props.price;
+    await updatePlayer(player);
+  }
+
   return (
     <>
       <div
@@ -65,6 +74,7 @@ function BuyingPopup(props) {
                     "rounded-4",
                     "buy-in-btn"
                   )}
+                  onClick={handleSubmitBuy}
                 >
                   Đổi
                 </button>

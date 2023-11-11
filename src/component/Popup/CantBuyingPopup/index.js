@@ -2,10 +2,13 @@ import classNames from "classnames/bind";
 import Style from "./CantBuyingPopup.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router";
 
 const cx = classNames.bind(Style);
 
 function CantBuyingPopup(props) {
+  const navigate = useNavigate();
+
   return (
     <>
       <div
@@ -49,6 +52,8 @@ function CantBuyingPopup(props) {
                     "rounded-4",
                     "premium-btn"
                   )}
+
+                  onClick={() => navigate("/premium")}
                 >
                   Mua gói Super
                 </button>
@@ -61,8 +66,9 @@ function CantBuyingPopup(props) {
                     "py-2",
                     "rounded-4",
                     "buy-in-btn"
-                  )}
-                >
+                    )}
+                      onClick={() => navigate("/")}
+                    >
                   Học để kiếm thêm Kim Cương
                 </button>
               </div>

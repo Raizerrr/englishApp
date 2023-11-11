@@ -10,18 +10,24 @@ const cx = classNames.bind(Style);
 
 function Shop() {
   const [showBuyingPopup, setShowBuyingPopup] = useState(false);
+  const [buyItem, setBuyItem] = useState();
   const {player} = useUserContext();
 
-  const ClickToShowPopupHandle = () => {
+  const ClickToShowPopupHandle = (price) => {
+    setBuyItem(price);
     setShowBuyingPopup(!showBuyingPopup);
   };
 
   return (
     <div>
       <div className={cx("d-none", { ["show"]: showBuyingPopup })}>
-        
-        <BuyingPopup ClickToClosePopup={ClickToShowPopupHandle} />
-        <CantBuyingPopup ClickToClosePopup={ClickToShowPopupHandle} />
+        {buyItem < player?.score ? (
+          <BuyingPopup ClickToClosePopup={ClickToShowPopupHandle} price={buyItem}/>
+
+        ): (
+          
+          <CantBuyingPopup ClickToClosePopup={ClickToShowPopupHandle} />
+        )}
       </div>
       <div className={cx("container", "d-flex", "justify-content-center")}>
         <div className={cx("shop-container")}>
@@ -86,7 +92,7 @@ function Shop() {
                         "w-100",
                         "rounded-4"
                       )}
-                      onClick={ClickToShowPopupHandle}
+                      onClick={() => ClickToShowPopupHandle(100)}
                     >
                       <img
                         src="https://d35aaqx5ub95lt.cloudfront.net/images/gems/45c14e05be9c1af1d7d0b54c6eed7eee.svg"
@@ -164,7 +170,7 @@ function Shop() {
                         "rounded-4",
                         "streak-frezze-color"
                       )}
-                      onClick={ClickToShowPopupHandle}
+                      onClick={() => ClickToShowPopupHandle(100)}
                     >
                       <img
                         src="https://d35aaqx5ub95lt.cloudfront.net/images/gems/45c14e05be9c1af1d7d0b54c6eed7eee.svg"
