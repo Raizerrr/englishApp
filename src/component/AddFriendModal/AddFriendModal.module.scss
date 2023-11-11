@@ -15,11 +15,13 @@
         bottom: 0;
         left: 0;
         right: 0;
+    }
         .add-friend-container{
             background-color: #eee;
             min-height: 60%;
             min-width: 50%;
             border-radius: 1rem;
+            min-height: 70vh;
             
             .close-btn{
                 position: absolute;
@@ -141,6 +143,6 @@
                     transform: translate(0,2px);
                 }
             }
-        }
+        
     }
 }
