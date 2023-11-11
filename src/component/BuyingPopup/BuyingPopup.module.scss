@@ -20,6 +20,7 @@
         min-height: 50vh;
         min-width: 80%;
         z-index: 3;
+        transform: translate(17%, 0%);
         overflow: hidden;
         .absolute-box{
             position: absolute;
@@ -28,6 +29,16 @@
             height: 20vh;
             background-color: rgb(88,204,2);
             border-radius: 1.5rem 1.5rem 50% 50%;
+        }
+        .btn-close{
+            position: absolute;
+            z-index: 6;
+            top: 0px;
+            right: 8px;
+            color: #ccc;
+            border: none;
+            background-color: transparent;
+            font-size: 20px
         }
         .content-container{
             margin-top: 20vh;
