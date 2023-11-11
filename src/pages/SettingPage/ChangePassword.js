@@ -1,11 +1,11 @@
 import classNames from "classnames/bind";
 import Style from "./Setting.module.scss";
 import Sidebar from "../../component/Layout/DefaultLayout/Sidebar";
-import SettingNav from "./SettingNav";
 import { useUserContext } from "../../context/UserContext";
 import { SaveButton } from "../../component/Buttons/SaveButton";
 import { useState } from "react";
 import { ErrorNotification } from "../../component/LoginLayout/ErrorNotification";
+import SettingNav from "../../component/Layout/SettingLayout/SettingNav";
 
 const cx = classNames.bind(Style);
 function ChangePassword() {

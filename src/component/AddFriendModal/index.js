@@ -38,15 +38,13 @@ function AddFriendModal(props) {
                 "d-flex",
                 "justify-content-center",
                 "align-items-center",
-                "my-5",
-                "p-2"
+                "my-5"
               )}
             >
               <input
                 type="text"
                 className={cx(
                   "search-friend-to-add-input",
-                  "w-75",
                   "px-3",
                   "py-2",
                   "rounded-3"
@@ -96,6 +94,7 @@ function AddFriendModal(props) {
                   </li> */}
 
                 <ul className={cx("friend-list")}>
+
                   {users?.length > 0? (
                     <>
                       {users?.map(user => (
@@ -133,10 +132,13 @@ function AddFriendModal(props) {
                     <></>
                   )}
                   
+
+
                 </ul>
                 {/* </ul> */}
               </div>
             </div>
+            <button className={cx("add-friend-button")}>Add Friend</button>
           </div>
         </div>
       </div>

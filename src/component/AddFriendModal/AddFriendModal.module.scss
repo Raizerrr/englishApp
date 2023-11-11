@@ -9,14 +9,14 @@
     min-width: 100%;
     min-height: 100vh;
     .add-friend-overlay{
-        background-color: #3333337f;
+        
         position: fixed;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
         .add-friend-container{
-            background-color: #252d3f;
+            background-color: #eee;
             min-height: 60%;
             min-width: 50%;
             border-radius: 1rem;
@@ -36,15 +36,16 @@
             }
             .search-friend-to-add-input-container{
                 .search-friend-to-add-input{
-                    outline: none;
+                    width: 80%;
+                    border-color: transparent;
                     font-size: 15px;
                     color: #252d3f;
                     font-weight: 600;
                 }
                 .search-user-btn{
                     position: absolute;
-                    right: 14%;
-                    top: 12%;
+                    right: 11%;
+                    top: 6%;
                     border-color: transparent;
                     background-color: transparent;
                     &:hover{
@@ -57,7 +58,7 @@
                 background-color: #fff;
                 min-height: 250px;
                 max-height: 250px;
-                min-width: 80%;
+                min-width: 82%;
                 overflow-y: auto;
                 overflow-x: hidden;
                 scrollbar-gutter: stable;
@@ -80,7 +81,7 @@
 
                     .friend-list{
                         list-style-type: none;
-                        padding: 0;
+                        padding: 16px;
                         .friend-display{
                             &:hover{
                                 background-color: #cccccc3a;
@@ -118,6 +119,27 @@
             
                    
                 
+            }
+
+            .add-friend-button{
+                position: absolute;
+                bottom: 16px;
+                right: 16px;
+                text-decoration: none;
+                border-color: transparent;
+                padding: 8px 80px;
+                border-radius: 15px;
+                border: 1px solid #ccc;
+                box-shadow: 0 2px 0 2px #ccc;
+                font-size: 18px;
+                background-color: #fff;
+                font-weight: 600;
+                text-transform: uppercase;
+                color: rgb(28, 176, 246) !important;
+                &:active{
+                    box-shadow: none;
+                    transform: translate(0,2px);
+                }
             }
         }
     }

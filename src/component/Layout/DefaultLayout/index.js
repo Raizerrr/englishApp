@@ -14,9 +14,7 @@ function DefaultLayout({ children }) {
             <Sidebar />
           </div>
           <div className="col-12 col-lg-8">
-            <div className="content" style={{ height: " 2000px" }}>
-              {children}
-            </div>
+            <div className="content">{children}</div>
           </div>
           <div className={cx("d-none", "sticky", "col-lg-4", "d-lg-block")}>
             <Task />

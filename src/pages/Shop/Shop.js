@@ -1,5 +1,6 @@
 import classNames from "classnames/bind";
 import Style from "./Shop.module.scss";
+import { Link } from "react-router-dom";
 
 const cx = classNames.bind(Style);
 
@@ -25,8 +26,9 @@ function Shop() {
                   </p>
                 </div>
               </div>
-              <a
-                href="/premium"
+
+              <Link
+                to={"/premium"}
                 className={cx(
                   "btn",
                   "premium-btn",
@@ -37,7 +39,7 @@ function Shop() {
                 )}
               >
                 Bắt đầu 14 ngày dùng thử miễn phí
-              </a>
+              </Link>
             </div>
           </div>
           <h1 className={cx("shop-list-title", "py-5")}>Trái tim</h1>
@@ -70,7 +72,12 @@ function Shop() {
                         "rounded-4"
                       )}
                     >
-                      Mua
+                      <img
+                        src="https://d35aaqx5ub95lt.cloudfront.net/images/gems/45c14e05be9c1af1d7d0b54c6eed7eee.svg"
+                        alt=""
+                        className="pe-3"
+                      />
+                      100
                     </button>
                   </div>
                 </div>
@@ -91,7 +98,8 @@ function Shop() {
                     <p>Không bao giờ hết trái tim khi học với Super!</p>
                   </div>
                   <div className="col-3 d-flex align-items-center">
-                    <button
+                    <Link
+                      to={"/premium"}
                       className={cx(
                         "shop-purcherse-btn",
                         "py-3",
@@ -101,7 +109,7 @@ function Shop() {
                       )}
                     >
                       Thử Miễn phí
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </li>
@@ -141,7 +149,12 @@ function Shop() {
                         "streak-frezze-color"
                       )}
                     >
-                      Mua
+                      <img
+                        src="https://d35aaqx5ub95lt.cloudfront.net/images/gems/45c14e05be9c1af1d7d0b54c6eed7eee.svg"
+                        alt=""
+                        className="pe-3"
+                      />
+                      100
                     </button>
                   </div>
                 </div>

@@ -1,7 +1,7 @@
 import classNames from "classnames/bind";
 import LoginLayoutScss from "./LoginLayout.module.scss";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../axios/userAxios";
 import { SocialLogin } from "./SocialLogin";
 import { ErrorNotification } from "./ErrorNotification";
@@ -14,7 +14,7 @@ function SignIn() {
   // Hook
   const [formValue, setFormValue] = useState({
     username: "",
-    password: ""
+    password: "",
   });
   const [errorNotification, setErrorNotification] = useState("");
   const navigate = useNavigate();
@@ -27,14 +27,14 @@ function SignIn() {
 
 
   // variables 
+
   const { username, password } = formValue;
 
-
   // functions
-  // Function for change value input in field 
+  // Function for change value input in field
   const handleChangeField = (e) => {
-    setFormValue({...formValue, [e.target.name]: e.target.value});
-  }
+    setFormValue({ ...formValue, [e.target.name]: e.target.value });
+  };
 
   const handleCheckUserLogin = async (e) => {
     e.preventDefault();
@@ -92,10 +92,10 @@ function SignIn() {
             required
           />
           <div className={cx("forgot-pw")}>
-            <a href="">Quên?</a>
+            <Link to={"%/changePassword"}>Quên?</Link>
           </div>
           {/* Below stack is error message when don't sign in successfully */}
-          <ErrorNotification errorNotification={errorNotification}/>
+          <ErrorNotification errorNotification={errorNotification} />
         </div>
 
         <button
@@ -104,7 +104,7 @@ function SignIn() {
         >
           Đăng Nhập
         </button>
-        <SocialLogin/>
+        <SocialLogin />
       </form>
     </div>
   );
