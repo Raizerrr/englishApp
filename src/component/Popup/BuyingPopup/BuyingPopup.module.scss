@@ -1,0 +1,91 @@
+
+
+.buying-popup-wrapper{
+    position: fixed;
+    z-index: 2;
+    min-height: 100vh;
+    min-width: 100vh;
+    .overlay{
+        background-color: rgba(0, 0, 0, 0.3);
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+    .buying-popup-container{
+        position: relative;
+        border-radius: 1.5rem;
+        background-color: #fff;
+        min-height: 50vh;
+        min-width: 80%;
+        z-index: 3;
+        transform: translate(17%, 0%);
+        overflow: hidden;
+        .absolute-box{
+            position: absolute;
+            width: 150%;
+            transform: translate(-16%,0%);
+            height: 20vh;
+            background-color: rgb(88,204,2);
+            border-radius: 1.5rem 1.5rem 50% 50%;
+        }
+        .btn-close{
+            position: absolute;
+            z-index: 6;
+            top: 0px;
+            right: 8px;
+            color: #ccc;
+            border: none;
+            background-color: transparent;
+            font-size: 20px
+        }
+        .content-container{
+            margin-top: 20vh;
+            .buying-popup-title{
+                font-size: 25px;
+                font-weight: 700;
+                line-height: 2rem;
+                text-align: center;
+                color: #000;
+            }
+            .buying-popup-desc{
+                font-size: 15px;
+                font-weight: 400;
+                line-height: 1.5rem;
+                text-align: center;
+                color: #aaa;
+            }
+            .buying-popup-btn{
+                text-align: center;
+                text-decoration: none;
+                border: 1px solid #ccc;
+                background-color: #fff;
+                font-size: 16px;
+                font-weight: 600;
+                color: rgb(28,176,246);
+                box-shadow: 0 2px 0 #ccc;
+                text-transform: uppercase;
+                
+                &:active{
+                    transform: translate(0, 2%);
+                    box-shadow: none;
+                }
+            }
+            .cancel-btn{
+                &:hover {
+                    background-color: rgb(255,75,75);
+                    color: #fff;
+                }
+               
+            }
+            .buy-in-btn{
+                &:hover {
+                    background-color: rgb(88,204,2);
+                    color: #fff;
+                }
+               
+            }
+        }
+    }
+}
