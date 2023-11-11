@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { createContext } from "react";
-import { getPlayer, getStreaks, getUser, login, updateUserApi } from "../axios/userAxios";
+import { addFriend, getFriend, getPlayer, getStreaks, getUser, getUserExceptUserId, login, updateUserApi } from "../axios/userAxios";
 import { useCourseContext } from "./CourseContext";
 
 const UserContext = createContext();
@@ -11,6 +11,8 @@ export const UserProvider = ({children}) => {
     const [streak, setStreak] = useState([]);
     const [hearts, setHearts] = useState(0);
     const {getLessonsAndBlocksAndLessons} = useCourseContext();
+    const [friends, setFriends] = useState([]);
+    const [users, setUsers] = useState([]);
 
 
     useEffect(() => {
@@ -35,10 +37,15 @@ export const UserProvider = ({children}) => {
             const {data} = await getUser();
             const playerData = await getPlayer("English");
             const streakData = await getStreaks("English");
+            const friendData = await getFriend(data.data.id);
+            const usersData = await getUserExceptUserId(data.data.id);
+            
+            setUsers(usersData.data.data);
             setUser(data.data);
             setPlayer(playerData.data.data);
             setHearts(playerData.data.data.heart)
             setStreak(streakData.data.data);
+            setFriends(friendData.data.data);
             
         } catch (error) {
             localStorage.removeItem('token');
@@ -111,6 +118,11 @@ export const UserProvider = ({children}) => {
         return false;
     }
 
+    const addNewFriend = async(friendId) => {
+        const {data} = await addFriend({userId: user?.id, friendId});
+        console.log(data);
+    }
+
     return (
         <UserContext.Provider
             value={{
@@ -119,13 +131,16 @@ export const UserProvider = ({children}) => {
                 player,
                 streakTotal: streak.length,
                 hearts,
+                friends,
+                users,
                 setUser,
                 updatePlayer,
                 registerUser,
                 logout,
                 updateUser,
                 checkProgressOfPlayer,
-                updateCurrentLevel
+                updateCurrentLevel,
+                addNewFriend
             }}
         >
             {children}

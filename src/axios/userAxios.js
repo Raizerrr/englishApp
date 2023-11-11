@@ -26,6 +26,9 @@ export const getPlayer = (language) => API.get(`/player/getplayer/${language}`);
 export const getStreaks = (language) =>  API.get(`/streak/getstreak/${language}`);
 export const updateUserApi = (formValue) => API.put("/user/updateUser", formValue);
 export const updatePlayer = (player) => API.put("/player/updatePlayer", player);
+export const getFriend = (userId) => API.get(`/friend/getallfriend/${userId}`);
+export const getUserExceptUserId = () => API.get(`/user/getUserExceptUserId`);
+export const addFriend = (formValue) => API.post('/friend/insertfriend', formValue);
 
 
 
