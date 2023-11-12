@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getTest } from "../axios/userAxios";
+import { createNewStreak, getTest } from "../axios/userAxios";
 import { useNavigate } from "react-router";
 import { useUserContext } from "./UserContext";
 
@@ -36,7 +36,7 @@ export const TestProvider = ({children}) => {
         return Math.floor(percent/20);
     }
 
-    const getQuestion = (testype) => {
+    const getQuestion = (testype, playerId) => {
         if(questionNumber > questions?.length || (questions[questionNumber] === undefined && questionNumber !== 0)) {
             navigate(`/lesson/complete/normal/${testype}`);
 
@@ -55,9 +55,14 @@ export const TestProvider = ({children}) => {
                 level: determineLevel()+1
             }
             localStorage.setItem("account", JSON.stringify(account));
+            createNewStreakItem(playerId);
         }
         return questions[questionNumber];
     };
+
+    const createNewStreakItem = async(playerId) => {
+        await createNewStreak({playerId});
+    }
     
 
     return (

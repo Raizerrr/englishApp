@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { createContext } from "react";
-import { addFriend, getFriend, getLeaderBoard, getPlayer, getStreaks, getUser, getUserExceptUserId, login, updateUserApi } from "../axios/userAxios";
+import { addFriend, getFriend, getLeaderBoard, getPlayer, getStreaks, getUser, getUserExceptUserId, login, updatePlayerApi, updateUserApi } from "../axios/userAxios";
 import { useCourseContext } from "./CourseContext";
 
 const UserContext = createContext();
+
 export const UserProvider = ({children}) => {
     const [user, setUser] = useState({});
     const [currentUserDetail, setCurrentUserDetail] = useState();
@@ -39,23 +40,32 @@ export const UserProvider = ({children}) => {
             const {data} = await getUser();
             const playerData = await getPlayer("English");
             const streakData = await getStreaks("English");
-            const friendData = await getFriend(data.data.id);
-            const usersData = await getUserExceptUserId(data.data.id);
             const ranksData = await getLeaderBoard();
+            
+            getUsersByCondition(data.data.id);
+            getFriends(data.data.id);
             setRanks(ranksData.data.data);
-            setUsers(usersData.data.data);
             setUser(data.data);
             setCurrentUserDetail(data.data);
-            setPlayer(playerData.data.data);
-            setHearts(playerData.data.data.heart)
             setStreak(streakData.data.data);
-            setFriends(friendData.data.data);
-            
+            updatePlayer(playerData.data.data);
         } catch (error) {
             localStorage.removeItem('token');
             setUser(null);
         }
     }
+
+    const getUsersByCondition = async(id) => {
+        const usersData = await getUserExceptUserId(id);
+        setUsers(usersData.data.data);
+    }
+
+    const getFriends = async(id) => {
+        const friendData = await getFriend(id);
+        console.log(friendData.data.data);
+        setFriends(friendData.data.data);
+    }
+
 
     const registerAdmin = async() => {
         const admin  = {
@@ -81,8 +91,10 @@ export const UserProvider = ({children}) => {
 
     const updatePlayer = async(player) => {
         try {
-            const {data} = await updatePlayer(player);
+            const {data} = await updatePlayerApi(player);
+            console.log(data);
             setPlayer(data.data);
+            setHearts(data.data.heart)
         } catch (error) {
             localStorage.removeItem('token');
             setPlayer(null);
@@ -152,7 +164,7 @@ export const UserProvider = ({children}) => {
                 user,
                 errorMessage,
                 player,
-                streakTotal: streak.length,
+                streakTotal: streak?.length,
                 hearts,
                 friends,
                 users,
@@ -162,11 +174,15 @@ export const UserProvider = ({children}) => {
                 registerUser,
                 logout,
                 updateUser,
+                setHearts,
                 checkProgressOfPlayer,
                 updateCurrentLevel,
                 addNewFriend,
                 checkChangeProperty,
-                getRankOfCurrentPlayer
+                getRankOfCurrentPlayer,
+                setUsers,
+                getUsersByCondition,
+                getFriends
             }}
         >
             {children}

@@ -1,9 +1,22 @@
 import classNames from "classnames/bind";
 import Style from "./Quest.module.scss";
+import { useTaskContext } from "../../context/TaskContext";
+import { useEffect, useState } from "react";
 
 const cx = classNames.bind(Style);
 
 function Quest() {
+
+  const {dailyTask, getDailyTask} = useTaskContext();
+  const [userTasks, setUserTasks] = useState({}); 
+
+
+  useEffect(() => {
+    getDailyTask();
+
+    setUserTasks(JSON.parse(localStorage.getItem("task")));
+  }, [])
+
   return (
     <div className="">
       <div
@@ -49,7 +62,51 @@ function Quest() {
           </h1>
           <div className={cx("dally-quest-container")}>
             <ul className={cx("quest-list")}>
-              <li className={cx("quest-list-item", "py-3")}>
+              {dailyTask?.map(task => (
+                <li className={cx("quest-list-item", "py-3")}>
+                  <div className="row">
+                    <div className="col-2">
+
+                      
+                      <img
+                        src={task?.image}
+                        className="w-100"
+                        alt=""
+                      />
+                    </div>
+                    <div className="col-10">
+                      <h2 className={cx("list-item-title", "my-3")}>
+                        {task?.title}
+                      </h2>
+                      <div style={{display: "flex"}}>
+
+                        <div
+                          className={cx(
+                            "quest-progess-bar-complete",
+                            "position-relative",
+                            "my-3"
+                          )}
+                          style={{width: `${Math.floor(userTasks[task?.id]/task?.completeExpPoint*100)}%`}}
+                        >
+                          
+                        </div>
+                        <div
+                          className={cx(
+                            "quest-progess-bar",
+                            "position-relative",
+                            "my-3"
+                          )}
+                          style={{width: `${100-Math.floor(userTasks[task?.id]/task?.completeExpPoint*100)}%`}}
+                        >
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+              ))}
+              {/* <li className={cx("quest-list-item", "py-3")}>
                 <div className="row">
                   <div className="col-2"></div>
                   <div className="col-10">
@@ -90,28 +147,7 @@ function Quest() {
                     </div>
                   </div>
                 </div>
-              </li>
-              <li className={cx("quest-list-item", "py-3")}>
-                <div className="row">
-                  <div className="col-2"></div>
-                  <div className="col-10">
-                    <h2 className={cx("list-item-title", "my-3")}>
-                      Kiếm 10 KN
-                    </h2>
-                    <div
-                      className={cx(
-                        "quest-progess-bar",
-                        "position-relative",
-                        "my-3"
-                      )}
-                    >
-                      <span className={cx("position-absolute", "progess")}>
-                        0 / 10
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

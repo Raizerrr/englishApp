@@ -4,11 +4,13 @@ import { useCourseContext } from "../../../../context/CourseContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import UserEnviroment from "../../LayoutsComponent/UserEnviroment";
+import { useTaskContext } from "../../../../context/TaskContext";
 
 const cx = classNames.bind(Style);
 
 function Task() {
   const {checkOpenRank} = useCourseContext();
+  const {dailyTask} = useTaskContext();
   
   return (
     <div>
@@ -112,34 +114,23 @@ function Task() {
                   <a href="/quest">Xem tất cả</a>
                 </div>
               </div>
-              <div className={cx("row", "my-4", "align-items-center")}>
-                <div className="col-3">
-                  <img
-                    src="https://d35aaqx5ub95lt.cloudfront.net/images/goals/2b5a211d830a24fab92e291d50f65d1d.svg"
-                    className="w-100"
-                    alt=""
-                  />
+              {dailyTask?.map(task => (
+                <div className={cx("row", "my-4", "align-items-center")}>
+                  <div className="col-3">
+                    <img
+                      src={task?.image}
+                      className="w-100"
+                      alt=""
+                    />
+                  </div>
+                  <div className="col-9">
+                    <p className={cx("premium-card-text", "my-4")}>
+                      {task?.title} (0/{task?.completeExpPoint})
+                    </p>
+                  </div>
                 </div>
-                <div className="col-9">
-                  <p className={cx("premium-card-text", "my-4")}>
-                    Kiếm 10 KN (0/10)
-                  </p>
-                </div>
-              </div>
-              <div className={cx("row", "my-4", "align-items-center")}>
-                <div className="col-3">
-                  <img
-                    src="https://d35aaqx5ub95lt.cloudfront.net/images/goals/39f13d2de304cad2ac2f88b31a7e2ff4.svg"
-                    className="w-100"
-                    alt=""
-                  />
-                </div>
-                <div className="col-9">
-                  <p className={cx("premium-card-text", "my-4")}>
-                    Đạt điểm chính xác từ 80% trở lên của 3 bài học (0/3)
-                  </p>
-                </div>
-              </div>
+
+              ))}
             </div>
           </div>
         </div>
