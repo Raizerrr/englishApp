@@ -1,0 +1,130 @@
+.friend-request-receive-popup-wrapper{
+   
+   position: relative;
+    width: 300px;
+    min-height: 50vh;
+    background-color: #fff;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    border: 1px solid #ccc;
+    box-shadow: 0px 4px  4px 1px #ccc;
+    .close-btn{
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        border: 1px solid #ccc;
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+        background-color: #fff;
+        border-radius: 50%;
+        color: #aaa;
+    }
+    .friend-request-receive-title-container{
+        border-bottom: 1px solid #cccccc9a;
+        .friend-request-receive-title{
+            text-align: center;
+            text-transform: initial;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 2rem;
+            color: #aaa;
+            
+        }
+    }
+    
+    .pending-user-container{
+        .pending-user-list{
+            height: 40vh;
+            overflow-y: auto;
+            scrollbar-gutter: stable;
+            &::-webkit-scrollbar{
+                width: 1px ;
+               }
+              
+               &::-webkit-scrollbar-thumb {
+                border-radius: 1rem;
+                background: #aaa; 
+                height: 20px;
+              }
+              &::-webkit-scrollbar-track-piece:end{
+                margin-bottom: 2px;
+              }
+              &::-webkit-scrollbar-track-piece:start{
+                margin-top: 2px;
+              }
+            .pending-user-item{
+                padding: .5rem 1.5rem;
+                
+                &:hover{
+                    background-color: #cccccc3a;
+                    width: 100%;
+                }
+                .pengding-user-avatar-container{
+                    width: 50px;
+                    height: 50px;
+                    .pengding-user-avatar{
+                       
+                    }
+                }
+                .pengding-user-name{
+                    font-size: 17px;
+                    font-weight: 600;
+                    line-height: 1.5rem;
+                    color: #aaa;
+                }
+                .pengding-user-nick-name{
+                    font-size: 13px;
+                    font-weight: 400;
+                    line-height: 1.25rem;
+                    color: #aaa;
+                }
+                .pending-request-btn{
+                    max-width: 100%;
+                    text-decoration: none;
+                    border-color: transparent;
+                    padding: 0 1.75rem;
+                    border-radius: 15px;
+                    border: 1px solid #ccc;
+                    box-shadow: 0 2px 0 2px #ccc;
+                    font-size: 13px;
+                    background-color: #fff;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    color: rgb(28,176,246) ;
+                    &:hover{
+                        background-color: #cccccc3a; 
+                    }
+                    &:active {
+                        transform: translate(0 , 2%);
+                        box-shadow: none;
+                    }
+                    
+                }
+                .accept-button{
+                    &:hover {
+                        background-color: rgb(88,204,2) !important;
+                        color: #fff !important;
+                        box-shadow: 0 2px 0 2px rgb(76, 173, 1);
+                        &:active {
+                            transform: translate(0 , 2%);
+                            box-shadow: none;
+                        }
+                    }
+                }
+                .deny-button{
+                    &:hover {
+                        background-color: rgb(255,75,75) !important;
+                        color: #fff !important;
+                        box-shadow: 0 2px 0 2px rgb(214, 64, 64);
+                        &:active {
+                            transform: translate(0 , 2%);
+                            box-shadow: none;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}

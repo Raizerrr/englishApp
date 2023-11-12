@@ -1,3 +1,22 @@
+.notifi-hightlight-dot{
+    position: absolute;
+    top: 2px;
+    right: -2px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgb(255,75,75);
+    
+}
+.friend-request-received-container{
+    position: fixed;
+    top: 17%;
+    right: 10%;
+    z-index: 5;
+    
+}
+
+
 .show{
     display: block !important;
 }
@@ -6,6 +25,7 @@
 }
 
 .follower-container{
+    
     border: 1px solid #ccc;
     padding: 2rem ;
     border-radius: 1rem;
@@ -41,25 +61,28 @@
             padding-bottom: 10px;
         }
         .friend-header-btn{
+            
             background-color: transparent;
             border: none;
             color: #aaa;
             &:hover{
                 color: #000;
             }
+            
         }
     }
     .filter-friend-container{
         display: none;
         .input-search-filter{
-            background-color: #ccc;
+            background-color: #fff;
             font-size: 15px;
             font-weight: 600;
             color: #262d3f;
             outline: none;
-            border: 1px solid transparent;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 0 #ccc;
             &:focus{
-                background-color: #000;
+                
 
             }
         }
@@ -67,7 +90,7 @@
             position: absolute;
             top: 1rem;
             color: #aaa;
-            background-color: #262d3f;
+            background-color: #ccc;
             border-color: transparent;
             right: 0;
             
