@@ -1,11 +1,21 @@
 import classNames from "classnames/bind";
 import Style from "./Quest.module.scss";
+import ExpEarningPopup from "../../component/ExpEarningPopup";
+import { useState } from "react";
 
 const cx = classNames.bind(Style);
 
-function Quest() {
+function Quest(props) {
+  const [show, setShow] = useState(false);
+
+  const ShowPopupHandle = () => {
+    setShow(!show);
+  };
   return (
     <div className="">
+      <div className={cx("d-none", { ["show"]: show })}>
+        <ExpEarningPopup ClicktoOpenPopup={ShowPopupHandle} />
+      </div>
       <div
         className={cx(
           "container",
@@ -66,6 +76,18 @@ function Quest() {
                       <span className={cx("position-absolute", "progess")}>
                         0 / 10
                       </span>
+                      <button
+                        className={cx(
+                          "position-absolute",
+                          "receive-exp-when-complete-btn"
+                        )}
+                        onClick={() => ShowPopupHandle()}
+                      >
+                        <img
+                          src="https://d35aaqx5ub95lt.cloudfront.net/images/goals/ca23da57929a3144934ee0571a2f44e9.svg"
+                          alt=""
+                        />
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -87,6 +109,18 @@ function Quest() {
                       <span className={cx("position-absolute", "progess")}>
                         0 / 10
                       </span>
+                      <button
+                        className={cx(
+                          "position-absolute",
+                          "receive-exp-when-complete-btn"
+                        )}
+                        onClick={() => ShowPopupHandle()}
+                      >
+                        <img
+                          src="https://d35aaqx5ub95lt.cloudfront.net/images/goals/ca23da57929a3144934ee0571a2f44e9.svg"
+                          alt=""
+                        />
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -108,6 +142,18 @@ function Quest() {
                       <span className={cx("position-absolute", "progess")}>
                         0 / 10
                       </span>
+                      <button
+                        className={cx(
+                          "position-absolute",
+                          "receive-exp-when-complete-btn"
+                        )}
+                        onClick={() => ShowPopupHandle()}
+                      >
+                        <img
+                          src="https://d35aaqx5ub95lt.cloudfront.net/images/goals/ca23da57929a3144934ee0571a2f44e9.svg"
+                          alt=""
+                        />
+                      </button>
                     </div>
                   </div>
                 </div>

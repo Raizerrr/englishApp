@@ -6,7 +6,11 @@ import { faCheck, faClose } from "@fortawesome/free-solid-svg-icons";
 const cx = classNames.bind(Style);
 
 function WelcomeModal() {
-  return <div className={cx("welcome-modal-wrapper")}></div>;
+  return (
+    <>
+      <div className={cx("welcome-modal-wrapper")}></div>;
+    </>
+  );
 }
 
 export default WelcomeModal;

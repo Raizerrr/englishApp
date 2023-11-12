@@ -1,0 +1,70 @@
+.exp-earning-popup-wrapper{
+    position: fixed;
+    z-index: 2;
+    min-height: 100%;
+    min-width: 100%;
+    .overlay{
+        background-color: rgba(0, 0, 0, 0.65);
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+    .exp-earning-popup-container{
+        position: relative;
+        border-radius: 1.5rem;
+        background-color: #fff;
+        min-height: 25vh;
+        min-width: 30%;
+        z-index: 3;
+        box-shadow: 0 2px 0 0;
+        transform: translate(-50% , 0);
+        .close-btn{
+            position: absolute;
+            z-index: 6;
+            top: -12px;
+            right: -12px;
+            color: #ccc;
+            border: none;
+            background-color: transparent;
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #fff;
+            padding: 0 8px;
+            &:hover {
+                background-color: #cccccce3;
+                color: #aaa;
+            }
+        }
+        .exp-earning-popup-title{
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 3rem;
+            text-transform: initial;
+        }
+        .exp-earning-popup-btn{
+            text-align: center;
+            text-decoration: none;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            color: rgb(28,176,246);
+            box-shadow: 0 2px 0 #ccc;
+            text-transform: uppercase;
+            &:hover {
+                background-color: #cccccc3a;
+            }
+            &:active{
+                transform: translate(0, 2%);
+                box-shadow: none;
+            }
+        }
+    }
+}
+@media screen and (max-width : 768px){
+    .exp-earning-popup-container{
+        transform: translate(-12% , 0) !important;
+    }
+}
