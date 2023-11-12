@@ -22,7 +22,6 @@ function Lesson() {
   const {type, questionType} = useParams();
   const {testDetail,
           questionNumber,
-          questionsTotal,
           score,
           exp,
           answerQuestion,
@@ -50,7 +49,7 @@ function Lesson() {
   }, []);
 
   useEffect(() => {
-    const questionDetail = getQuestion(lessonNumber);
+    const questionDetail = getQuestion(lessonNumber, player?.id);
     setQuestion(questionDetail);
   }, [testDetail, questionNumber]);
 

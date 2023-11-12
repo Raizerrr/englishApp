@@ -5,40 +5,44 @@ import { Fragment } from "react";
 import { UserProvider } from "./context/UserContext";
 import { TestProvider } from "./context/TestContext";
 import { CourseProvider } from "./context/CourseContext";
+import { TaskProvider } from "./context/TaskContext";
 
 function App() {
   
   return (
     <div className="App">
       <Router>
-              <CourseProvider>
-                <UserProvider>
-                    <TestProvider>
+        <TaskProvider>
+            <CourseProvider>
+              <UserProvider>
+                  <TestProvider>
 
-                        <Routes>
-                          {publicRoutes.map((route, index) => {
-                            const Page = route.component;
-                            let Layout = DefaultLayout;
-                            if (route.layout) {
-                              Layout = route.layout;
-                            } else if (route.layout === null) {
-                              Layout = Fragment;
-                            }
-                            return (
-                              <Route
-                                key={index}
-                                path={route.path}
-                                element=<Layout>
-                                  <Page />
-                                </Layout>
-                              />
-                            );
-                          })}
-                        </Routes>
-                    </TestProvider>
-                </UserProvider>
+                      <Routes>
+                        {publicRoutes.map((route, index) => {
+                          const Page = route.component;
+                          let Layout = DefaultLayout;
+                          if (route.layout) {
+                            Layout = route.layout;
+                          } else if (route.layout === null) {
+                            Layout = Fragment;
+                          }
+                          return (
+                            <Route
+                              key={index}
+                              path={route.path}
+                              element=<Layout>
+                                <Page />
+                              </Layout>
+                            />
+                          );
+                        })}
+                      </Routes>
+                  </TestProvider>
+              </UserProvider>
 
-              </CourseProvider>
+            </CourseProvider>
+
+        </TaskProvider>
 
       </Router>
     </div>

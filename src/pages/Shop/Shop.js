@@ -1,12 +1,34 @@
 import classNames from "classnames/bind";
 import Style from "./Shop.module.scss";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import BuyingPopup from "../../component/Popup/BuyingPopup";
+import CantBuyingPopup from "../../component/Popup/CantBuyingPopup";
+import { useUserContext } from "../../context/UserContext";
 
 const cx = classNames.bind(Style);
 
 function Shop() {
+  const [showBuyingPopup, setShowBuyingPopup] = useState(false);
+  const [buyItem, setBuyItem] = useState();
+  const {player} = useUserContext();
+
+  const ClickToShowPopupHandle = (price) => {
+    setBuyItem(price);
+    setShowBuyingPopup(!showBuyingPopup);
+  };
+
   return (
     <div>
+      <div className={cx("d-none", { ["show"]: showBuyingPopup })}>
+        {buyItem < player?.score ? (
+          <BuyingPopup ClickToClosePopup={ClickToShowPopupHandle} price={buyItem}/>
+
+        ): (
+          
+          <CantBuyingPopup ClickToClosePopup={ClickToShowPopupHandle} />
+        )}
+      </div>
       <div className={cx("container", "d-flex", "justify-content-center")}>
         <div className={cx("shop-container")}>
           <div className={cx("card", "card-container", "my-4")}>
@@ -26,7 +48,6 @@ function Shop() {
                   </p>
                 </div>
               </div>
-
               <Link
                 to={"/premium"}
                 className={cx(
@@ -71,6 +92,7 @@ function Shop() {
                         "w-100",
                         "rounded-4"
                       )}
+                      onClick={() => ClickToShowPopupHandle(100)}
                     >
                       <img
                         src="https://d35aaqx5ub95lt.cloudfront.net/images/gems/45c14e05be9c1af1d7d0b54c6eed7eee.svg"
@@ -148,6 +170,7 @@ function Shop() {
                         "rounded-4",
                         "streak-frezze-color"
                       )}
+                      onClick={() => ClickToShowPopupHandle(100)}
                     >
                       <img
                         src="https://d35aaqx5ub95lt.cloudfront.net/images/gems/45c14e05be9c1af1d7d0b54c6eed7eee.svg"

@@ -14,11 +14,16 @@ const cx = classNames.bind(Style);
 
 function Follower(props) {
   const [showFriendFilter, setShowFriendFilter] = useState(false);
-  const {friends} = useUserContext();
+  const {friends, getUsersByCondition, user} = useUserContext();
 
   const showFriendFilterHandle = () => {
     setShowFriendFilter(!showFriendFilter);
   };
+
+  const handleClickAddNewFriend = () => {
+    getUsersByCondition(user?.id);
+    props.clickToOpenHandle();
+  }
 
   return (
     <>
@@ -42,9 +47,8 @@ function Follower(props) {
                           "p-1",
                           "friend-header-btn"
                         )}
-                        onClick={() => {
-                          props.clickToOpenHandle();
-                        }}
+                        onClick={handleClickAddNewFriend}
+
                       >
                         <FontAwesomeIcon icon={faUserPlus} />
                       </button>
