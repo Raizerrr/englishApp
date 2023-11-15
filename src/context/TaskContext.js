@@ -1,9 +1,13 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { getTasksByLevelAndType } from "../axios/userAxios";
 
 const TaskContext = createContext();
 export const TaskProvider = ({children}) => {
     const [dailyTask, setDailyTask] = useState([]);
+
+    useEffect(() => {
+        getDailyTask();
+    }, [])
 
 
     const getDailyTask = async() => {

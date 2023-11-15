@@ -40,6 +40,7 @@ function LoginLayout() {
               <a>{transTabs}</a>
             </div>
           </div>
+          
         </div>
         {/* button close va chuyen tab */}
         <div className={cx("container", "form-container")}>
@@ -53,6 +54,7 @@ function LoginLayout() {
 
           {/* phuong thuc dang nhap bang social */}
         </div>
+        
       </div>
     </div>
   );

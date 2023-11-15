@@ -134,7 +134,7 @@ function LeaderBoard() {
                           </div>
                           <div className={cx("col-2")}>
                             <div className={cx("user-exp-leaderboard-container")}>
-                              {rank?.expPoint}
+                              {rank?.score} 
                             </div>
                           </div>
                         </div>
@@ -198,7 +198,7 @@ function LeaderBoard() {
                   </div>
                   <div className={cx("col-2")}>
                     <div className={cx("user-exp-leaderboard-container")}>
-                      {player?.expPoint} Kn
+                      {player?.score} Scores
                     </div>
                   </div>
                 </div>

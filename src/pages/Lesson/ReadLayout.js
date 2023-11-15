@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 const cx = classNames.bind(Style);
 const initialActive = [false, false, false, false];
 
-function ReadLayout({question, answerActive, setAnswerActive}) {
+function ReadLayout({question, answerActive, setAnswerActive, setChosenAnswer}) {
   
   const [answerResult, setAnswerResult] = useState([]);
   
@@ -38,6 +38,7 @@ function ReadLayout({question, answerActive, setAnswerActive}) {
     let answer = [false, false, false, false];
     answer[index] = true;
     setAnswerActive(answer);
+    setChosenAnswer(answerResult[index]);
   }
 
   

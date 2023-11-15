@@ -19,6 +19,7 @@ function Learn() {
       setLevel(account?.level);
     }
     else {
+      console.log(level);
       setLevel(player?.currentLevel);
     }
   }, [])
@@ -36,7 +37,7 @@ function Learn() {
           </div>
 
         ): (
-          <h1>This level don't have any block</h1>
+          <h1 style={{textAlign: "center"}}>This level don't have any block</h1>
         )}
         {/* each course section */}
 

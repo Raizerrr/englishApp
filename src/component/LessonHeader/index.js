@@ -7,11 +7,12 @@ import { useTestContext } from "../../context/TestContext";
 
 const cx = classNames.bind(Style);
 
-function LessonHeader() {
+function LessonHeader(props) {
   const {
     questionsTotal,
-    answerQuestion,
-    hearts
+    questionNumber,
+    hearts,
+    skippedQuestionsTotal
   } 
 = useTestContext();
   return (
@@ -25,9 +26,9 @@ function LessonHeader() {
           "align-items-center"
         )}
       >
-        <a href="/" className={cx("btn", "close-btn")}>
-          <FontAwesomeIcon icon={faClose} />
-        </a>
+        <span onClick={props.handleClose} className={cx("btn", "close-btn")}>
+          <FontAwesomeIcon icon={faClose}/>
+        </span>
       </div>
     </div>
     <div className="col-10">
@@ -39,8 +40,8 @@ function LessonHeader() {
           "align-items-center"
         )}
       >
-        <div style={{width: `${100/questionsTotal*answerQuestion.length}%`}} className={cx("progess-bar")}></div>
-        <div style={{width: `${100-100/questionsTotal*answerQuestion.length}%`}} className={cx("progress-bar-remain")}></div>
+        <div style={{width: `${100/questionsTotal*(questionNumber-skippedQuestionsTotal)}%`}} className={cx("progess-bar")}></div>
+        <div style={{width: `${100-100/questionsTotal*(questionNumber-skippedQuestionsTotal)}%`}} className={cx("progress-bar-remain")}></div>
       </div>
     </div>
     <div className="col-1">

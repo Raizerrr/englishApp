@@ -2,30 +2,93 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { createNewStreak, getTest } from "../axios/userAxios";
 import { useNavigate } from "react-router";
 import { useUserContext } from "./UserContext";
-
 const TestContext = createContext();
 export const TestProvider = ({children}) => {
-    const [questions, setQuestions] = useState([]);
-    const [testDetail, setTestDetail] = useState();
-    const [questionNumber, setQuestionNumber] = useState(0);
+    const [questions, setQuestions] = useState(() => {
+        const questionsStorage = JSON.parse(localStorage.getItem("questions"));
+        return questionsStorage===null?[]:questionsStorage;
+    });
+    const [testDetail, setTestDetail] = useState(() => {
+        const testDetailStorage = JSON.parse(localStorage.getItem("testDetail"));
+        return testDetailStorage;
+    });
+    const [questionNumber, setQuestionNumber] = useState(() => {
+        const questionNumberStorage = JSON.parse(localStorage.getItem("questionNumber"));
+        return questionNumberStorage===null?0:questionNumberStorage;
+    });
+    const [answerQuestion, setAnswerQuestion] = useState(() => {
+        const answerQuestionStorage = JSON.parse(localStorage.getItem("answerQuestion"));
+        return answerQuestionStorage===null?[]:answerQuestionStorage;
+    });
+
+    const [skippedQuestions, setSkippedQuestions] = useState(() => {
+        const skippedQuestionsStorage = JSON.parse(localStorage.getItem("skippedQuestions"));
+        return skippedQuestionsStorage===null?[]:skippedQuestionsStorage;
+    });
+
+    const [score, setScore] = useState(() => {
+        const scoreStorage = JSON.parse(localStorage.getItem("score"));
+        return scoreStorage===null?0:scoreStorage;
+    });
+    const [exp, setExp] = useState(() => {
+        const expStorage = JSON.parse(localStorage.getItem("exp"));
+        return expStorage===null?0:expStorage;
+    });
+
+    const [skippedQuestionNumber, setSkippedQuestionNumber] = useState(() => {
+        const skippedQuestionNumberStorage = JSON.parse(localStorage.getItem("skippedQuestionNumber"));
+        return skippedQuestionNumberStorage===null?0:skippedQuestionNumberStorage;
+    });
+    const [directPopup, setDirectPopup] = useState(""); 
+    
     const navigate = useNavigate();
-    const [score, setScore] = useState(0);
-    const [exp, setExp] = useState(0);
-    const [answerQuestion, setAnswerQuestion] = useState([]);
-    const {updateCurrentLevel} = useUserContext();
+    const {updateCurrentLevel, player, updatePlayer} = useUserContext();
+
 
     useEffect(() => {
-        if(!(localStorage.getItem("token") || localStorage.getItem("account"))){
-            navigate("/lesson/entry/read/normal");
-        };
-    }, [])
+        setSkippedQuestionNumber(0);
+        saveTestDetailInLocalStorage();
+    },[skippedQuestionNumber])
 
     
 
     const getTestByType = async(testType) => {
-        const {data} = await getTest(testType);
-        setQuestions(data?.data?.questions);
-        setTestDetail(data?.data?.testDetails);
+        let questionsStorage = JSON.parse(localStorage.getItem("questions"));
+        let testDetailStorage = JSON.parse(localStorage.getItem("testDetail"));
+        let questionNumberStorage = JSON.parse(localStorage.getItem("questionNumber"));
+        let answerQuestionStorage = JSON.parse(localStorage.getItem("answerQuestion"));
+        let skippedQuestionsStorage = JSON.parse(localStorage.getItem("skippedQuestions"));
+        let skippedQuestionNumberStorage = JSON.parse(localStorage.getItem("skippedQuestionNumber"));
+        const checked = questionNumberStorage === null && 
+                        testDetailStorage === null && 
+                        questionsStorage === null &&
+                        answerQuestionStorage === null;
+        if(checked) {
+            
+            const {data} = await getTest(testType);
+            questionsStorage = data?.data?.questions
+            testDetailStorage = data?.data?.testDetails;
+            questionNumberStorage = 0;
+            answerQuestionStorage = [];
+            skippedQuestionsStorage = [];
+            skippedQuestionNumberStorage = 0;
+        }
+
+
+        setQuestions(questionsStorage);
+        setTestDetail(testDetailStorage);
+        setQuestionNumber(questionNumberStorage);
+        setAnswerQuestion(answerQuestionStorage);
+        setSkippedQuestions(skippedQuestionsStorage);
+        setSkippedQuestionNumber(skippedQuestionNumberStorage);
+
+                
+        localStorage.setItem("questions", JSON.stringify(questionsStorage));
+        localStorage.setItem("testDetail", JSON.stringify(testDetailStorage));
+        localStorage.setItem("answerQuestion", JSON.stringify(answerQuestionStorage));
+        localStorage.setItem("skippedQuestions", JSON.stringify(skippedQuestionsStorage));
+        localStorage.setItem("questionNumber", questionNumberStorage);
+        localStorage.setItem("skippedQuestionNumber", skippedQuestionNumberStorage);
     }
 
     const determineLevel = () => {
@@ -36,32 +99,84 @@ export const TestProvider = ({children}) => {
         return Math.floor(percent/20);
     }
 
-    const getQuestion = (testype, playerId) => {
+    const getQuestion = async(testype, playerId, funcShow) => {
         if(questionNumber > questions?.length || (questions[questionNumber] === undefined && questionNumber !== 0)) {
-            navigate(`/lesson/complete/normal/${testype}`);
+            
+            if(skippedQuestions?.length === 0) {
 
-            const scoreTotal = questions?.reduce((accumulator, currentValue) => {
-                return accumulator + currentValue.score;
-              }, 0);
-
-            if(score/scoreTotal>75){
-                updateCurrentLevel(testype);    
+                navigate(`/lesson/complete/normal/${testype}`);
+    
+                const scoreTotal = questions?.reduce((accumulator, currentValue) => {
+                    return accumulator + currentValue.score;
+                  }, 0);
+    
+                if(score/scoreTotal>75){
+                    updateCurrentLevel(testype);    
+                }
+                if(JSON.parse(localStorage.getItem("account"))?.level && !player?.userId){
+                    const account = {
+                        currentCourse: null,
+                        currentBlock: null,
+                        currentLesson: null,
+                        level: determineLevel()+1
+                    }
+                    localStorage.setItem("account", JSON.stringify(account));
+                }
+                player.expPoint += 10;
+                await updatePlayer(player);
+                createNewStreakItem(playerId);
             }
 
-            const account = {
-                currentCourse: null,
-                currentBlock: null,
-                currentLesson: null,
-                level: determineLevel()+1
+            else if(skippedQuestionNumber===0) {
+                setDirectPopup("skipped");
+                funcShow();
+                return skippedQuestions[skippedQuestionNumber];
             }
-            localStorage.setItem("account", JSON.stringify(account));
-            createNewStreakItem(playerId);
+            else{
+                return skippedQuestions[skippedQuestionNumber];
+            }
         }
         return questions[questionNumber];
     };
 
     const createNewStreakItem = async(playerId) => {
         await createNewStreak({playerId});
+    }
+
+    const saveTestDetailInLocalStorage = (refresh) => {
+        let questionCount = questionNumber+1;
+        if(refresh) {
+            questionCount -= 1;
+        }
+
+
+        localStorage.setItem("questions", JSON.stringify(questions));
+        localStorage.setItem("testDetail", JSON.stringify(testDetail));
+        localStorage.setItem("answerQuestion", JSON.stringify(answerQuestion));
+        localStorage.setItem("skippedQuestions", JSON.stringify(skippedQuestions));
+        localStorage.setItem("skippedQuestionNumber", skippedQuestionNumber);
+        localStorage.setItem("questionNumber", questionCount);
+        localStorage.setItem("score", score);
+        localStorage.setItem("exp", exp);
+    };
+
+    const resetAllCachingTestDetails = () => {
+        localStorage.removeItem("questions");
+        localStorage.removeItem("testDetail");
+        localStorage.removeItem("questionNumber");
+        localStorage.removeItem("answerQuestion");
+        localStorage.removeItem("score");
+        localStorage.removeItem("exp");
+        localStorage.removeItem("skippedQuestions");
+        localStorage.removeItem("skippedQuestionNumber")
+        setQuestions([]);
+        setSkippedQuestions([]);
+        setAnswerQuestion([]);
+        setQuestionNumber(0);
+        setScore(0);
+        setExp(0);
+        setTestDetail({});
+        setSkippedQuestionNumber(0);
     }
     
 
@@ -74,15 +189,24 @@ export const TestProvider = ({children}) => {
             exp,
             answerQuestion,
             questionsTotal: questions?.length,
+            skippedQuestionsTotal: skippedQuestions?.length,
             scoreTotalOfTest: questions?.reduce((accumulator, currentValue) => {
                 return accumulator + currentValue.score;
               }, 0),
+            skippedQuestions,
+            directPopup,
+            skippedQuestionNumber,
+            setSkippedQuestionNumber,
+            setDirectPopup,
             setScore,
             setExp,
             setAnswerQuestion,
             getQuestion,
             setQuestionNumber,
-            getTestByType
+            getTestByType,
+            saveTestDetailInLocalStorage,
+            resetAllCachingTestDetails,
+            setSkippedQuestions
         }}>
             {children}
         </TestContext.Provider>

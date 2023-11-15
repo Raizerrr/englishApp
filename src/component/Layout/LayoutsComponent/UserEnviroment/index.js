@@ -39,7 +39,7 @@ function UserEnviroment() {
                 src="https://d35aaqx5ub95lt.cloudfront.net/images/gems/45c14e05be9c1af1d7d0b54c6eed7eee.svg"
                 alt=""
               />
-              {player?.expPoint}
+              {player?.score}
             </div>
             <div
               className={cx(

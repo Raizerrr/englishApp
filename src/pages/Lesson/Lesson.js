@@ -6,7 +6,7 @@ import WriteLayout from "./WriteLayout";
 import LessonComplete from "./LessonComplete";
 import { useNavigate, useParams } from "react-router";
 import { useTestContext } from "../../context/TestContext";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import classNames from "classnames/bind";
 import Style from "./Lesson.module.scss";
 import { ReaheardButton } from "../../component/Buttons/ReheardButton";
@@ -15,6 +15,8 @@ import LessonFooter from "../../component/LessonFooter";
 import LessonCompleteFooter from "../../component/LessonCompleteFooter";
 import LessonHeader from "../../component/LessonHeader";
 import ResultModal from "../../component/ResultModal";
+import SkippedPopup from "../../component/Popup/SkiippedPopup";
+import DontClosePopup from "../../component/Popup/DontClosePopup";
 
 const cx = classNames.bind(Style);
 
@@ -30,28 +32,50 @@ function Lesson() {
           setAnswerQuestion,
           getQuestion,
           setQuestionNumber,
-          getTestByType
+          getTestByType,
+          saveTestDetailInLocalStorage,
+          resetAllCachingTestDetails,
+          directPopup,
+          setDirectPopup,
+          skippedQuestions,
+          setSkippedQuestions,
+          questionsTotal,
+          setSkippedQuestionNumber,
+          skippedQuestionNumber
         } 
     = useTestContext();
   const {hearts, setHearts, updatePlayer, player} = useUserContext();
   const [question, setQuestion] = useState();
+  const [triggerPopup, setTriggerPopup] = useState(false);
   const navigate = useNavigate();
   // This state use for storing choose answer
   const [answerActive, setAnswerActive] = useState([]);
+  const [chosenAnswer, setChosenAnswer] = useState([]);
   const {lessonNumber} = useParams();
+  const hasMounted = useRef(true);
 
   useEffect(() => {
-    const fetchData = async() => {
-      await getTestByType(type);
-      
+    
+    if(hasMounted.current) {
+      hasMounted.current = false;
+      const fetchData = async() => {
+        
+        await getTestByType(type);
+      }
+      fetchData();
     }
-    fetchData();
   }, []);
 
   useEffect(() => {
-    const questionDetail = getQuestion(lessonNumber, player?.id);
-    setQuestion(questionDetail);
-  }, [testDetail, questionNumber]);
+    const fetchData = async() => {
+      const questionDetail = await getQuestion(lessonNumber, player?.id, handleShowPopup);
+      setQuestion(questionDetail);
+      
+
+    }
+    fetchData();
+  }, [testDetail, questionNumber, skippedQuestionNumber]);
+
 
 
   const checkQuestion = () => {
@@ -60,34 +84,51 @@ function Lesson() {
       setScore(score+question?.score);
       setExp(exp+2);
     }
+    else {
+      setHearts(hearts-1);
+      if(player?.id) {
+        player.heart = hearts;
+        updatePlayer(player);
+  
+      }
+      else {
+        // const account = JSON.parse(localStorage.getItem("acount"));
+        // account.hearts = hearts;
+        // localStorage.setItem('account', JSON.stringify(account));
+      }
+    }
+    saveTestDetailInLocalStorage();
+
   }
 
   const skipQuestion = () => {
-    if(hearts>0) {
-      addNewAnswerQuestionItem();
-      setHearts(hearts-1);
-      player.heart = hearts-1;
-      updatePlayer(player);
-    }
-    else {
-      alert("Bạn đã hết mạng");
-    }
+    addNewAnswerQuestionItem();
+    skippedQuestions.push(question);
+    setSkippedQuestions(skippedQuestions);
+    
+    saveTestDetailInLocalStorage();
   }
 
   const addNewAnswerQuestionItem = () => {
-    setQuestionNumber(questionNumber+1);
-
-    setQuestionNumber(questionNumber+1);
+    if(questionNumber===questionsTotal){
+      console.log(skippedQuestionNumber);
+      setSkippedQuestionNumber(skippedQuestionNumber+1);
+    }
+    else {
+      setQuestionNumber(questionNumber+1);
+    }
     const answerQuestionItem = {
       question,
       answer: [question?.correctAnswer, question?.wrongAnswer1, question?.wrongAnswer2, question?.wrongAnswer3],
-      choosenAnswer: null
+      chosenAnswer
     }
-    setAnswerQuestion([...answerQuestion, answerQuestionItem]);
+    answerQuestion.push(answerQuestionItem)
+    setAnswerQuestion(answerQuestion);
   }
 
 
   const returnHome = () => {
+    resetAllCachingTestDetails();
     navigate("/");
   }
 
@@ -97,7 +138,7 @@ function Lesson() {
       return <LessonComplete/>
     } 
     else if(questionType === "read"){
-      return <ReadLayout question={question} answerActive={answerActive} setAnswerActive={setAnswerActive}/>
+      return <ReadLayout question={question} setChosenAnswer={setChosenAnswer} answerActive={answerActive} setAnswerActive={setAnswerActive}/>
     }
     else if(questionType === "write") {
       return <WriteLayout question={question}/>
@@ -117,9 +158,28 @@ function Lesson() {
     setShowModal(!showModal);
   };
 
+  const handleShowPopup = () => {
+    setTriggerPopup(!triggerPopup);
+  };
+
+  const handleClose = () => {
+  handleShowPopup();
+    setDirectPopup("close");
+  }
+
+
   return (
     <>
       <div className="container-fluid p-0">
+        <div className={cx("d-none", { ["show"]: triggerPopup })}>
+          {directPopup==="close" ? (
+            <DontClosePopup ClickToClosePopup={handleShowPopup} returnHome={returnHome}/>
+
+          ): (
+            
+            <SkippedPopup ClickToClosePopup={handleShowPopup}  returnHome={returnHome}/>
+          )}
+        </div>
         <div className={cx("result-modal-container", { ["show"]: showModal })}>
           <ResultModal ClickToOpenModal={OpenModalHandle}/>
         </div>
@@ -127,7 +187,7 @@ function Lesson() {
           {/* header */}
           <div className={cx("lesson-container")}>
 
-            <LessonHeader />
+            <LessonHeader returnHome={returnHome} handleClose={handleClose}/>
           </div>
           {/* header */}
 

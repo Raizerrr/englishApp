@@ -1,34 +1,14 @@
 import classNames from "classnames/bind";
 import Style from "./Lesson.module.scss";
 import { useTestContext } from "../../context/TestContext";
-import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router";
 const cx = classNames.bind(Style);
 
 function LessonComplete() {
-  const {testDetail,
-    questionNumber,
-    questionsTotal,
+  const {
     scoreTotalOfTest,
     score,
-    exp,
-    answerQuestion,
-    hearts,
-    setHearts,
-    setScore,
-    setExp,
-    setAnswerQuestion,
-    getQuestion,
-    setQuestionNumber,
-    getTestByType
-  } 
-= useTestContext();
-
-  const {questionType} = useParams();
-
-  useEffect(() => {
-
-  }, [])
+    exp
+  } = useTestContext();
 
 
   return (

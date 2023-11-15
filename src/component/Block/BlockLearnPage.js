@@ -4,13 +4,12 @@ import { useCourseContext } from "../../context/CourseContext";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
-import { useTestContext } from "../../context/TestContext";
 
 const cx = classNames.bind(Style);
 export const BlockLearnPage = ({block, index, level}) => {
     const [lessons, setLessons] = useState([]);
     const {getLessonsByBlockId} = useCourseContext();
-    const {checkProgressOfPlayer} = useUserContext();
+    const {checkProgressOfPlayer, player} = useUserContext();
     
     const navigate = useNavigate();
 
@@ -21,7 +20,9 @@ export const BlockLearnPage = ({block, index, level}) => {
 
     const handleClickLesson = (e, lessonNumber) => {
         e.preventDefault();
-        navigate(`/lesson/lesson${level}/read/${lessonNumber}`);
+        const account = localStorage.getItem("account");
+        
+        navigate(`/lesson/lesson${account===null?1:player?.currentLevel}/read/${lessonNumber}`);
     }
 
 
@@ -72,21 +73,6 @@ export const BlockLearnPage = ({block, index, level}) => {
                     </button>
                     </div>
                 ))}
-                {/* <div className="col-4 col-sm-3 col-lg-2 d-flex justify-content-center aligns-items-center p-1">
-                  <button
-                    className={cx(
-                      "button-to-get-in-lesson",
-                      "lesson-disable",
-                      "position-relative",
-                      "my-3"
-                    )}
-                  >
-                    <img
-                      src="https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/261caf5e7127c22944a432ef5c191cfa.svg"
-                      alt=""
-                    />
-                  </button>
-                </div> */}
                
               </div>
             </div>

@@ -39,8 +39,10 @@ function Register() {
       setErrorNotification("Some fields are empty!!")
       return;
     }
+    formValue.social = "none";  
     const {data} = await register(formValue);
-    if(data.data.token){
+    console.log(data);
+    if(data?.data?.token){
       localStorage.setItem("token", JSON.stringify(data?.data?.token));
       await registerUser();
       navigate("/");

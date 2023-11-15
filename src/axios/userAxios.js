@@ -32,8 +32,8 @@ export const addFriend = (formValue) => API.post('/friend/insertfriend', formVal
 export const getLeaderBoard = () => API.get("/player/getRanks");
 export const createNewStreak = (formValue) => API.post("/streak/insertstreak", formValue);
 export const checkRunningStreak = (formValue, language) => API.put(`/streak/checkStreak/${language}`, formValue);   
-
-
+export const sendEmailForResetPasswordApi = (formValue) => API.post("/user/sendemailforresetpassword", formValue);
+export const checkTokenResetPasswordApi = token => API.get(`/user/checkTokenForResetPassword/${token}`);
 
 
 

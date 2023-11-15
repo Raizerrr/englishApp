@@ -23,9 +23,9 @@ function LessonFooter(props) {
             {type==="complete" ? (
               <>
                 <ReaheardButton/>
-                <a href="/" className={cx("check-btn", "btn", "disabled")} onClick={props.returnHome}>
+                <span className={cx("check-btn", "btn", "disabled")} onClick={props.returnHome}>
                   Trở về
-                </a>
+                </span>
               </>
             ): (
               <>

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { createContext } from "react";
-import { addFriend, getFriend, getLeaderBoard, getPlayer, getStreaks, getUser, getUserExceptUserId, login, updatePlayerApi, updateUserApi } from "../axios/userAxios";
+import { addFriend, checkTokenResetPasswordApi, getFriend, getLeaderBoard, getPlayer, getStreaks, getUser, getUserExceptUserId, login, sendEmailForResetPasswordApi, updatePlayerApi, updateUserApi } from "../axios/userAxios";
 import { useCourseContext } from "./CourseContext";
 
 const UserContext = createContext();
@@ -28,10 +28,30 @@ export const UserProvider = ({children}) => {
     useEffect(() => {
         if(player !== null){
             getLessonsAndBlocksAndLessons(player.currentLevel);
+            localStorage.removeItem("account");
         }
         else {
             const account = JSON.parse(localStorage.getItem("account"));
-            getLessonsAndBlocksAndLessons(account?.level);
+            if(account?.level) {
+                getLessonsAndBlocksAndLessons(account?.level);
+                
+            }
+            else {
+                const newAccount = {
+                    level: 1,
+                    currentLesson: null,
+                    currentBlock: null,
+                    currentCourse: null,
+                    hearts: 5,
+                    score: 0,
+                    streak: 0
+                }
+                localStorage.setItem("acount", JSON.stringify(newAccount));
+                setHearts(newAccount.hearts);
+                setPlayer(newAccount);
+                setStreak(newAccount.streak);
+                getLessonsAndBlocksAndLessons(1);
+            }
         }
     }, [player])
 
@@ -42,13 +62,14 @@ export const UserProvider = ({children}) => {
             const streakData = await getStreaks("English");
             const ranksData = await getLeaderBoard();
             
-            getUsersByCondition(data.data.id);
-            getFriends(data.data.id);
             setRanks(ranksData.data.data);
             setUser(data.data);
             setCurrentUserDetail(data.data);
             setStreak(streakData.data.data);
-            updatePlayer(playerData.data.data);
+            setPlayer(playerData.data.data);
+            await getUsersByCondition(data.data.id);
+            await getFriends(data.data.id);
+            await updatePlayer(playerData.data.data);
         } catch (error) {
             localStorage.removeItem('token');
             setUser(null);
@@ -62,7 +83,6 @@ export const UserProvider = ({children}) => {
 
     const getFriends = async(id) => {
         const friendData = await getFriend(id);
-        console.log(friendData.data.data);
         setFriends(friendData.data.data);
     }
 
@@ -70,7 +90,7 @@ export const UserProvider = ({children}) => {
     const registerAdmin = async() => {
         const admin  = {
             "username": "kenny",
-            "password": "123"
+            "password": "123456"
         }
 
         const {data} = await login(admin);
@@ -79,7 +99,13 @@ export const UserProvider = ({children}) => {
 
     const logout = () => {
         setUser(null);
+        setUser(null);
+        setPlayer(null);
+        setCurrentUserDetail(null);
         localStorage.removeItem("token");
+        const account = JSON.parse(localStorage.getItem("account"));
+        setPlayer(account);
+        setUser(account);
     }
 
     const updateCurrentLevel = async(level) => {
@@ -92,7 +118,6 @@ export const UserProvider = ({children}) => {
     const updatePlayer = async(player) => {
         try {
             const {data} = await updatePlayerApi(player);
-            console.log(data);
             setPlayer(data.data);
             setHearts(data.data.heart)
         } catch (error) {
@@ -102,7 +127,7 @@ export const UserProvider = ({children}) => {
         }
     }
 
-    const updateUser = async(oldPassword) => {
+    const updateUser = async(oldPassword, reset) => {
         const userInput = {
             username: user.username,
             password: user.password,
@@ -113,8 +138,7 @@ export const UserProvider = ({children}) => {
             oldPassword
         }
         const {data} = await updateUserApi(userInput);
-        console.log(data);
-        if(data.data.token){
+        if(data.data.token && reset == null){
             localStorage.setItem('token', JSON.stringify(data.data.token));
         }
         else {
@@ -141,10 +165,10 @@ export const UserProvider = ({children}) => {
     }
 
     const checkChangeProperty = () => {
-        return currentUserDetail?.username != user?.username
-                || currentUserDetail?.avatar != user?.avatar
-                || currentUserDetail?.email != user?.email
-                || currentUserDetail?.password != user?.password;
+        return currentUserDetail?.username !== user?.username
+                || currentUserDetail?.avatar !== user?.avatar
+                || currentUserDetail?.email !== user?.email
+                || currentUserDetail?.password !== user?.password;
     }
 
     const getRankOfCurrentPlayer = () => {
@@ -156,6 +180,16 @@ export const UserProvider = ({children}) => {
         }
 
         return "-";
+    }
+
+
+    const sendEmailForResetPassword = async(email) => {
+        await sendEmailForResetPasswordApi({email});
+    }
+
+    const checkTokenWhenResetPassword = async(token) => {
+        const {data} = await checkTokenResetPasswordApi(token);
+        return data.data;
     }
 
     return (
@@ -182,7 +216,10 @@ export const UserProvider = ({children}) => {
                 getRankOfCurrentPlayer,
                 setUsers,
                 getUsersByCondition,
-                getFriends
+                getFriends,
+                sendEmailForResetPassword,
+                checkTokenWhenResetPassword,
+                setErrorMesage
             }}
         >
             {children}
