@@ -1,0 +1,12 @@
+.welcome-modal-wrapper{
+    min-width: 100%;
+    min-height: 100vh;
+    .carousel-container{
+        min-height: 100vh;
+        min-width: 100%;
+        .welcome-modal-container{
+            background-color: #fff;
+            min-height: 100vh;
+        }
+    }
+}

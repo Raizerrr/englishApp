@@ -8,10 +8,12 @@ function SettingLayout({ children }) {
   return (
     <div>
       <Sidebar />
-      <div className="row">
-        <div className="col-12 col-md-9 col-lg-8">{children}</div>
-        <div className="d-none col-md-3 col-lg-4 d-md-block">
-          <SettingNav />
+      <div className={cx("setting-layout-container")}>
+        <div className="row">
+          <div className="col-12 col-md-9 col-lg-8">{children}</div>
+          <div className="d-none col-md-3 col-lg-4 d-xxl-block">
+            <SettingNav />
+          </div>
         </div>
       </div>
     </div>

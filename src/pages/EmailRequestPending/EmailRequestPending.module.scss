@@ -1,0 +1,62 @@
+.disabled{
+    box-shadow: none !important;
+    background-color: #cccccc3a !important;
+    color: #ccc !important;
+    border: none !important;
+    &:active{
+        transform: none !important;
+    }
+}
+
+.active{
+    background-color:rgb(88,204,2);
+    box-shadow: 0px 2px 0px 1px rgb(58, 132, 2);
+    color: #fff;
+}
+
+.change-pass-container{
+    padding: 0 20px;
+    width: 600px;
+   
+    .setting-title{
+        font-size: 27px;
+        font-weight: 700;
+    }
+    
+    .setting-item-label{
+       
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 44px;
+    }
+    .input-setting{
+        border: 1px solid #ccc !important;
+        background-color: #cccccc3a;
+        outline: none;
+        
+    }
+    .notify{
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 44px;
+    }
+    .success-notify{
+        color: rgb(88,204,2);
+    }
+    .fail-notify{
+        color: rgb(255,75,75);
+    }
+    .email-request-submit-btn{
+        border: 1px solid #ccc;
+        padding: 1.25rem 4rem;
+        font-size: 15px;
+        font-weight: 700;
+        text-transform: uppercase;
+        border-radius: 1.5rem;
+        box-shadow: 0 3px 2px 0 #ccc;
+        &:active{
+            transform: translate(0,3px);
+            box-shadow: none;
+        }
+    }
+}

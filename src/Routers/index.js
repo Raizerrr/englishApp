@@ -23,6 +23,7 @@ import Setting from "../pages/SettingPage/Setting";
 import ChangePassword from "../pages/ChangePassword";
 import Notification from "../pages/Notification";
 import SuperPackInfomation from "../pages/SuperpackInformation";
+import EmailRequestPending from "../pages/EmailRequestPending";
 
 //pubic routes
 const publicRoutes = [
@@ -36,12 +37,18 @@ const publicRoutes = [
   { path: "/profile", component: Profile, layout: ProfileLayout },
   { path: "/setting", component: Setting, layout: SettingLayout },
   { path: "/changePassword", component: ChangePassword, layout: SettingLayout },
-  { path: "signin/%/changePassword", component: ChangePassword, layout: null },
+  { path: "signin/changePassword", component: ChangePassword, layout: null },
+  {
+    path: "signin/emailRequestPending",
+    component: EmailRequestPending,
+    layout: null,
+  },
   {
     path: "/superInfomation",
     component: SuperPackInfomation,
     layout: SettingLayout,
   },
+
   { path: "/notification", component: Notification, layout: SettingLayout },
   { path: "/lesson", component: Lesson, layout: null },
   { path: "/signin", component: LoginLayout, layout: null },

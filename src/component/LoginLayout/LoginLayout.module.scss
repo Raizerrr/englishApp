@@ -2,12 +2,17 @@
     max-width: 375px;
 }
 .content-container{
-    min-height: 100vh;
+    min-height: 80vh;
 }
 .close-modal-btn {
     background-color: #fff;
 }
 .register-tab{
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 13px;
+    text-decoration: none;
+    border: 1px solid #ccc;
     cursor: pointer;
     width: 90px;
     height: 100%;
@@ -17,13 +22,13 @@
     &:hover {
         background-color: #cccccc29 ;
     }
+    &:active{
+    box-shadow:none;  
+    transform: translate(0, 2px);
+        
+    }
 }
-.register-tab a{
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 13px;
-    font-weight: 700;  
-}
+
 
 
 
@@ -102,6 +107,11 @@
     &:hover {
         background-color: #cccccc29 ;
     }
+    &:active{
+        box-shadow:none;  
+        transform: translate(0, 2px);
+            
+        }
 }
 
 .google-color{

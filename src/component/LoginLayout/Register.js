@@ -5,6 +5,8 @@ import LoginLayoutScss from "./LoginLayout.module.scss";
 import { register } from "../../axios/userAxios";
 import { ErrorNotification } from "./ErrorNotification";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(LoginLayoutScss);
 
@@ -12,33 +14,32 @@ function Register() {
   const [formValue, setFormValue] = useState({
     username: "",
     password: "",
-    email: ""
-  })
+    email: "",
+  });
   const [errorNotification, setErrorNotification] = useState("");
   const navigate = useNavigate();
-  // variables 
+  // variables
   const { username, password, email } = formValue;
 
   // functions
-  // Function for change value input in field 
+  // Function for change value input in field
   const handleChangeField = (e) => {
-    setFormValue({...formValue, [e.target.name]: e.target.value});
-  }
+    setFormValue({ ...formValue, [e.target.name]: e.target.value });
+  };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if(email==="" || password==="" || username===""){
-      setErrorNotification("Some fields are empty!!")
+    if (email === "" || password === "" || username === "") {
+      setErrorNotification("Some fields are empty!!");
       return;
     }
-    const {data} = await register(formValue);
-    if(data.data.token){
+    const { data } = await register(formValue);
+    if (data.data.token) {
       navigate("/");
-    }
-    else {
+    } else {
       setErrorNotification(data.data.message);
     }
-  }
+  };
 
   return (
     <div className={cx("container", "sign-in-container")}>
@@ -46,7 +47,6 @@ function Register() {
         Tạo Hồ Sơ
       </h2>
       <form>
-        
         <div className="mb-3">
           <input
             type="text"
@@ -100,9 +100,11 @@ function Register() {
             required
           />
           <div className={cx("forgot-pw")}>
-            <a href="">icon</a>
+            <a href="/">
+              <FontAwesomeIcon icon={faEye} />
+            </a>
           </div>
-          <ErrorNotification errorNotification={errorNotification}/>
+          <ErrorNotification errorNotification={errorNotification} />
         </div>
 
         <button
@@ -111,8 +113,8 @@ function Register() {
         >
           Tạo Tài Khoản
         </button>
-        
-        <SocialLogin/>
+
+        <SocialLogin />
       </form>
     </div>
   );

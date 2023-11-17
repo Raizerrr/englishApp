@@ -17,27 +17,35 @@ function LoginLayout() {
     }
   };
 
-  
-
   return (
     <div>
       <div className="container-fluid">
         {/* button close va chuyen tab */}
-        <div className="">
-          <button
-            className={cx("float-start", "m-5", "close-modal-btn", "border-0")}
-          ></button>
-          <div
-            className={cx(
-              "register-tab",
-              "text-center",
-              "rounded-4",
-              "float-end",
-              "m-5"
-            )}
-          >
-            <div className="h-100" onClick={ToggleTabsHandel}>
-              <a>{transTabs}</a>
+        <div>
+          <div className="d-flex justify-content-between align-items-center">
+            <div
+              className={cx(
+                "register-tab",
+                "text-center",
+                "rounded-4",
+                "float-end",
+                "m-5"
+              )}
+            >
+              <div className="h-100">Quay Lại</div>
+            </div>
+            <div
+              className={cx(
+                "register-tab",
+                "text-center",
+                "rounded-4",
+                "float-end",
+                "m-5"
+              )}
+            >
+              <div className="h-100" onClick={ToggleTabsHandel}>
+                <a>{transTabs}</a>
+              </div>
             </div>
           </div>
         </div>

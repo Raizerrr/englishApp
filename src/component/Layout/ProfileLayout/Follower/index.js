@@ -141,7 +141,7 @@ function Follower(props) {
               <ul className={cx("friend-list")}>
                 <li className={cx("friend-display", "mb-3", "py-2", "px-3")}>
                   <div className="row">
-                    <div className="col-2">
+                    <div className="col-lg-4 col-xl-2">
                       <div className={cx("friend-avatar-container")}>
                         <div
                           className={cx("user-status", "online-status")}
@@ -158,7 +158,7 @@ function Follower(props) {
                         />
                       </div>
                     </div>
-                    <div className="col-10 px-3 py-2">
+                    <div className=" col-lg-8 col-xl-10 px-3 py-2">
                       <h3 className={cx("friend-name", "my-0")}>Phu le</h3>
                       <small className={cx("friend-status")}>Online</small>
                     </div>
@@ -166,7 +166,7 @@ function Follower(props) {
                 </li>
                 <li className={cx("friend-display", "mb-3", "py-2", "px-3")}>
                   <div className="row">
-                    <div className="col-2">
+                    <div className="col-lg-4 col-xl-2">
                       <div className={cx("friend-avatar-container")}>
                         <div
                           className={cx("user-status", "offline-status")}
@@ -183,7 +183,7 @@ function Follower(props) {
                         />
                       </div>
                     </div>
-                    <div className="col-10 px-3 py-2">
+                    <div className="col-lg-8 col-xl-10 px-3 py-2">
                       <h3 className={cx("friend-name", "my-0")}>Phu le</h3>
                       <small className={cx("friend-status")}>Offline</small>
                     </div>
@@ -191,7 +191,7 @@ function Follower(props) {
                 </li>
                 <li className={cx("friend-display", "mb-3", "py-2", "px-3")}>
                   <div className="row">
-                    <div className="col-2">
+                    <div className="col-lg-4 col-xl-2">
                       <div className={cx("friend-avatar-container")}>
                         <div
                           className={cx("user-status", "hang-on-status")}
@@ -208,182 +208,7 @@ function Follower(props) {
                         />
                       </div>
                     </div>
-                    <div className="col-10 px-3 py-2">
-                      <h3 className={cx("friend-name", "my-0")}>Phu le</h3>
-                      <small className={cx("friend-status")}>Hang on</small>
-                    </div>
-                  </div>
-                </li>
-                <li className={cx("friend-display", "mb-3", "py-2", "px-3")}>
-                  <div className="row">
-                    <div className="col-2">
-                      <div className={cx("friend-avatar-container")}>
-                        <div
-                          className={cx("user-status", "hang-on-status")}
-                        ></div>
-                        <img
-                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"
-                          className={cx(
-                            "friend-avatar",
-                            "img-fluid",
-                            "mb-3",
-                            "rounded-circle"
-                          )}
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div className="col-10 px-3 py-2">
-                      <h3 className={cx("friend-name", "my-0")}>Phu le</h3>
-                      <small className={cx("friend-status")}>Hang on</small>
-                    </div>
-                  </div>
-                </li>
-                <li className={cx("friend-display", "mb-3", "py-2", "px-3")}>
-                  <div className="row">
-                    <div className="col-2">
-                      <div className={cx("friend-avatar-container")}>
-                        <div
-                          className={cx("user-status", "hang-on-status")}
-                        ></div>
-                        <img
-                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"
-                          className={cx(
-                            "friend-avatar",
-                            "img-fluid",
-                            "mb-3",
-                            "rounded-circle"
-                          )}
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div className="col-10 px-3 py-2">
-                      <h3 className={cx("friend-name", "my-0")}>Phu le</h3>
-                      <small className={cx("friend-status")}>Hang on</small>
-                    </div>
-                  </div>
-                </li>
-                <li className={cx("friend-display", "mb-3", "py-2", "px-3")}>
-                  <div className="row">
-                    <div className="col-2">
-                      <div className={cx("friend-avatar-container")}>
-                        <div
-                          className={cx("user-status", "hang-on-status")}
-                        ></div>
-                        <img
-                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"
-                          className={cx(
-                            "friend-avatar",
-                            "img-fluid",
-                            "mb-3",
-                            "rounded-circle"
-                          )}
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div className="col-10 px-3 py-2">
-                      <h3 className={cx("friend-name", "my-0")}>Phu le</h3>
-                      <small className={cx("friend-status")}>Hang on</small>
-                    </div>
-                  </div>
-                </li>
-                <li className={cx("friend-display", "mb-3", "py-2", "px-3")}>
-                  <div className="row">
-                    <div className="col-2">
-                      <div className={cx("friend-avatar-container")}>
-                        <div
-                          className={cx("user-status", "hang-on-status")}
-                        ></div>
-                        <img
-                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"
-                          className={cx(
-                            "friend-avatar",
-                            "img-fluid",
-                            "mb-3",
-                            "rounded-circle"
-                          )}
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div className="col-10 px-3 py-2">
-                      <h3 className={cx("friend-name", "my-0")}>Phu le</h3>
-                      <small className={cx("friend-status")}>Hang on</small>
-                    </div>
-                  </div>
-                </li>
-                <li className={cx("friend-display", "mb-3", "py-2", "px-3")}>
-                  <div className="row">
-                    <div className="col-2">
-                      <div className={cx("friend-avatar-container")}>
-                        <div
-                          className={cx("user-status", "hang-on-status")}
-                        ></div>
-                        <img
-                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"
-                          className={cx(
-                            "friend-avatar",
-                            "img-fluid",
-                            "mb-3",
-                            "rounded-circle"
-                          )}
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div className="col-10 px-3 py-2">
-                      <h3 className={cx("friend-name", "my-0")}>Phu le</h3>
-                      <small className={cx("friend-status")}>Hang on</small>
-                    </div>
-                  </div>
-                </li>
-                <li className={cx("friend-display", "mb-3", "py-2", "px-3")}>
-                  <div className="row">
-                    <div className="col-2">
-                      <div className={cx("friend-avatar-container")}>
-                        <div
-                          className={cx("user-status", "hang-on-status")}
-                        ></div>
-                        <img
-                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"
-                          className={cx(
-                            "friend-avatar",
-                            "img-fluid",
-                            "mb-3",
-                            "rounded-circle"
-                          )}
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div className="col-10 px-3 py-2">
-                      <h3 className={cx("friend-name", "my-0")}>Phu le</h3>
-                      <small className={cx("friend-status")}>Hang on</small>
-                    </div>
-                  </div>
-                </li>
-                <li className={cx("friend-display", "mb-3", "py-2", "px-3")}>
-                  <div className="row">
-                    <div className="col-2">
-                      <div className={cx("friend-avatar-container")}>
-                        <div
-                          className={cx("user-status", "hang-on-status")}
-                        ></div>
-                        <img
-                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"
-                          className={cx(
-                            "friend-avatar",
-                            "img-fluid",
-                            "mb-3",
-                            "rounded-circle"
-                          )}
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <div className="col-10 px-3 py-2">
+                    <div className="col-lg-8 col-xl-10 px-3 py-2">
                       <h3 className={cx("friend-name", "my-0")}>Phu le</h3>
                       <small className={cx("friend-status")}>Hang on</small>
                     </div>

@@ -18,7 +18,7 @@ function Profile() {
       <div className={cx("profile-container", "my-3")}>
         <div className={cx("user-infor-section", "my-3", "pb-4")}>
           <div className="row">
-            <div className="col-9">
+            <div className="col-9 col-lg-8 col-xl-9">
               <h1 className={cx("user-name")}>Phú Lê</h1>
               <small className={cx("user-nickname")}>phule2211</small>
               <p className={cx("date-to-join", "my-3")}>
@@ -28,7 +28,7 @@ function Profile() {
                 Đang theo dõi 0 / 0 Người theo dõi
               </p>
             </div>
-            <div className="col-3">
+            <div className="col-3 col-lg-4 col-xl-3">
               <div
                 className={cx("avatar-img-container", "w-100", "h-100", "px-3")}
               >

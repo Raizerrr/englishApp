@@ -2,6 +2,14 @@
 .course-container{
     margin-left: 275px;
 }
+.welcome-modal-wrapper{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 7;
+}
 
 @media screen and (max-width : 768px){
     .course-container{
