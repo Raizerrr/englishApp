@@ -4,6 +4,8 @@ import Style from "../../pages/Lesson/Lesson.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useTestContext } from "../../context/TestContext";
+import { useMemo } from "react";
+import { useUserContext } from "../../context/UserContext";
 
 const cx = classNames.bind(Style);
 
@@ -11,10 +13,33 @@ function LessonHeader(props) {
   const {
     questionsTotal,
     questionNumber,
-    hearts,
-    skippedQuestionsTotal
+    skippedQuestionsTotal,
+    skippedQuestionNumber
   } 
 = useTestContext();
+
+  const {hearts} = useUserContext();  
+
+  const progress = useMemo(() => {
+    if(questionNumber>=questionsTotal){
+      console.log("ping go");
+      const questionNumberWithSkippedQuestions = (questionNumber-skippedQuestionsTotal+skippedQuestionNumber)/questionsTotal;
+      const percent = questionNumberWithSkippedQuestions*100;
+      return Math.floor(percent);
+      
+    }
+    else {
+      if(skippedQuestionsTotal===0){
+        return Math.floor(questionNumber/questionsTotal*100);
+      }
+      else {
+        return Math.floor((questionNumber-skippedQuestionsTotal)/questionsTotal*100);
+      }
+      return 0;
+    }
+
+  }, [questionNumber, skippedQuestionsTotal, skippedQuestionNumber])
+
   return (
     <div className="row justify-content-center align-items-center">
     <div className="col-1">
@@ -40,8 +65,8 @@ function LessonHeader(props) {
           "align-items-center"
         )}
       >
-        <div style={{width: `${100/questionsTotal*(questionNumber-skippedQuestionsTotal)}%`}} className={cx("progess-bar")}></div>
-        <div style={{width: `${100-100/questionsTotal*(questionNumber-skippedQuestionsTotal)}%`}} className={cx("progress-bar-remain")}></div>
+        <div style={{width: `${progress}%`}} className={cx("progess-bar")}></div>
+        <div style={{width: `${100-progress}%`}} className={cx("progress-bar-remain")}></div>
       </div>
     </div>
     <div className="col-1">

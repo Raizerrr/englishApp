@@ -9,9 +9,7 @@ import { useTestContext } from "../../context/TestContext";
 import { useEffect, useRef, useState } from "react";
 import classNames from "classnames/bind";
 import Style from "./Lesson.module.scss";
-import { ReaheardButton } from "../../component/Buttons/ReheardButton";
 import { useUserContext } from "../../context/UserContext";
-import LessonFooter from "../../component/LessonFooter";
 import LessonCompleteFooter from "../../component/LessonCompleteFooter";
 import LessonHeader from "../../component/LessonHeader";
 import ResultModal from "../../component/ResultModal";
@@ -40,8 +38,11 @@ function Lesson() {
           skippedQuestions,
           setSkippedQuestions,
           questionsTotal,
+          skippedQuestionNumber,
           setSkippedQuestionNumber,
-          skippedQuestionNumber
+          getAnswers,
+          chosenAnswers,
+          setChosenAnswers
         } 
     = useTestContext();
   const {hearts, setHearts, updatePlayer, player} = useUserContext();
@@ -70,8 +71,6 @@ function Lesson() {
     const fetchData = async() => {
       const questionDetail = await getQuestion(lessonNumber, player?.id, handleShowPopup);
       setQuestion(questionDetail);
-      
-
     }
     fetchData();
   }, [testDetail, questionNumber, skippedQuestionNumber]);
@@ -85,14 +84,19 @@ function Lesson() {
       setExp(exp+2);
     }
     else {
-      setHearts(hearts-1);
+      if(hearts!==0){
+        setHearts(hearts-1);
+        setScore(score+question?.score);
+        setExp(exp+2);
+      }
       if(player?.id) {
         player.heart = hearts;
         updatePlayer(player);
   
       }
       else {
-        // const account = JSON.parse(localStorage.getItem("acount"));
+        const account = JSON.parse(localStorage.getItem("acount"));
+        console.log(account);
         // account.hearts = hearts;
         // localStorage.setItem('account', JSON.stringify(account));
       }
@@ -110,18 +114,23 @@ function Lesson() {
   }
 
   const addNewAnswerQuestionItem = () => {
-    if(questionNumber===questionsTotal){
-      console.log(skippedQuestionNumber);
+    if(questionNumber>=questionsTotal){
       setSkippedQuestionNumber(skippedQuestionNumber+1);
     }
     else {
       setQuestionNumber(questionNumber+1);
     }
-    const answerQuestionItem = {
-      question,
-      answer: [question?.correctAnswer, question?.wrongAnswer1, question?.wrongAnswer2, question?.wrongAnswer3],
+    const chosenAnswersItem = {
+      id: question?.id,
       chosenAnswer
-    }
+    };
+    chosenAnswers.push(chosenAnswersItem);
+    setChosenAnswers(chosenAnswers);
+    const answerQuestionItem = `${question?.description}. Và 4 đáp án là: ${question?.correctAnswer}, 
+                                                              ${question?.wrongAnswer1},
+                                                              ${question?.wrongAnswer2},
+                                                              ${question?.wrongAnswer3}.
+                                Câu trả lời nào đúng và giải thích từng câu`;
     answerQuestion.push(answerQuestionItem)
     setAnswerQuestion(answerQuestion);
   }
@@ -154,8 +163,9 @@ function Lesson() {
 
   const [showModal, setShowModal] = useState(false);
 
-  const OpenModalHandle = () => {
+  const OpenModalHandle = async() => {
     setShowModal(!showModal);
+    await getAnswers();
   };
 
   const handleShowPopup = () => {
@@ -163,7 +173,11 @@ function Lesson() {
   };
 
   const handleClose = () => {
-  handleShowPopup();
+    if(type==="complete"){
+      returnHome();
+      return;  
+    }
+    handleShowPopup();
     setDirectPopup("close");
   }
 

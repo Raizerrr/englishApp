@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { createNewStreak, getTest } from "../axios/userAxios";
+import { createNewStreak, getAnswersByChatGPT, getTest } from "../axios/userAxios";
 import { useNavigate } from "react-router";
 import { useUserContext } from "./UserContext";
 const TestContext = createContext();
@@ -39,16 +39,20 @@ export const TestProvider = ({children}) => {
         const skippedQuestionNumberStorage = JSON.parse(localStorage.getItem("skippedQuestionNumber"));
         return skippedQuestionNumberStorage===null?0:skippedQuestionNumberStorage;
     });
+    const [answers, setAnswers] = useState(() => {
+        const answersStorage = JSON.parse(localStorage.getItem("answers"));
+        return answersStorage===null?[]:answersStorage;
+    })
+    const [chosenAnswers, setChosenAnswers] = useState(() => {
+        const chosenAnswerStorage = JSON.parse(localStorage.getItem("chosenAnswers"));
+        return chosenAnswerStorage===null?[]:chosenAnswerStorage;
+    })
     const [directPopup, setDirectPopup] = useState(""); 
     
     const navigate = useNavigate();
     const {updateCurrentLevel, player, updatePlayer} = useUserContext();
 
 
-    useEffect(() => {
-        setSkippedQuestionNumber(0);
-        saveTestDetailInLocalStorage();
-    },[skippedQuestionNumber])
 
     
 
@@ -102,7 +106,7 @@ export const TestProvider = ({children}) => {
     const getQuestion = async(testype, playerId, funcShow) => {
         if(questionNumber > questions?.length || (questions[questionNumber] === undefined && questionNumber !== 0)) {
             
-            if(skippedQuestions?.length === 0) {
+            if(skippedQuestions?.length === 0 || skippedQuestionNumber===skippedQuestions?.length) {
 
                 navigate(`/lesson/complete/normal/${testype}`);
     
@@ -122,9 +126,21 @@ export const TestProvider = ({children}) => {
                     }
                     localStorage.setItem("account", JSON.stringify(account));
                 }
-                player.expPoint += 10;
-                await updatePlayer(player);
-                createNewStreakItem(playerId);
+                if(player?.id){
+                    player.expPoint += 10;
+                    await updatePlayer(player);
+                    createNewStreakItem(playerId);
+                }
+                else {
+                    const account = JSON.parse(localStorage.getItem("acount"));
+                    if(account?.expoint){
+
+                        account.expoint += 10;
+                    }
+                    else {
+                        account.expoint = 10;
+                    }
+                }
             }
 
             else if(skippedQuestionNumber===0) {
@@ -133,6 +149,7 @@ export const TestProvider = ({children}) => {
                 return skippedQuestions[skippedQuestionNumber];
             }
             else{
+                saveTestDetailInLocalStorage();
                 return skippedQuestions[skippedQuestionNumber];
             }
         }
@@ -158,6 +175,7 @@ export const TestProvider = ({children}) => {
         localStorage.setItem("questionNumber", questionCount);
         localStorage.setItem("score", score);
         localStorage.setItem("exp", exp);
+        localStorage.setItem("chosenAnswers", JSON.stringify(chosenAnswers));
     };
 
     const resetAllCachingTestDetails = () => {
@@ -169,6 +187,7 @@ export const TestProvider = ({children}) => {
         localStorage.removeItem("exp");
         localStorage.removeItem("skippedQuestions");
         localStorage.removeItem("skippedQuestionNumber")
+        localStorage.removeItem("chosenAnswers");
         setQuestions([]);
         setSkippedQuestions([]);
         setAnswerQuestion([]);
@@ -177,7 +196,23 @@ export const TestProvider = ({children}) => {
         setExp(0);
         setTestDetail({});
         setSkippedQuestionNumber(0);
+        setChosenAnswers([]);
     }
+
+
+    const getAnswers = async() => {
+        const answersStorage = JSON.parse(localStorage.getItem("answers"));
+        if(answersStorage===null){
+            const {data} = await getAnswersByChatGPT(answerQuestion);
+            
+            setAnswers(data.data);
+            localStorage.setItem("answers", JSON.stringify(data.data));
+        }
+        else {
+            setAnswers(answers);
+        }
+    }
+
     
 
     return (
@@ -188,6 +223,7 @@ export const TestProvider = ({children}) => {
             score,
             exp,
             answerQuestion,
+            questions,
             questionsTotal: questions?.length,
             skippedQuestionsTotal: skippedQuestions?.length,
             scoreTotalOfTest: questions?.reduce((accumulator, currentValue) => {
@@ -196,6 +232,9 @@ export const TestProvider = ({children}) => {
             skippedQuestions,
             directPopup,
             skippedQuestionNumber,
+            chosenAnswers,
+            answers,
+            setChosenAnswers,
             setSkippedQuestionNumber,
             setDirectPopup,
             setScore,
@@ -206,7 +245,8 @@ export const TestProvider = ({children}) => {
             getTestByType,
             saveTestDetailInLocalStorage,
             resetAllCachingTestDetails,
-            setSkippedQuestions
+            setSkippedQuestions,
+            getAnswers
         }}>
             {children}
         </TestContext.Provider>

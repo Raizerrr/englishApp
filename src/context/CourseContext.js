@@ -13,7 +13,7 @@ export const CourseProvider = ({children}) => {
         const title = `Course level ${level}`;
         const {data} = await getCourse(title);
 
-        
+         
         setCourse(data.data.courseDetail);
         // get Blocks
         const lessonOfBlock = data.data.lessonOfBlock;

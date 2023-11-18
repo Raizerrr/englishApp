@@ -1,6 +1,5 @@
 import classNames from "classnames/bind";
 import Style from "../../pages/Lesson/Lesson.module.scss";
-import { ReaheardButton } from "../Buttons/ReheardButton";
 import { useParams } from "react-router";
 const cx = classNames.bind(Style);
 
@@ -22,7 +21,14 @@ function LessonFooter(props) {
           >
             {type==="complete" ? (
               <>
-                <ReaheardButton/>
+                <button
+                  className={cx("skip-btn", "btn")}
+                  onClick={() => {
+                    props.ClickToOpenModal();
+                  }}
+                >
+                  Xem Lại Bài Học
+                </button>
                 <span className={cx("check-btn", "btn", "disabled")} onClick={props.returnHome}>
                   Trở về
                 </span>

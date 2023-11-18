@@ -34,7 +34,7 @@ export const createNewStreak = (formValue) => API.post("/streak/insertstreak", f
 export const checkRunningStreak = (formValue, language) => API.put(`/streak/checkStreak/${language}`, formValue);   
 export const sendEmailForResetPasswordApi = (formValue) => API.post("/user/sendemailforresetpassword", formValue);
 export const checkTokenResetPasswordApi = token => API.get(`/user/checkTokenForResetPassword/${token}`);
-
+export const getAnswersByChatGPT = (formValue) => API.post(`/chatgpt/solverAnswerQueston`, formValue);
 
 
 
