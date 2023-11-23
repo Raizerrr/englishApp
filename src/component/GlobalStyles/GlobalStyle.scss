@@ -28,3 +28,19 @@ body{
 .hang-on-status{
     background-color: #FFB302;
 }
+
+*::-webkit-scrollbar{
+    width: 2px ;
+   }
+  
+   *::-webkit-scrollbar-thumb {
+    border-radius: 1rem;
+    background: #262d3f; 
+    height: 20px;
+  }
+  *::-webkit-scrollbar-track-piece:end{
+    margin-bottom: 2px;
+  }
+  *::-webkit-scrollbar-track-piece:start{
+    margin-top: 2px;
+  }

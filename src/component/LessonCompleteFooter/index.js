@@ -9,7 +9,8 @@ function LessonFooter(props) {
         "lesson-footer",
         "d-flex",
         "justify-content-around",
-        "align-items-center"
+        "align-items-center",
+        "bg-light"
       )}
     >
       <button

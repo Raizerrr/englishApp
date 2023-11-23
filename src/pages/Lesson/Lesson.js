@@ -42,6 +42,7 @@ function Lesson() {
           {/* footer */}
           <div className={cx("footer-lesson-container")}>
             <LessonCompleteFooter ClickToOpenModal={OpenModalHandle} />
+            {/* <LessonFooter /> */}
           </div>
           {/* footer */}
 
