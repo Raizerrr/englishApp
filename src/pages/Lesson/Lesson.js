@@ -42,7 +42,8 @@ function Lesson() {
           setSkippedQuestionNumber,
           getAnswers,
           chosenAnswers,
-          setChosenAnswers
+          setChosenAnswers,
+          questions
         } 
     = useTestContext();
   const {hearts, setHearts, updatePlayer, player} = useUserContext();
@@ -79,7 +80,21 @@ function Lesson() {
 
   const checkQuestion = () => {
     addNewAnswerQuestionItem();
-    if(answerActive.indexOf(true) === 0){
+
+    let checked = false;
+
+    if(questionNumber<questionsTotal){
+      if(questions[questionNumber].correctAnswer===chosenAnswer){
+        checked = true;
+      }
+    }
+    else {
+      if(skippedQuestions[skippedQuestionNumber].correctAnswer === chosenAnswer) {
+        checked = true;
+      }
+    }
+
+    if(checked){
       setScore(score+question?.score);
       setExp(exp+2);
     }
@@ -96,9 +111,8 @@ function Lesson() {
       }
       else {
         const account = JSON.parse(localStorage.getItem("acount"));
-        console.log(account);
-        // account.hearts = hearts;
-        // localStorage.setItem('account', JSON.stringify(account));
+        account.hearts = hearts;
+        localStorage.setItem('acount', JSON.stringify(account));
       }
     }
     saveTestDetailInLocalStorage();

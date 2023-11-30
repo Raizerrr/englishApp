@@ -25,10 +25,10 @@ function Setting() {
 
   const changeAvatarHandel = (e) => {
     const file = e.target.files[0];
-
     if (file) {
+      console.log(file.name);
       const reader = new FileReader();
-
+      
       reader.onload = function (eg) {
         setUser({...user, avatar: eg.target.result});
         setAvatar(eg.target.result);

@@ -48,6 +48,7 @@ export const TestProvider = ({children}) => {
         return chosenAnswerStorage===null?[]:chosenAnswerStorage;
     })
     const [directPopup, setDirectPopup] = useState(""); 
+    const [loading, setLoading] = useState();
     
     const navigate = useNavigate();
     const {updateCurrentLevel, player, updatePlayer} = useUserContext();
@@ -113,7 +114,6 @@ export const TestProvider = ({children}) => {
                 const scoreTotal = questions?.reduce((accumulator, currentValue) => {
                     return accumulator + currentValue.score;
                   }, 0);
-    
                 if(score/scoreTotal>75){
                     updateCurrentLevel(testype);    
                 }
@@ -135,11 +135,12 @@ export const TestProvider = ({children}) => {
                     const account = JSON.parse(localStorage.getItem("acount"));
                     if(account?.expoint){
 
-                        account.expoint += 10;
+                        account.expPoint += 10;
                     }
                     else {
-                        account.expoint = 10;
+                        account.expPoint = 10;
                     }
+                    localStorage.setItem("acount", JSON.stringify(account));
                 }
             }
 
@@ -188,6 +189,7 @@ export const TestProvider = ({children}) => {
         localStorage.removeItem("skippedQuestions");
         localStorage.removeItem("skippedQuestionNumber")
         localStorage.removeItem("chosenAnswers");
+        localStorage.removeItem("answers");
         setQuestions([]);
         setSkippedQuestions([]);
         setAnswerQuestion([]);
@@ -202,15 +204,18 @@ export const TestProvider = ({children}) => {
 
     const getAnswers = async() => {
         const answersStorage = JSON.parse(localStorage.getItem("answers"));
-        if(answersStorage===null){
+        setLoading(false);
+        if(answersStorage===null || answersStorage.length < 2){
             const {data} = await getAnswersByChatGPT(answerQuestion);
-            
+            console.log(data.data);
             setAnswers(data.data);
             localStorage.setItem("answers", JSON.stringify(data.data));
         }
         else {
             setAnswers(answers);
         }
+        setLoading(true);
+
     }
 
     
@@ -221,6 +226,7 @@ export const TestProvider = ({children}) => {
             questionNumber,
             testDetail,
             score,
+            loading,
             exp,
             answerQuestion,
             questions,

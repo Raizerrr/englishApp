@@ -28,10 +28,10 @@ export const UserProvider = ({children}) => {
     useEffect(() => {
         if(player !== null){
             getLessonsAndBlocksAndLessons(player.currentLevel);
-            localStorage.removeItem("account");
+            localStorage.removeItem("acount");
         }
         else {
-            const account = JSON.parse(localStorage.getItem("account"));
+            const account = JSON.parse(localStorage.getItem("acount"));
             if(account?.level) {
                 getLessonsAndBlocksAndLessons(account?.level);
                 
@@ -94,6 +94,7 @@ export const UserProvider = ({children}) => {
         }
 
         const {data} = await login(admin);
+        console.log(data);
         localStorage.setItem("tokenAdmin", JSON.stringify(data.data.token));
     }
 

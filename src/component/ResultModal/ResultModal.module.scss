@@ -15,6 +15,7 @@
 
 .result-modal-wrapper{
     position: relative;
+    
     .result-modal-overlay{
         position: fixed;
         top: 0;
@@ -23,9 +24,11 @@
         right: 0;
         background-color: rgba($color: #000000, $alpha: 0.65);
         z-index: 3;
-        .result-modal-container{
-            background-color: #fff;
+        .result-wrapper{
             min-width: 50%;
+            max-width: 90%;
+            height: 70%;
+            position: relative;
             .close-modal-btn-container{
                 width: 30px;
                 height: 30px;
@@ -39,62 +42,69 @@
                     }
                 }
             }
-            .result-title-container{
-                .result-title{
-                    font-size: 27px;
-                    font-weight: 700;
-                    color: #333;
-                    line-height: 2rem;
-                }
-            }
-
-            .result-display-container{
-                .icon{
-                    position: absolute;
-                    top: 4px;
-                    right: 4px;
-                    background-color: #fff;
-                    border: none;
-                    
-                }
-                .result-display{
-                    border: 1px solid #ccc;
-                    min-height: 150px;
-                    overflow-y: auto;
-                    scrollbar-gutter: stable;
-
-                    &::-webkit-scrollbar{
-                        width: 5px ;
-                       }
-                      
-                       &::-webkit-scrollbar-thumb {
-                        border-radius: 1rem;
-                        background: #aaa; 
-                        height: 20px;
-                      }
-                      &::-webkit-scrollbar-track-piece:end{
-                        margin-bottom: 2px;
-                      }
-                      &::-webkit-scrollbar-track-piece:start{
-                        margin-top: 2px;
-                      }
-                    .question-result-title{
-                        font-size: 17px ;
+            .result-modal-container{
+                background-color: #fff;
+               
+                overflow-x: hidden;
+                overflow: auto;
+                
+                .result-title-container{
+                    .result-title{
+                        font-size: 27px;
                         font-weight: 700;
-                        line-height: 1.75rem;
+                        color: #333;
+                        line-height: 2rem;
                     }
-                    
-                        .title{
-                            font-size: 13px ;
+                }
+    
+                .result-display-container{
+                    .icon{
+                        position: absolute;
+                        top: 4px;
+                        right: 4px;
+                        background-color: #fff;
+                        border: none;
+                        
+                    }
+                    .result-display{
+                        border: 1px solid #ccc;
+                        height: 150px;
+                        overflow-y: auto;
+                        scrollbar-gutter: stable;
+    
+                        &::-webkit-scrollbar{
+                            width: 5px ;
+                           }
+                          
+                           &::-webkit-scrollbar-thumb {
+                            border-radius: 1rem;
+                            background: #aaa; 
+                            height: 20px;
+                          }
+                          &::-webkit-scrollbar-track-piece:end{
+                            margin-bottom: 2px;
+                          }
+                          &::-webkit-scrollbar-track-piece:start{
+                            margin-top: 2px;
+                          }
+                        .question-result-title{
+                            font-size: 17px ;
                             font-weight: 700;
-                            line-height: 1rem;
+                            line-height: 1.75rem;
                         }
-                        .answer{
-                            font-size: 13px;
-                            font-weight: 400;
-                        }
-                    
-                    
+                        
+                            .title{
+                                font-size: 13px ;
+                                font-weight: 700;
+                                line-height: 1rem;
+                            }
+                            .answer{
+                                font-size: 13px;
+                                font-weight: 400;
+                            }
+                        
+                        
+                    }
                 }
             }
         }

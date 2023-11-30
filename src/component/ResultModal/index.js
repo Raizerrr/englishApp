@@ -31,8 +31,6 @@ function ResultModal(props) {
     setContent(!content);
   }
 
-
-
   return (
     <div className={cx("result-modal-wrapper")}>
       <div
@@ -43,14 +41,7 @@ function ResultModal(props) {
           "align-items-center"
         )}
       >
-        <div
-          className={cx(
-            "result-modal-container",
-            "p-5",
-            "rounded-5",
-            "position-relative"
-          )}
-        >
+        <div className={cx("result-wrapper")}>
           <div className={cx("close-modal-btn-container")}>
             <button
               className={cx(
@@ -60,21 +51,32 @@ function ResultModal(props) {
                 "rounded-circle"
               )}
               onClick={() => {
+                setContent(true);
                 props.ClickToOpenModal();
               }}
             >
               <FontAwesomeIcon icon={faClose} />
             </button>
           </div>
-          {content?(
-            <>
-              <div className={cx("result-title-container", "text-center", "my-5")}>
+          {content ? (
+            <div
+              className={cx(
+                "result-modal-container",
+                "p-5",
+                "rounded-5",
+                "w-100",
+                "h-100"
+              )}
+            >
+              <div
+                className={cx("result-title-container", "text-center", "my-5")}
+              >
                 <h1 className={cx("result-title")}>Xem bảng điểm của bạn!</h1>
               </div>
               <div className={cx("result-display-container")}>
                 <div className="row">
-                  {chosenAnswers.map((answer, index) => (
-                    <div className="col-3">
+                {chosenAnswers.map((answer, index) => (
+                    <div style={{cursor: "pointer"}} className="col-6 col-lg-4 col-xxl-3"  onClick={() => handleChangeContent(index)}>
                       <div
                         className={cx(
                           "result-display",
@@ -126,18 +128,25 @@ function ResultModal(props) {
                               {getQuestionFromId(index).correctAnswer}
                             </div>
                           </div>
-                          <button onClick={() => handleChangeContent(index)}>Xem giải thích</button>
                         </div>
                       </div>
                     </div>
                     
                   ))}
+                
+
                 </div>
               </div>
-            </>
+            </div>
 
           ): (
-            <div>
+            <div className={cx(
+              "result-modal-container",
+              "p-5",
+              "rounded-5",
+              "w-100",
+              "h-100"
+            )}>
               <div>
                 <button onClick={handleChangeContent}>Trở về</button>
               </div>
