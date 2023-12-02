@@ -104,7 +104,7 @@ export const UserProvider = ({children}) => {
         setPlayer(null);
         setCurrentUserDetail(null);
         localStorage.removeItem("token");
-        const account = JSON.parse(localStorage.getItem("account"));
+        const account = JSON.parse(localStorage.getItem("acount"));
         setPlayer(account);
         setUser(account);
     }

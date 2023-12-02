@@ -143,7 +143,8 @@ function Lesson() {
     const answerQuestionItem = `${question?.description}. Và 4 đáp án là: ${question?.correctAnswer}, 
                                                               ${question?.wrongAnswer1},
                                                               ${question?.wrongAnswer2},
-                                                              ${question?.wrongAnswer3}.
+                                                              ${question?.wrongAnswer3},
+                                                              ${question?.wrongAnswer4}
                                 Câu trả lời nào đúng và giải thích từng câu`;
     answerQuestion.push(answerQuestionItem)
     setAnswerQuestion(answerQuestion);

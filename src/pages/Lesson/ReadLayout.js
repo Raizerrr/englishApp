@@ -17,7 +17,7 @@ function ReadLayout({question, answerActive, setAnswerActive, setChosenAnswer}) 
   }, [question])
 
   const randomAnswer = () => {
-    let answers = [question?.correctAnswer, question?.wrongAnswer1, question?.wrongAnswer2, question?.wrongAnswer3];
+    let answers = [question?.correctAnswer, question?.wrongAnswer1, question?.wrongAnswer2, question?.wrongAnswer3, question?.wrongAnswer4];
     let answerSet = [];
 
     while(answers.length > 0){
@@ -56,10 +56,15 @@ function ReadLayout({question, answerActive, setAnswerActive, setChosenAnswer}) 
           <div className={cx("type-answer-area-container")}>
             <ul className={cx("answer-list")}>
               {answerResult?.map((answer, index) => (
-                <li onClick={() => determineAnswer(index)} className={answerActive[index] ? cx("answer-item", "position-relative", "mb-3", "answer-active") : cx("answer-item", "position-relative", "mb-3")}>
-                  <div className={cx("answer-number", "m-3", "rounded-3")}>{index+1}</div>
-                  {answer}
-                </li>
+                <>
+                  {answer !== "" && (
+                    <li onClick={() => determineAnswer(index)} className={answerActive[index] ? cx("answer-item", "position-relative", "mb-3", "answer-active") : cx("answer-item", "position-relative", "mb-3")}>
+                      <div className={cx("answer-number", "m-3", "rounded-3")}>{index+1}</div>
+                      {answer}
+                    </li>
+
+                  )}
+                </>
               ))}
              
             </ul>
