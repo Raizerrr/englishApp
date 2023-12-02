@@ -23,7 +23,7 @@ export const ChangePasswordDefaultPage = () => {
             <h1 className={cx("setting-title", "my-3")}>Mật khẩu</h1>
             <div className="my-5">
               <div className="row">
-                <div className="col-3">
+                <div className="col-4 col-sm-6 col-lg-5 col-xl-3">
                   <label htmlFor="" className={cx("setting-item-label")}>
                     Mật khẩu hiện tại
                   </label>

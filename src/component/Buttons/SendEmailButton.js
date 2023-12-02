@@ -6,14 +6,31 @@ import { useNavigate } from "react-router-dom";
 
 const cx = classNames.bind(Style);
 
-export const SendEmailButton = ({email}) => {
+export const SendEmailButton = ({email, setChecked}) => {
     const {sendEmailForResetPassword} = useUserContext();
-    const navigate = useNavigate();
+    
+
+
     
 
     const handleClickSend = async() => {
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if(!String(email).toLocaleLowerCase().match(emailRegex)){
+            setChecked({
+                validateEmail: false,
+                running: false
+            });
+            return;
+        }
+        setChecked({
+            validateEmail: null,
+            running: true
+        });
         await sendEmailForResetPassword(email);
-        navigate("/waitingPage");
+        setChecked({
+            validateEmail: true,
+            running: false
+        });
     }
 
     return (
@@ -22,7 +39,7 @@ export const SendEmailButton = ({email}) => {
             disabled={email!==""?false:true} 
             onClick={handleClickSend}
         >
-            gửi
+            Gửi email
         </button>
     )
 }

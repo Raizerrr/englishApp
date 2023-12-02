@@ -43,7 +43,7 @@ const publicRoutes = [
   { path: "/shop", component: Shop },
   { path: "/profile", component: Profile, layout: ProfileLayout },
   { path: "/setting", component: Setting, layout: SettingLayout },
-  { path: "/changePassword", component: ChangePassword, layout: null },
+  { path: "/changePassword", component: ChangePassword, layout: SettingLayout },
   { path: "/signin/:token/changePassword", component: ChangePassword, layout: null },
   { path: "/sendEmail", component: ChangePassword, layout: null },
   { path: "/waitingPage", component: ChangePassword, layout: null },

@@ -39,20 +39,8 @@ function ChangePassword() {
 
   return (
     <div>
-      <Sidebar />
-      <div className="row">
-        <div className="col-8">
-          {getCorrectPage()}
-        </div>
-        <div className="col-4">
-          {user !== null ? (
-
-              <SettingNav />
-          ): (
-            <Task/>
-          )}
-        </div>
-      </div>
+      {getCorrectPage()}
+      
     </div>
   );
 }
