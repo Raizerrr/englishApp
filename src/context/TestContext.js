@@ -71,8 +71,9 @@ export const TestProvider = ({children}) => {
         if(checked) {
             
             const {data} = await getTest(testType);
-            questionsStorage = data?.data?.questions
-            testDetailStorage = data?.data?.testDetails;
+            console.log(data);
+            questionsStorage = data?.data;
+            testDetailStorage = {};
             questionNumberStorage = 0;
             answerQuestionStorage = [];
             skippedQuestionsStorage = [];

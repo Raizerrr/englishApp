@@ -75,7 +75,7 @@ function ResultModal(props) {
               </div>
               <div className={cx("result-display-container")}>
                 <div className="row">
-                {chosenAnswers.map((answer, index) => (
+                {chosenAnswers?.map((answer, index) => (
                     <div style={{cursor: "pointer"}} className="col-6 col-lg-4 col-xxl-3"  onClick={() => handleChangeContent(index)}>
                       <div
                         className={cx(

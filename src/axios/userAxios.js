@@ -47,6 +47,6 @@ export const getAnswersByChatGPT = (formValue) => API.post(`/chatgpt/solverAnswe
 
 // For course admin
 export const getQuestions = () => APICourse.get("/question");
-export const getTest = (testType) => APICourse.get(`/test/deploy/${testType}`);
+export const getTest = (testType) => APICourse.get(`/question/getQuestionByTaskId/${testType}`);
 export const getCourse = (title) => APICourse.get(`/course/getCourse/${title}`);
 export const getTasksByLevelAndType = (level, taskType) => APICourse.get(`/task/getTasks/${level}/${taskType}`);

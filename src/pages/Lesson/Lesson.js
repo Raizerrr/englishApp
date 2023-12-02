@@ -62,7 +62,7 @@ function Lesson() {
       hasMounted.current = false;
       const fetchData = async() => {
         
-        await getTestByType(type);
+        await getTestByType(lessonNumber);
       }
       fetchData();
     }

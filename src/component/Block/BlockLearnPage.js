@@ -63,7 +63,7 @@ export const BlockLearnPage = ({block, index, level}) => {
                         "my-3",
                         "position-relative"
                         )}
-                        onClick={e => handleClickLesson(e, index+"."+lessonIndex)}
+                        onClick={e => handleClickLesson(e, lesson?.id)}
                         disabled={checkProgressOfPlayer(lessonIndex, index) || lessonIndex===0?false: true}
                     >
                         <img
