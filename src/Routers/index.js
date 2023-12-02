@@ -23,8 +23,17 @@ import ChangePassword from "../pages/SettingPage/ChangePassword";
 import Notification from "../pages/Notification";
 import SuperPackInfomation from "../pages/SuperpackInformation";
 import PremiumIntro from "../component/Layout/PremiumLayout/PremiumIntro";
+import ReadQuestionPage from "../pages/ReadQuestionPage";
+import THPTQGExams from "../pages/THPTQGExams";
+import EmailRequestPending from "../pages/EmailRequestPending";
+import Practices from "../pages/RealPractices";
+import Tests from "../pages/Practices";
 //pubic routes
 const publicRoutes = [
+  { path: "/practices", component: Practices },
+  { path: "/tests", component: Tests },
+  { path: "/readQuestionPage", component: ReadQuestionPage },
+  { path: "/thptqgexams", component: THPTQGExams },
   { path: "/learn", component: learn },
   { path: "/", component: learn },
   { path: "/leaderBoard", component: LeaderBoard },
@@ -38,6 +47,11 @@ const publicRoutes = [
   { path: "/signin/:token/changePassword", component: ChangePassword, layout: null },
   { path: "/sendEmail", component: ChangePassword, layout: null },
   { path: "/waitingPage", component: ChangePassword, layout: null },
+  {
+    path: "signin/emailRequestPending",
+    component: EmailRequestPending,
+    layout: null,
+  },
   {
     path: "/superInfomation",
     component: SuperPackInfomation,

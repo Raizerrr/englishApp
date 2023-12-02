@@ -92,7 +92,7 @@ function SignIn() {
             required
           />
           <div className={cx("forgot-pw")}>
-            <Link to={"/sendEmail"}>Quên?</Link>
+            <Link to={"/signin/emailRequestPending"}>Quên?</Link>
           </div>
           {/* Below stack is error message when don't sign in successfully */}
           <ErrorNotification errorNotification={errorNotification} />

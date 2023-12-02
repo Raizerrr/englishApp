@@ -1,0 +1,85 @@
+.card-container{
+    background: radial-gradient(216% 106% at 6% 3%,rgb(38,246,99,.3) 0,rgb(38,138,255,.3) 52%,rgb(252,85,255,.3) 100%),rgb(0,4,55);
+    border-radius: 12px;
+    .premium-text{
+        color: #fff;
+        font-weight: 700;
+        font-size: 22px;
+        word-spacing: 1.25px;
+        padding: 12px;
+    }
+    .premium-btn{
+        background-color: #fff;
+        font-size: 16px;
+        text-transform: uppercase;
+        font-weight: 700;
+        box-shadow: 0 4px 0 #aaa;
+        &:hover {
+            background-color: #fff;
+        }
+        &:active {
+            transform: translate(0,2px);
+            box-shadow: none;
+        }
+    }
+}
+
+.practice-section-container{
+    max-width: 600px;
+    .advance-practice-section-title{
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 3rem;
+        text-transform: initial;
+        
+    }
+    .advance-practice-section-sub-title{
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 3rem;
+        text-transform: initial;
+    }
+    .pratice-section{
+        width: 100%;
+        
+        .title{
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .desc{
+            font-size: 15px;
+            font-weight: 400;
+        }
+        .button{
+            max-width: 200px;
+            min-width: 100px;
+            text-align: center;
+            text-decoration: none;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            color: rgb(28,176,246);
+            box-shadow: 0 2px 0 #ccc;
+            text-transform: uppercase;
+            &:hover {
+                background-color: #cccccc3a;
+            }
+            &:active{
+                transform: translate(0, 2%);
+                box-shadow: none;
+            }
+        }
+    }
+    .THPTQG-tests-section{
+        cursor: pointer;
+        border-radius: 1.5rem;
+        text-decoration: none;
+        color: #000;
+        &:hover{
+            background-color: #cccccc3a;
+        }
+    }
+
+}

@@ -7,7 +7,10 @@
 html{
     overflow-x: hidden;
 }
-
+.setting-layout-container{
+    margin-left: 275px;
+ 
+}
 .container{
     flex-direction: row;
    
@@ -40,7 +43,7 @@ html{
 
 .setting-container{
     max-width: 600px;
-    margin-left: 275px;
+   
     
     .setting-title{
         font-size: 27px;
@@ -107,8 +110,8 @@ html{
 
 .change-pass-container{
     padding: 0 20px;
-    min-width: 700px;
-    margin-left: 275px;
+    width: 600px;
+   
     .setting-title{
         font-size: 27px;
         font-weight: 700;
@@ -135,6 +138,7 @@ html{
     border: 1px solid #ccc;
     top: 12%;
     margin-left:70px ;
+    right: 20px;
     .setting-nav-list{
         list-style-type: none;
         padding: 0;
@@ -182,7 +186,7 @@ html{
 
 .super-inf-container{
     max-width: 600px;
-    margin-left: 275px;
+   
     .information-container{
         .inf-title{
             font-size: 15px;
@@ -206,7 +210,7 @@ html{
 }
 .notification-container{
     max-width: 600px;
-    margin-left: 275px;
+   
     .setting-title{
         font-size: 27px;
         font-weight: 700;
@@ -262,5 +266,8 @@ html{
         position: absolute;
         right: 0;
         top: 0%;
+    }
+    .setting-layout-container{
+        margin-left: 75px;
     }
 }
