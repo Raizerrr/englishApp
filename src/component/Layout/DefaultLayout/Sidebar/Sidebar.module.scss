@@ -13,6 +13,43 @@
     background-color: #262d3f;
     z-index: 1;
 }
+.item-link{
+                   
+    padding: .5rem 0 0 3rem;
+    width: 250px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #aaa ;
+    text-transform: uppercase;
+    &:active {
+        border-color: rgb(66,133,244);
+    }
+    &:hover {
+        background-color: #cccccc2a !important;
+        color: #fff !important; 
+    }
+}
+.practice-open-sub-menu{
+    cursor: pointer;
+    .pratice-sub-menu{
+        display: none;
+        position: absolute;
+        min-width: 250px;
+        max-width: 350px;
+        background-color: #262d3f;
+        top: -10px;
+        left: 190px;
+        border: 1px solid #fff;
+    }
+    &:hover {
+        .pratice-sub-menu{
+            display: block;
+        }
+    }
+}
+   
 
 .nav-item{
     border: 1px solid transparent;
@@ -23,6 +60,7 @@
     text-decoration: none;
     color: #aaa ;
     text-transform: uppercase;
+    cursor: pointer;
     &:first-child{
         border-bottom: 1px solid #cccccc2a;
         padding: .5rem;
@@ -68,21 +106,7 @@
                 }
                 
                 
-                .item-link{
-                   
-                    padding: .5rem 0 0 3rem;
-                    width: 250px;
-                    text-align: left;
-                    font-size: 13px;
-                    font-weight: 700;
-                    text-decoration: none;
-                    color: #aaa ;
-                    text-transform: uppercase;
-                    &:active {
-                        border-color: rgb(66,133,244);
-                    }
-                    
-                }
+               
             }
         }
     }
@@ -95,7 +119,7 @@
     .nav{
         width: 75px !important;
     }
-    .sub-menu{
+    .sub-menu,.pratice-sub-menu{
         left: 45px !important;
     }
 }

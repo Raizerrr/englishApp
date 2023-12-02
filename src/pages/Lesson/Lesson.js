@@ -29,12 +29,16 @@ function Lesson() {
         <div className="container">
           {/* header */}
           <div className={cx("lesson-container")}>
-            <LessonHeader />/
+            <LessonHeader />
           </div>
           {/* header */}
 
           {/* content */}
           <div className={cx("content-section")}>
+            {/* <ReadLayout /> */}
+            {/* <ListenLayout /> */}
+            {/* <SpeakLayout /> */}
+            {/* <WriteLayout /> */}
             <LessonComplete />
           </div>
           {/* content */}

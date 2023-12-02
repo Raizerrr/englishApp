@@ -35,6 +35,7 @@
                 position: absolute;
                 top: -15px;
                 right: -15px;
+                z-index: 11;
                 .close-modal-btn{
                     border: 1px solid #ccc;
                     &:hover{
@@ -49,6 +50,7 @@
                 overflow: auto;
                 
                 .result-title-container{
+                    
                     .result-title{
                         font-size: 27px;
                         font-weight: 700;
@@ -58,6 +60,7 @@
                 }
     
                 .result-display-container{
+                    cursor: pointer;
                     .icon{
                         position: absolute;
                         top: 4px;

@@ -24,15 +24,17 @@ function WriteLayout() {
               </div>
             </div>
             <div className="col-10">
-              <div
-                className={cx(
-                  "question-container",
-                  "mb-3",
-                  "position-relative"
-                )}
-              >
+              <div className="position-relative">
+                <div
+                  className={cx(
+                    "question-container",
+                    "mb-3",
+                    "position-relative"
+                  )}
+                >
+                  <p className={cx("question")}>My birthday is in January.</p>
+                </div>
                 <div className={cx("triptagon")}></div>
-                <p className={cx("question")}>My birthday is in January.</p>
               </div>
             </div>
           </div>

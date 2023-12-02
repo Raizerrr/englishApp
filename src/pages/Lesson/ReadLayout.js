@@ -14,7 +14,12 @@ function ReadLayout() {
             Điền vào chỗ trống
           </h1>
           <div className={cx("question-container", "mb-5")}>
-            <p className={cx("question")}>My birthday ... in January.</p>
+            <p className={cx("question")}>
+              My birthday ... in January. Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Velit ut quo voluptates exercitationem ducimus
+              animi rerum quis voluptatum similique nostrum quisquam, fuga eius
+              sint, magnam voluptate aut consectetur ipsum aliquam!
+            </p>
           </div>
 
           <div className={cx("type-answer-area-container")}>

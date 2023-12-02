@@ -3,6 +3,7 @@ import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from "../../../../assets/images/logo.png";
 import {
+  faDumbbell,
   faEllipsis,
   faHome,
   faScroll,
@@ -58,6 +59,36 @@ function Sidebar() {
               </span>
             </Link>
 
+            <div
+              className={cx(
+                "mb-2",
+                "nav-item",
+                "rounded-4",
+                "text-center",
+                "text-md-start",
+                "position-relative",
+                "practice-open-sub-menu"
+              )}
+            >
+              <FontAwesomeIcon style={{ fontSize: "20px" }} icon={faDumbbell} />
+              <span className="d-none d-md-inline-block m-0 ms-md-4  ">
+                Luyện tập
+              </span>
+
+              <div className={cx("pratice-sub-menu", "py-5", "rounded-5")}>
+                <div className={cx("d-flex", "flex-column")}>
+                  <Link className={cx("btn", "item-link", "py-3", "rounded-3")}>
+                    Luyện tập Cơ bản
+                  </Link>
+                  <Link
+                    to={"/practices"}
+                    className={cx("btn", "item-link", "py-3", "rounded-3")}
+                  >
+                    Luyện tập Nâng cao
+                  </Link>
+                </div>
+              </div>
+            </div>
             <Link
               className={cx(
                 "my-2",

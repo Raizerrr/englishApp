@@ -24,11 +24,17 @@ import ChangePassword from "../pages/ChangePassword";
 import Notification from "../pages/Notification";
 import SuperPackInfomation from "../pages/SuperpackInformation";
 import EmailRequestPending from "../pages/EmailRequestPending";
+import Practices from "../pages/Practices";
+import ReadQuestionPage from "../pages/ReadQuestionPage";
+import THPTQGExams from "../pages/THPTQGExams";
 
 //pubic routes
 const publicRoutes = [
   { path: "/learn", component: learn },
   { path: "/", component: learn },
+  { path: "/practices", component: Practices },
+  { path: "/readQuestionPage", component: ReadQuestionPage },
+  { path: "/thptqgexams", component: THPTQGExams },
   { path: "/leaderBoard", component: LeaderBoard },
   { path: "/license", component: License, layout: OnlySidebarLayout },
   { path: "/premium", component: PremiumIntro, layout: PremiumLayout },
