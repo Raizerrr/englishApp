@@ -27,6 +27,7 @@ import EmailRequestPending from "../pages/EmailRequestPending";
 import Practices from "../pages/Practices";
 import ReadQuestionPage from "../pages/ReadQuestionPage";
 import THPTQGExams from "../pages/THPTQGExams";
+import Payment from "../pages/Payment";
 
 //pubic routes
 const publicRoutes = [
@@ -38,6 +39,7 @@ const publicRoutes = [
   { path: "/leaderBoard", component: LeaderBoard },
   { path: "/license", component: License, layout: OnlySidebarLayout },
   { path: "/premium", component: PremiumIntro, layout: PremiumLayout },
+  { path: "/payment", component: Payment, layout: PremiumLayout },
   { path: "/quest", component: Quest },
   { path: "/shop", component: Shop },
   { path: "/profile", component: Profile, layout: ProfileLayout },

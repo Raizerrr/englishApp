@@ -54,17 +54,18 @@
 }
 .content-section{
     min-height: 61vh;
+    padding-bottom: 20vh;
    
 }
 .question-container{
     border: 2px solid #ccc;
     padding: 1rem;
     border-radius: 8px;
-    overflow: auto;
-    height: 70px;
+    // overflow: auto;
+    // height: 70px;
     
     .question{
-        font-size: 12px;
+        font-size: 17px;
         font-weight: 600;
         letter-spacing: .2px;
     }

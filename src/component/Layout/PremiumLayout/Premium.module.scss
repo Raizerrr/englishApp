@@ -1,6 +1,6 @@
 .premium-container{
     min-height: 100vh;
-    min-width: 100vh;
+    width: 100%;
     background: radial-gradient(216% 106% at 6% 3%,rgba(38,246,99,.3) 0,rgba(38,138,255,.3) 52%,rgba(252,85,255,.3) 100%),rgb(0,4,55);
 
     .premium-header{
@@ -85,6 +85,7 @@
     .premium-submit-container{
         .premium-submit-btn{
             border-radius: 2rem;
+            background-color: #ccc;
             padding: 13px 45px;
             font-size: 15px;
             font-weight: 700;

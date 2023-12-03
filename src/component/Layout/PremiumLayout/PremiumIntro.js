@@ -1,5 +1,6 @@
 import classNames from "classnames/bind";
 import Style from "../PremiumLayout/Premium.module.scss";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
@@ -75,9 +76,9 @@ function PremiumIntro() {
             "align-items-center"
           )}
         >
-          <button className={cx("premium-submit-btn")}>
+          <Link to={"/payment"} className={cx("premium-submit-btn", "btn")}>
             Trả Phí để sử dụng 14 ngày miễn phí
-          </button>
+          </Link>
         </div>
       </div>
     </>

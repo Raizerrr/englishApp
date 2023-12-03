@@ -1,0 +1,93 @@
+.show{
+    display: block;
+}
+.unshow{
+    display: none;
+}
+.isActive{
+border-bottom: 3px solid rgb(60, 77, 255);
+color: rgb(88,204,2) !important
+;
+}
+.unActive{
+
+}
+.tabs-header{
+    text-align: center;
+
+}
+.payment-method{
+    font-size: 17px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: rgb(75,75,75)
+}
+::placeholder {
+    color: #cccccceb !important;
+    opacity: 1; 
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 17px;
+  }
+
+
+.content{
+    .label{
+        font-size: 17px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #777;
+    }
+    
+    select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        text-indent: 1px;
+        text-overflow: '';
+        font-size: 15px;
+        font-weight: 600;
+      }
+      .dropdown-icon{
+        position: absolute;
+        right: 20px;
+        top: 35%;
+        color: #777;
+      }
+      .currency-method-inputs{
+        outline: none;
+        border: 1px solid #ccc;
+        font-size: 17px;
+        font-weight: 700;
+        color: #777;
+        letter-spacing: 1px;
+      }
+      .desc-area{
+        resize: none;
+        
+      }
+}
+
+.term{
+    font-size: 12px;
+        font-weight: 600;
+        text-transform: initial;
+        color: #777;
+}
+.purcharse-btn{
+    border-radius: 2rem;
+    background-color: rgb(60,77,255) !important ;
+    padding: 13px 45px;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    box-shadow: 1px 5px 0px 1px rgb(45, 57, 189);
+    outline: none;
+    border: none;
+    color: #fff !important;
+    &:active{
+        transform: translate(0, 5px);
+        box-shadow: none;
+    }
+}
+
+  

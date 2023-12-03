@@ -35,11 +35,11 @@ function Lesson() {
 
           {/* content */}
           <div className={cx("content-section")}>
-            {/* <ReadLayout /> */}
+            <ReadLayout />
             {/* <ListenLayout /> */}
             {/* <SpeakLayout /> */}
             {/* <WriteLayout /> */}
-            <LessonComplete />
+            {/* <LessonComplete /> */}
           </div>
           {/* content */}
 
