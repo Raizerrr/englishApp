@@ -2,6 +2,7 @@ import classNames from "classnames/bind";
 import Style from "./Quest.module.scss";
 import { useTaskContext } from "../../context/TaskContext";
 import { useEffect, useState } from "react";
+import ExpEarningPopup from "../../component/Popup/ExpEarningPopup";
 
 const cx = classNames.bind(Style);
 
@@ -9,6 +10,7 @@ function Quest() {
 
   const {dailyTask, getDailyTask} = useTaskContext();
   const [userTasks, setUserTasks] = useState({}); 
+  const [show, setShow] = useState(false);
 
 
   useEffect(() => {
@@ -17,8 +19,15 @@ function Quest() {
     setUserTasks(JSON.parse(localStorage.getItem("task")));
   }, [])
 
+  const ShowPopupHandle = () => {
+    setShow(!show);
+  };
+
   return (
     <div className="">
+      <div className={cx("d-none", { ["show"]: show })}>
+        <ExpEarningPopup ClicktoOpenPopup={ShowPopupHandle} />
+      </div>
       <div
         className={cx(
           "container",
@@ -100,54 +109,24 @@ function Quest() {
                         >
                           
                         </div>
+                        <button
+                          className={cx(
+                            "position-absolute",
+                            "receive-exp-when-complete-btn"
+                          )}
+                          onClick={() => ShowPopupHandle()}
+                        >
+                          <img
+                            src="https://d35aaqx5ub95lt.cloudfront.net/images/goals/ca23da57929a3144934ee0571a2f44e9.svg"
+                            alt=""
+                          />
+                        </button>
                       </div>
                     </div>
                   </div>
                 </li>
 
               ))}
-              {/* <li className={cx("quest-list-item", "py-3")}>
-                <div className="row">
-                  <div className="col-2"></div>
-                  <div className="col-10">
-                    <h2 className={cx("list-item-title", "my-3")}>
-                      Kiếm 10 KN
-                    </h2>
-                    <div
-                      className={cx(
-                        "quest-progess-bar",
-                        "position-relative",
-                        "my-3"
-                      )}
-                    >
-                      <span className={cx("position-absolute", "progess")}>
-                        0 / 10
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li className={cx("quest-list-item", "py-3")}>
-                <div className="row">
-                  <div className="col-2"></div>
-                  <div className="col-10">
-                    <h2 className={cx("list-item-title", "my-3")}>
-                      Kiếm 10 KN
-                    </h2>
-                    <div
-                      className={cx(
-                        "quest-progess-bar",
-                        "position-relative",
-                        "my-3"
-                      )}
-                    >
-                      <span className={cx("position-absolute", "progess")}>
-                        0 / 10
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </li> */}
             </ul>
           </div>
         </div>

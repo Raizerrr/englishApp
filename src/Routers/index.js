@@ -28,11 +28,13 @@ import THPTQGExams from "../pages/THPTQGExams";
 import EmailRequestPending from "../pages/EmailRequestPending";
 import Practices from "../pages/RealPractices";
 import Tests from "../pages/Practices";
+import Payment from "../pages/Payment";
 //pubic routes
 const publicRoutes = [
   { path: "/practices", component: Practices },
   { path: "/tests", component: Tests },
   { path: "/readQuestionPage", component: ReadQuestionPage },
+  { path: "/payment", component: Payment, layout: PremiumLayout },
   { path: "/thptqgexams", component: THPTQGExams },
   { path: "/learn", component: learn },
   { path: "/", component: learn },
