@@ -35,7 +35,7 @@ export const checkRunningStreak = (formValue, language) => API.put(`/streak/chec
 export const sendEmailForResetPasswordApi = (formValue) => API.post("/user/sendemailforresetpassword", formValue);
 export const checkTokenResetPasswordApi = token => API.get(`/user/checkTokenForResetPassword/${token}`);
 export const getAnswersByChatGPT = (formValue) => API.post(`/chatgpt/solverAnswerQueston`, formValue);
-
+export const payBill = (formValue) => API.post("/bill/insertbill", formValue);
 
 
 
@@ -50,3 +50,5 @@ export const getQuestions = () => APICourse.get("/question");
 export const getTest = (testType) => APICourse.get(`/question/getQuestionByTaskId/${testType}`);
 export const getCourse = (title) => APICourse.get(`/course/getCourse/${title}`);
 export const getTasksByLevelAndType = (level, taskType) => APICourse.get(`/task/getTasks/${level}/${taskType}`);
+export const getRandomTest = (testType) => APICourse.get(`/test/deploy/${testType}`);
+export const getPracticesByCourseId = (courseId) => APICourse.get(`/practice/getPracticeByCourseId/${courseId}`);

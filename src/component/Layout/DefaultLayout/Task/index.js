@@ -21,15 +21,29 @@ const contents =[
                   "Làm Bài Test Đầu Vào",
                   "Làm bài test đầu vào để chúng tôi có thể xác định đúng trình độ của bạn và đưa ra các bài học tốt nhất cho bạn",
                   "Tham gia ngay",
-                  "/lesson/entry/read/normal"
+                  "/readQuestionPage/entryTest/2701034384"
                 ]
               ]
 
 function Task() {
-  const {checkOpenRank} = useCourseContext();
+  const {checkOpenRank, course} = useCourseContext();
   const {dailyTask} = useTaskContext();
   const {user} = useUserContext();
   const [checkedUser, setCheckedUser] = useState(1);
+  const contents =[
+    [
+      "Thử Super Miễn Phí", 
+      "Không quảng cáo, bài luyện tập cá nhân hóa, và không giới \nhạn số lần chinh phục Huyền thoại!",
+      "Thử 2 tuần miễn phí",
+      "/premium"
+    ],
+    [
+      "Làm Bài Test Đầu Vào",
+      "Làm bài test đầu vào để chúng tôi có thể xác định đúng trình độ của bạn và đưa ra các bài học tốt nhất cho bạn",
+      "Tham gia ngay",
+      `/readQuestionPage/entryTest/${course?.id}`
+    ]
+  ]
 
   useEffect(() => {
     const account = JSON.parse(localStorage.getItem("account"));

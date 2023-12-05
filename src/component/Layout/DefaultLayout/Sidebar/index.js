@@ -1,4 +1,4 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate,useLocation } from "react-router-dom";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from "../../../../assets/images/logo.png";
@@ -15,11 +15,17 @@ import {
 import Style from "./Sidebar.module.scss";
 import { useUserContext } from "../../../../context/UserContext.js";
 import { useEffect, useState } from "react";
+import { useCourseContext } from "../../../../context/CourseContext.js";
+import { useTestContext } from "../../../../context/TestContext.js";
 
 const cx = classNames.bind(Style);
 function Sidebar() {
   const {logout} = useUserContext();
   const [checked, setChecked] = useState(true);
+  const {course} = useCourseContext();
+  const {resetAllCachingTestDetails} = useTestContext();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if(localStorage.getItem("token")){
@@ -27,9 +33,16 @@ function Sidebar() {
     }
   }, [])
 
+  const handleClick = () => {
+    resetAllCachingTestDetails();
+    if(location.pathname.includes("readQuestionPage")){
+      navigate("/");
+    }
+  }
+
   return (
     <div>
-      <div className={cx("nav")}>
+      <div onClick={handleClick} className={cx("nav")}>
         <div
           className={cx(
             "container",
@@ -88,11 +101,11 @@ function Sidebar() {
 
               <div className={cx("pratice-sub-menu", "py-5", "rounded-5")}>
                 <div className={cx("d-flex", "flex-column")}>
-                  <Link className={cx("btn", "item-link", "py-3", "rounded-3")}>
+                  <Link to={`/readQuestionPage/randomTest/${course?.id}`} className={cx("btn", "item-link", "py-3", "rounded-3")}>
                     Luyện tập Cơ bản
                   </Link>
                   <Link
-                    to={"/practices"}
+                    to={`/practices/${course?.id}`}
                     className={cx("btn", "item-link", "py-3", "rounded-3")}
                   >
                     Luyện tập Nâng cao

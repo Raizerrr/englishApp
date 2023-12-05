@@ -6,43 +6,52 @@ import { UserProvider } from "./context/UserContext";
 import { TestProvider } from "./context/TestContext";
 import { CourseProvider } from "./context/CourseContext";
 import { TaskProvider } from "./context/TaskContext";
+import { PaymentProvider } from "./context/PaymentContext";
+import { PracticeProvider } from "./context/PracticeContext";
 
 function App() {
   
   return (
     <div className="App">
+      
       <Router>
-        <TaskProvider>
-            <CourseProvider>
-              <UserProvider>
-                  <TestProvider>
+        <PracticeProvider>
+          <PaymentProvider>
+            <TaskProvider>
+                <CourseProvider>
+                  <UserProvider>
+                      <TestProvider>
 
-                      <Routes>
-                        {publicRoutes.map((route, index) => {
-                          const Page = route.component;
-                          let Layout = DefaultLayout;
-                          if (route.layout) {
-                            Layout = route.layout;
-                          } else if (route.layout === null) {
-                            Layout = Fragment;
-                          }
-                          return (
-                            <Route
-                              key={index}
-                              path={route.path}
-                              element=<Layout>
-                                <Page />
-                              </Layout>
-                            />
-                          );
-                        })}
-                      </Routes>
-                  </TestProvider>
-              </UserProvider>
+                          <Routes>
+                            {publicRoutes.map((route, index) => {
+                              const Page = route.component;
+                              let Layout = DefaultLayout;
+                              if (route.layout) {
+                                Layout = route.layout;
+                              } else if (route.layout === null) {
+                                Layout = Fragment;
+                              }
+                              return (
+                                <Route
+                                  key={index}
+                                  path={route.path}
+                                  element=<Layout>
+                                    <Page />
+                                  </Layout>
+                                />
+                              );
+                            })}
+                          </Routes>
+                      </TestProvider>
+                  </UserProvider>
 
-            </CourseProvider>
+                </CourseProvider>
 
-        </TaskProvider>
+            </TaskProvider>
+
+          </PaymentProvider>
+
+        </PracticeProvider>
 
       </Router>
     </div>

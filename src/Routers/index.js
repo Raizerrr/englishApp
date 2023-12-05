@@ -29,12 +29,17 @@ import EmailRequestPending from "../pages/EmailRequestPending";
 import Practices from "../pages/RealPractices";
 import Tests from "../pages/Practices";
 import Payment from "../pages/Payment";
+import { PaymentSuccess } from "../pages/Payment/SuccessPayment";
+import { ErrorPayment } from "../pages/Payment/ErrorPayment";
+import { LoadingPage } from "../pages/Loading";
 //pubic routes
 const publicRoutes = [
-  { path: "/practices", component: Practices },
+  { path: "/practices/:courseId", component: Practices },
   { path: "/tests", component: Tests },
-  { path: "/readQuestionPage", component: ReadQuestionPage },
+  { path: "/readQuestionPage/:testType/:testId", component: ReadQuestionPage },
   { path: "/payment", component: Payment, layout: PremiumLayout },
+  { path: "/payment/success", component: PaymentSuccess, layout: null },
+  { path: "/payment/error", component: ErrorPayment, layout: null },
   { path: "/thptqgexams", component: THPTQGExams },
   { path: "/learn", component: learn },
   { path: "/", component: learn },
@@ -61,6 +66,7 @@ const publicRoutes = [
   },
   { path: "/notification", component: Notification, layout: SettingLayout },
   { path: "/lesson/:type/:questionType/:lessonNumber", component: Lesson, layout: null },
+  { path: "/loading/:type/:questionType/:lessonNumber", component: LoadingPage, layout: null },
   { path: "/signin", component: LoginLayout, layout: null },
   { path: "register", component: Register, layout: null },
 ];

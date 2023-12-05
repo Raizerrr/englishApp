@@ -2,10 +2,29 @@ import classNames from "classnames/bind";
 import Style from "./Practices.module.scss";
 
 import { Link } from "react-router-dom";
-
+import { usePracticeContext } from "../../context/PracticeContext";
+import { useTestContext } from "../../context/TestContext";
+import { useNavigate, useParams } from "react-router";
+import { useEffect } from "react";
 const cx = classNames.bind(Style);
 
 function Practices() {
+  const {getPractices, practices} = usePracticeContext();
+  const {setTestDetail} = useTestContext();
+  const {courseId} = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    getPractices(courseId);
+  }, [])
+
+  const handleClick = (practice) => {
+    setTestDetail(practice);
+    navigate(`/readQuestionPage/normal/${practice?.id}`);
+  }
+  
+
+
   return (
     <>
       <div className="container justify-content-center align-items-center d-flex">
@@ -51,62 +70,38 @@ function Practices() {
           </h1>
 
           <div className="d-flex flex-column">
-            <div
-              className={cx(
-                "ielts-section",
-                "pratice-section",
-                "p-4",
-                "border-top"
-              )}
-            >
-              <div className="row">
-                <div className="col-9">
-                  <h1 className={cx("ielts-title", "title")}>Ielts</h1>
-                  <small className={cx("ielts-desc", "desc")}>
-                    Thử thách bản thân với bài kiểm tra chuẩn IELTS
-                  </small>
-                </div>
-                <div className="col-3">
-                  <div className="d-flex justify-content-center align-items-center h-100 w-100">
-                    <Link
-                      to={"/readQuestionPage"}
-                      className={cx("btn", "ielts-button", "button")}
-                    >
-                      Kiểm tra
-                    </Link>
+            {practices?.map(practice => (
+              <div
+                className={cx(
+                  "ielts-section",
+                  "pratice-section",
+                  "p-4",
+                  "border-top"
+                )}
+              >
+                <div className="row">
+                  <div className="col-9">
+                    <h1 className={cx("ielts-title", "title")}>{practice?.title}</h1>
+                    <small className={cx("ielts-desc", "desc")}>
+                      {practice?.description}
+                    </small>
+                  </div>
+                  <div className="col-3">
+                    <div className="d-flex justify-content-center align-items-center h-100 w-100">
+                      <button
+                        onClick={() => handleClick(practice)}
+                        className={cx("btn", "ielts-button", "button")}
+                      >
+                        Kiểm tra
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div
-              className={cx(
-                "ielts-section",
-                "pratice-section",
-                "p-4",
-                "border-top"
-              )}
-            >
-              <div className="row">
-                <div className="col-9">
-                  <h1 className={cx("toeic-title", "title")}>toeic</h1>
-                  <small className={cx("toeic-desc", "desc")}>
-                    Thử thách bản thân với bài kiểm tra chuẩn TOEIC
-                  </small>
-                </div>
-                <div className="col-3">
-                  <div className="d-flex justify-content-center align-items-center h-100 w-100">
-                    <Link
-                      to={"/readQuestionPage"}
-                      className={cx("btn", "ielts-button", "button")}
-                    >
-                      Kiểm tra
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
+              
+            ))}
 
-            <h1
+            {/* <h1
               className={cx(
                 "advance-practice-section-sub-title",
                 "py-3",
@@ -114,8 +109,8 @@ function Practices() {
               )}
             >
               Bài kiểm tra tổng cho cả course 
-            </h1>
-            <div className={cx("border-top")}>
+            </h1> */}
+            {/* <div className={cx("border-top")}>
               <Link
                 to={"/thptqgexams"}
                 className={cx(
@@ -132,7 +127,7 @@ function Practices() {
                   rèn luyện tư duy để chuẩn bị cho các kỳ thi sau này
                 </small>
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

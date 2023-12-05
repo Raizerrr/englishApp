@@ -15,6 +15,7 @@ import LessonHeader from "../../component/LessonHeader";
 import ResultModal from "../../component/ResultModal";
 import SkippedPopup from "../../component/Popup/SkiippedPopup";
 import DontClosePopup from "../../component/Popup/DontClosePopup";
+import { Timer } from "../../component/Timer";
 
 const cx = classNames.bind(Style);
 
@@ -62,7 +63,7 @@ function Lesson() {
       hasMounted.current = false;
       const fetchData = async() => {
         
-        await getTestByType(lessonNumber);
+        await getTestByType("lesson",lessonNumber); 
       }
       fetchData();
     }
@@ -110,9 +111,9 @@ function Lesson() {
   
       }
       else {
-        const account = JSON.parse(localStorage.getItem("acount"));
+        const account = JSON.parse(localStorage.getItem("account"));
         account.hearts = hearts;
-        localStorage.setItem('acount', JSON.stringify(account));
+        localStorage.setItem('account', JSON.stringify(account));
       }
     }
     saveTestDetailInLocalStorage();
@@ -144,7 +145,7 @@ function Lesson() {
                                                               ${question?.wrongAnswer1},
                                                               ${question?.wrongAnswer2},
                                                               ${question?.wrongAnswer3},
-                                                              ${question?.wrongAnswer4}
+                                                              ${question?.wrongAnswer4}.
                                 Câu trả lời nào đúng và giải thích từng câu`;
     answerQuestion.push(answerQuestionItem)
     setAnswerQuestion(answerQuestion);
@@ -199,6 +200,7 @@ function Lesson() {
 
   return (
     <>
+      <Timer/>
       <div className="container-fluid p-0">
         <div className={cx("d-none", { ["show"]: triggerPopup })}>
           {directPopup==="close" ? (

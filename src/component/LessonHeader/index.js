@@ -23,7 +23,6 @@ function LessonHeader(props) {
 
     let result = 0;
     if(questionNumber>=questionsTotal){
-      console.log("ping go");
       const questionNumberWithSkippedQuestions = (questionNumber-skippedQuestionsTotal+skippedQuestionNumber)/questionsTotal;
       const percent = questionNumberWithSkippedQuestions*100;
       result = Math.floor(percent);

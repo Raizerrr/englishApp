@@ -2,10 +2,20 @@ import classNames from "classnames/bind";
 import Style from "../PremiumLayout/Premium.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import {useNavigate} from 'react-router-dom';
+import { usePaymentContext } from "../../../context/PaymentContext";
 
 const cx = classNames.bind(Style);
 
 function PremiumIntro() {
+  const navigate = useNavigate();
+  const {setPaymentDetail, paymentDetail} = usePaymentContext();
+
+  const handleClickPayment = (price) => {
+    setPaymentDetail({...paymentDetail, total: price});
+    navigate("/payment");
+  }
+
   return (
     <>
       <div className={cx("premium-intro-container", "d-flex", "flex-column")}>
@@ -75,7 +85,7 @@ function PremiumIntro() {
             "align-items-center"
           )}
         >
-          <button className={cx("premium-submit-btn")}>
+          <button onClick={() => handleClickPayment(300)} className={cx("premium-submit-btn")}>
             Trả Phí để sử dụng 14 ngày miễn phí
           </button>
         </div>

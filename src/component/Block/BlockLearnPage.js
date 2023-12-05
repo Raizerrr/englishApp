@@ -14,7 +14,8 @@ export const BlockLearnPage = ({block, index, level}) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        setLessons(getLessonsByBlockId(block.id));
+      setLessons(getLessonsByBlockId(block.id));
+      // Clear the timeout to prevent potential memory leaks
     }, []);
 
 
@@ -22,7 +23,7 @@ export const BlockLearnPage = ({block, index, level}) => {
         e.preventDefault();
         const account = localStorage.getItem("account");
         
-        navigate(`/lesson/lesson${account===null?1:player?.currentLevel}/read/${lessonNumber}`);
+        navigate(`/loading/lesson${account===null?1:player?.currentLevel}/read/${lessonNumber}`);
     }
 
 
@@ -36,7 +37,7 @@ export const BlockLearnPage = ({block, index, level}) => {
                   "justify-content-center"
                 )}
               >
-                <div className={cx("bange", "green-bange", "w-100")}>
+                <div style={{backgroundColor: `${block?.blockColor}`}} className={cx("bange", "w-100")}>
                   <h1 className={cx("section-title")}>Gate {index}</h1>
                   <p className={cx("section-desc")}>
                     {block?.title}
@@ -56,12 +57,14 @@ export const BlockLearnPage = ({block, index, level}) => {
                 {lessons?.map((lesson, lessonIndex) => (
                     <div className="col-4 col-sm-3 col-lg-2 d-flex justify-content-center aligns-items-center p-1">
                     <button
+                        style={{backgroundColor: `${checkProgressOfPlayer(lessonIndex, index) || lessonIndex===0?block?.blockColor:"rgb(229,229,229)"}`}}
                         className={cx(
-                        checkProgressOfPlayer(lessonIndex, index) || lessonIndex===0?"green-button-active":"lesson-disable",
+                        "lesson-disable",
                         "button-to-get-in-lesson",
                         "lesson-active",
                         "my-3",
-                        "position-relative"
+                        "position-relative",
+                        
                         )}
                         onClick={e => handleClickLesson(e, lesson?.id)}
                         disabled={checkProgressOfPlayer(lessonIndex, index) || lessonIndex===0?false: true}

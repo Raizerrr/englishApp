@@ -28,10 +28,10 @@ export const UserProvider = ({children}) => {
     useEffect(() => {
         if(player !== null){
             getLessonsAndBlocksAndLessons(player.currentLevel);
-            localStorage.removeItem("acount");
+            localStorage.removeItem("account");
         }
         else {
-            const account = JSON.parse(localStorage.getItem("acount"));
+            const account = JSON.parse(localStorage.getItem("account"));
             if(account?.level) {
                 getLessonsAndBlocksAndLessons(account?.level);
                 
@@ -46,7 +46,7 @@ export const UserProvider = ({children}) => {
                     score: 0,
                     streak: 0
                 }
-                localStorage.setItem("acount", JSON.stringify(newAccount));
+                localStorage.setItem("account", JSON.stringify(newAccount));
                 setHearts(newAccount.hearts);
                 setPlayer(newAccount);
                 setStreak(newAccount.streak);
@@ -94,7 +94,6 @@ export const UserProvider = ({children}) => {
         }
 
         const {data} = await login(admin);
-        console.log(data);
         localStorage.setItem("tokenAdmin", JSON.stringify(data.data.token));
     }
 
@@ -104,7 +103,7 @@ export const UserProvider = ({children}) => {
         setPlayer(null);
         setCurrentUserDetail(null);
         localStorage.removeItem("token");
-        const account = JSON.parse(localStorage.getItem("acount"));
+        const account = JSON.parse(localStorage.getItem("account"));
         setPlayer(account);
         setUser(account);
     }

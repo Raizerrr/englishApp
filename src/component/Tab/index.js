@@ -1,19 +1,36 @@
 import classNames from "classnames/bind";
-import Style from "./Tabs.module.scss";
+import Style from "./Tab.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-
+import { usePaymentContext } from "../../context/PaymentContext";
+import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 const cx = classNames.bind(Style);
+const initialOptions = {
+  clientId: "Ad9Stp6E4rI9GCmOUdc5QEl3imwEmmjj6b-wYblC05er3PeaKvhy6FEgCMNMX7GreVMlLb0KwyFQYmuI",
+  currency: "USD",
+  intent: "capture",
+};
 
 function Tabs() {
   const [paymentToggle, setPaymentToggle] = useState(1);
   const [showOtherCurrency, setShowOtherCurrency] = useState("");
-
+  const {paymentDetail, setPaymentDetail, payBillApi, saveBillDetail} = usePaymentContext();
   const updateToggleHandle = (id) => {
     setPaymentToggle(id);
   };
 
+  const {cardNumber, cVV, expiredDate, currency, description} = paymentDetail;
+
+  const handleChangeValue = (e) => {
+    setPaymentDetail({...paymentDetail, [e.target.name]: e.target.value});
+    saveBillDetail();
+  }
+
+  const handleSubmit = async() => {
+    
+    await payBillApi();
+  }
   return (
     <>
       <div className={cx("tabs-container")}>
@@ -86,7 +103,8 @@ function Tabs() {
               <h1 className={cx("label", "mb-3")}>Đơn Vị Tiền Tệ</h1>
               <div className="position-relative">
                 <select
-                  name=""
+                  name="currency"
+                  
                   id=""
                   className={cx(
                     "currency-method-inputs",
@@ -97,10 +115,8 @@ function Tabs() {
                     "rounded-4",
                     "mb-3"
                   )}
-                  value={showOtherCurrency}
-                  onChange={(e) => {
-                    setShowOtherCurrency(e.target.value);
-                  }}
+                  value={currency}
+                  onChange={handleChangeValue}
                 >
                   <option value="" disabled>
                     Chọn đơn vị tiền tệ của bạn
@@ -148,7 +164,11 @@ function Tabs() {
                     "w-100",
                     "p-3",
                     "rounded-4"
+                    
                   )}
+                  name="description"
+                  value={description}
+                  onChange={handleChangeValue}
                 />
               </div>
             </div>
@@ -169,6 +189,9 @@ function Tabs() {
                 )}
                 required
                 placeholder="1234 1234 1234 1234"
+                name="cardNumber"
+                value={cardNumber}
+                onChange={handleChangeValue}
               />
             </div>
             <div className="row mb-3">
@@ -185,6 +208,9 @@ function Tabs() {
                   )}
                   required
                   placeholder="MM / YY"
+                  name="expiredDate"
+                  value={expiredDate}
+                  onChange={handleChangeValue}
                 />
               </div>
               <div className="col-4">
@@ -200,6 +226,9 @@ function Tabs() {
                   )}
                   required
                   placeholder="VCV"
+                  name="cVV"
+                  value={cVV}
+                  onChange={handleChangeValue}
                 />
               </div>
             </div>
@@ -220,6 +249,9 @@ function Tabs() {
                 )}
                 required
                 placeholder="1234 1234 1234 1234"
+                name="cardNumber"
+                value={cardNumber}
+                onChange={handleChangeValue}
               />
             </div>
             <div className="row mb-3">
@@ -235,6 +267,9 @@ function Tabs() {
                     "mb-3 "
                   )}
                   required
+                  name="expiredDate"
+                  value={expiredDate}
+                  onChange={handleChangeValue}
                   placeholder="MM / YY"
                 />
               </div>
@@ -251,6 +286,9 @@ function Tabs() {
                   )}
                   required
                   placeholder="CVV"
+                  name="cVV"
+                  value={cVV}
+                  onChange={handleChangeValue}
                 />
               </div>
             </div>
@@ -273,9 +311,19 @@ function Tabs() {
               "mt-5"
             )}
           >
-            <button type="submit" className={cx("btn", "purcharse-btn")}>
-              Bắt đầu 14 ngày dùng thử miễn phí
-            </button>
+            {paymentToggle===1 ? (
+              <>
+                <PayPalScriptProvider options={initialOptions}>
+                  <PayPalButtons onClick={handleSubmit}/>
+
+                </PayPalScriptProvider>
+              </>
+            ): (
+              <button onClick={handleSubmit} type="submit" className={cx("btn", "purcharse-btn")}>
+                Bắt đầu 14 ngày dùng thử miễn phí
+              </button>
+
+            )}
           </div>
         </div>
       </div>

@@ -1,8 +1,17 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { createNewStreak, getAnswersByChatGPT, getTest } from "../axios/userAxios";
+import { createNewStreak, getAnswersByChatGPT, getRandomTest, getTest } from "../axios/userAxios";
 import { useNavigate } from "react-router";
 import { useUserContext } from "./UserContext";
 const TestContext = createContext();
+
+// Initial a test for deploy random question in this course for basic test
+const initialTest =  {
+    title: "Bài thực hành cơ bản của khóa học",
+    description: "Chúng ta hãy ôn lại những bài học mà ta đã học qua dưới dạng các bài test",
+    questionAmount: "random",
+    interval: "60"
+}
+
 export const TestProvider = ({children}) => {
     const [questions, setQuestions] = useState(() => {
         const questionsStorage = JSON.parse(localStorage.getItem("questions"));
@@ -55,9 +64,8 @@ export const TestProvider = ({children}) => {
 
 
 
-    
 
-    const getTestByType = async(testType) => {
+    const getTestByType = async(testType, testId) => {
         let questionsStorage = JSON.parse(localStorage.getItem("questions"));
         let testDetailStorage = JSON.parse(localStorage.getItem("testDetail"));
         let questionNumberStorage = JSON.parse(localStorage.getItem("questionNumber"));
@@ -70,10 +78,17 @@ export const TestProvider = ({children}) => {
                         answerQuestionStorage === null;
         if(checked) {
             
-            const {data} = await getTest(testType);
-            console.log(data);
-            questionsStorage = data?.data;
-            testDetailStorage = {};
+            
+            if(testType==="randomTest" || testType==="entryTest"){
+                const {data} = await getRandomTest(testId);
+                testDetailStorage = initialTest;
+                questionsStorage = data?.data?.questions;
+            }
+            else {
+                const {data} = await getTest(testId);
+                questionsStorage = data?.data;
+                testDetailStorage = {};
+            }
             questionNumberStorage = 0;
             answerQuestionStorage = [];
             skippedQuestionsStorage = [];
@@ -208,7 +223,6 @@ export const TestProvider = ({children}) => {
         setLoading(false);
         if(answersStorage===null || answersStorage.length < 2){
             const {data} = await getAnswersByChatGPT(answerQuestion);
-            console.log(data.data);
             setAnswers(data.data);
             localStorage.setItem("answers", JSON.stringify(data.data));
         }
@@ -241,6 +255,7 @@ export const TestProvider = ({children}) => {
             skippedQuestionNumber,
             chosenAnswers,
             answers,
+            setTestDetail,
             setChosenAnswers,
             setSkippedQuestionNumber,
             setDirectPopup,
