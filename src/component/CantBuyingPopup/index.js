@@ -63,7 +63,7 @@ function CantBuyingPopup(props) {
                     "buy-in-btn"
                   )}
                 >
-                  Học để kiếm thêm Kim Cương
+                  Kiếm thêm Kim Cương
                 </button>
               </div>
             </div>

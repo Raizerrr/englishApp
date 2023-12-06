@@ -4,7 +4,7 @@
     position: fixed;
     z-index: 2;
     min-height: 100vh;
-    min-width: 100vh;
+    width: 100vh;
     .overlay{
         background-color: rgba(0, 0, 0, 0.3);
         position: fixed;
@@ -18,7 +18,7 @@
         border-radius: 1.5rem;
         background-color: #fff;
         min-height: 50vh;
-        min-width: 80%;
+        width: 80%;
         z-index: 3;
         overflow: hidden;
         transform: translate(17%, 0%);
