@@ -1,30 +1,53 @@
 import classNames from "classnames/bind";
 import Style from "./ResultModal.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faClose } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faCircleArrowDown, faClose } from "@fortawesome/free-solid-svg-icons";
 import { useTestContext } from "../../context/TestContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {Spinner} from '../../component/Spinner/Spinner';
 
 const cx = classNames.bind(Style);
 
 function ResultModal(props) {
   const {chosenAnswers, questions, answers} = useTestContext();
+  const [questionsResult, setQuestionsResult] = useState([]);
   const [content, setContent] = useState(true);
   const [answer, setAnswer] = useState();
 
-  const handleCheckCorrectOrWrong = (index) => {
+  useEffect(() => {
+    handleCheckCorrectOrWrong();
+  }, [])
+
+  const handleCheckCorrectOrWrong = () => {
+    const copiedQuestions = [];
     for(let i = 0; i < questions.length; i++) {
-      if(questions[i].correctAnswer.includes(chosenAnswers[index].chosenAnswer)){
-        return true;
+      let newAnswerDisplay = questions[i];
+      const chosenAnswerQuestion = chosenAnswers?.find(answer => questions[i]?.id === answer?.id);
+      if(chosenAnswerQuestion) {
+        newAnswerDisplay.chosenAnswer = chosenAnswerQuestion?.chosenAnswer;
+        if(questions[i].correctAnswer.includes(chosenAnswerQuestion.chosenAnswer)){
+          newAnswerDisplay.answerDisplay = "correct-answer-display";
+          newAnswerDisplay.icon = "correct-icon";
+          newAnswerDisplay.fontAwesomeIcon = faCheck
+        }
+        else {
+          newAnswerDisplay.answerDisplay = "wrong-answer-display";
+          newAnswerDisplay.icon = "wrong-icon";
+          newAnswerDisplay.fontAwesomeIcon = faClose
+        }
+
       }
+      else {
+        newAnswerDisplay.answerDisplay = "";
+        newAnswerDisplay.icon = "";
+        newAnswerDisplay.fontAwesomeIcon = faCircleArrowDown
+      }
+      copiedQuestions.push(newAnswerDisplay);
     }
 
-    return false;
+    setQuestionsResult(copiedQuestions);
   }
 
-  const getQuestionFromId = (index) => {
-    return questions.find(question => question.id===chosenAnswers[index].id);
-  }
 
   const handleChangeContent = (index) => {
     setAnswer(answers[index]);
@@ -75,28 +98,28 @@ function ResultModal(props) {
               </div>
               <div className={cx("result-display-container")}>
                 <div className="row">
-                {chosenAnswers?.map((answer, index) => (
+                {questionsResult?.map((answer, index) => (
                     <div style={{cursor: "pointer"}} className="col-6 col-lg-4 col-xxl-3"  onClick={() => handleChangeContent(index)}>
                       <div
                         className={cx(
                           "result-display",
                           "p-3",
                           "rounded-4",
-                          `${handleCheckCorrectOrWrong(index)?"correct-answer-display":"wrong-answer-display"}`,
+                          `${answer?.answerDisplay}`,
                           "position-relative"
                         )}
                       >
                         <div
                           className={cx(
 
-                            `${handleCheckCorrectOrWrong(index)?"correct-icon":"wrong-icon"}`,
+                            `${answer?.icon}`,
                             "px-2",
                             "icon",
                             //   "py-1",
                             "rounded-circle"
                           )}
                         >
-                          <FontAwesomeIcon icon={handleCheckCorrectOrWrong(index)?faCheck:faClose} />
+                          <FontAwesomeIcon icon={answer?.fontAwesomeIcon} />
                         </div>
 
                         {/* <div
@@ -110,7 +133,7 @@ function ResultModal(props) {
                         >
                           <FontAwesomeIcon icon={faClose} />
                         </div> */}
-                        <div className={cx("question-result-title")}>{getQuestionFromId(index).description}</div>
+                        <div className={cx("question-result-title")}>{answer?.description}</div>
                         <div className={cx("result-answer-container", "py-3")}>
                           <div className={cx("wrong-answer-container", "pb-2")}>
                             <h1 className={cx("wrong-answer-title", "title")}>
@@ -125,7 +148,7 @@ function ResultModal(props) {
                               Đáp án đúng
                             </h1>
                             <div className={cx("correct-answer", "answer")}>
-                              {getQuestionFromId(index).correctAnswer}
+                              {answer?.correctAnswer}
                             </div>
                           </div>
                         </div>
@@ -148,9 +171,9 @@ function ResultModal(props) {
               "h-100"
             )}>
               <div>
-                <button onClick={handleChangeContent}>Trở về</button>
+                <button style={{backgroundColor:"rgb(221,244,255)", color: "rgb(24,153,214)"}} className="btn" onClick={handleChangeContent}>Trở về</button>
               </div>
-              <div>{answer}</div>
+              {answer ? <div>{answer}</div> : <Spinner/>}
             </div>
           )}
         </div>

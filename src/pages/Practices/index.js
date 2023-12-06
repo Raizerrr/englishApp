@@ -51,61 +51,40 @@ function Tests() {
           </h1>
 
           <div className="d-flex flex-column">
-            <div
-              className={cx(
-                "ielts-section",
-                "pratice-section",
-                "p-4",
-                "border-top"
-              )}
-            >
-              <div className="row">
-                <div className="col-9">
-                  <h1 className={cx("ielts-title", "title")}>Ielts</h1>
-                  <small className={cx("ielts-desc", "desc")}>
-                    Thử thách bản thân với bài kiểm tra chuẩn IELTS
-                  </small>
-                </div>
-                <div className="col-3">
-                  <div className="d-flex justify-content-center align-items-center h-100 w-100">
-                    <Link
-                      to={"/readQuestionPage"}
-                      className={cx("btn", "ielts-button", "button")}
-                    >
-                      Kiểm tra
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              className={cx(
-                "ielts-section",
-                "pratice-section",
-                "p-4",
-                "border-top"
-              )}
-            >
-              <div className="row">
-                <div className="col-9">
-                  <h1 className={cx("toeic-title", "title")}>toeic</h1>
-                  <small className={cx("toeic-desc", "desc")}>
-                    Thử thách bản thân với bài kiểm tra chuẩn TOEIC
-                  </small>
-                </div>
-                <div className="col-3">
-                  <div className="d-flex justify-content-center align-items-center h-100 w-100">
-                    <Link
-                      to={"/readQuestionPage"}
-                      className={cx("btn", "ielts-button", "button")}
-                    >
-                      Kiểm tra
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
 
+            <div className={cx("border-top")}>
+              <Link
+                to={`/allTestOfType/ielts`}
+                className={cx(
+                  "pratice-section",
+                  "p-4",
+                  "btn",
+                  "text-start",
+                  "THPTQG-tests-section"
+                )}
+              >
+                <h1 className={cx("title")}>Ielts</h1>
+                <small className={cx("desc")}>
+                  Thử thách bản thân với bài kiểm tra chuẩn IELTS
+                </small>
+              </Link>
+            </div><div className={cx("border-top")}>
+              <Link
+                to={"/allTestOfType/toiec"}
+                className={cx(
+                  "pratice-section",
+                  "p-4",
+                  "btn",
+                  "text-start",
+                  "THPTQG-tests-section"
+                )}
+              >
+                <h1 className={cx("title")}>Toeic</h1>
+                <small className={cx("desc")}>
+                Thử thách bản thân với bài kiểm tra chuẩn TOEIC
+                </small>
+              </Link>
+            </div>  
             <h1
               className={cx(
                 "advance-practice-section-sub-title",
@@ -117,7 +96,7 @@ function Tests() {
             </h1>
             <div className={cx("border-top")}>
               <Link
-                to={"/thptqgexams"}
+                to={"/allTestOfType/university"}
                 className={cx(
                   "pratice-section",
                   "p-4",

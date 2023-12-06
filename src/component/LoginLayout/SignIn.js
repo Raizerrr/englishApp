@@ -41,7 +41,6 @@ function SignIn() {
 
     const {data} = await login(formValue);
 
-
     if (data?.data?.token) {
       localStorage.setItem("token", JSON.stringify(data?.data?.token));
       await registerUser();

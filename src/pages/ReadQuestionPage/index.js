@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useTestContext } from '../../context/TestContext';
-import { useLocation, useParams } from "react-router";
+import { useParams } from "react-router";
 import {useLoadingAndTiming} from '../../hooks/useLoadingAndTiming';
 import { useEffect } from "react";
 import {Spinner} from '../../component/Spinner/Spinner';

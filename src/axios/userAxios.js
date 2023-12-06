@@ -52,3 +52,4 @@ export const getCourse = (title) => APICourse.get(`/course/getCourse/${title}`);
 export const getTasksByLevelAndType = (level, taskType) => APICourse.get(`/task/getTasks/${level}/${taskType}`);
 export const getRandomTest = (testType) => APICourse.get(`/test/deploy/${testType}`);
 export const getPracticesByCourseId = (courseId) => APICourse.get(`/practice/getPracticeByCourseId/${courseId}`);
+export const getAllTestByTestType = (testType) => APICourse.get(`/test/getAllTestByTestType/${testType}`);

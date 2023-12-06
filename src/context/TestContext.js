@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { createNewStreak, getAnswersByChatGPT, getRandomTest, getTest } from "../axios/userAxios";
+import { createNewStreak, getAllTestByTestType, getAnswersByChatGPT, getRandomTest, getTest } from "../axios/userAxios";
 import { useNavigate } from "react-router";
 import { useUserContext } from "./UserContext";
 const TestContext = createContext();
@@ -58,11 +58,17 @@ export const TestProvider = ({children}) => {
     })
     const [directPopup, setDirectPopup] = useState(""); 
     const [loading, setLoading] = useState();
-    
+    const [tests, setTests] = useState([]);
+
     const navigate = useNavigate();
     const {updateCurrentLevel, player, updatePlayer} = useUserContext();
 
 
+
+    const getAllTestAtTestType = async(testType) => {
+        const {data} = await getAllTestByTestType(testType);
+        setTests(data?.data);
+    }
 
 
     const getTestByType = async(testType, testId) => {
@@ -73,7 +79,6 @@ export const TestProvider = ({children}) => {
         let skippedQuestionsStorage = JSON.parse(localStorage.getItem("skippedQuestions"));
         let skippedQuestionNumberStorage = JSON.parse(localStorage.getItem("skippedQuestionNumber"));
         const checked = questionNumberStorage === null && 
-                        testDetailStorage === null && 
                         questionsStorage === null &&
                         answerQuestionStorage === null;
         if(checked) {
@@ -87,7 +92,6 @@ export const TestProvider = ({children}) => {
             else {
                 const {data} = await getTest(testId);
                 questionsStorage = data?.data;
-                testDetailStorage = {};
             }
             questionNumberStorage = 0;
             answerQuestionStorage = [];
@@ -126,38 +130,8 @@ export const TestProvider = ({children}) => {
             if(skippedQuestions?.length === 0 || skippedQuestionNumber===skippedQuestions?.length) {
 
                 navigate(`/lesson/complete/normal/${testype}`);
-    
-                const scoreTotal = questions?.reduce((accumulator, currentValue) => {
-                    return accumulator + currentValue.score;
-                  }, 0);
-                if(score/scoreTotal>75){
-                    updateCurrentLevel(testype);    
-                }
-                if(JSON.parse(localStorage.getItem("account"))?.level && !player?.userId){
-                    const account = {
-                        currentCourse: null,
-                        currentBlock: null,
-                        currentLesson: null,
-                        level: determineLevel()+1
-                    }
-                    localStorage.setItem("account", JSON.stringify(account));
-                }
-                if(player?.id){
-                    player.expPoint += 10;
-                    await updatePlayer(player);
-                    createNewStreakItem(playerId);
-                }
-                else {
-                    const account = JSON.parse(localStorage.getItem("acount"));
-                    if(account?.expoint){
-
-                        account.expPoint += 10;
-                    }
-                    else {
-                        account.expPoint = 10;
-                    }
-                    localStorage.setItem("acount", JSON.stringify(account));
-                }
+                calculateScoreForTest(testype, playerId);
+                
             }
 
             else if(skippedQuestionNumber===0) {
@@ -172,6 +146,40 @@ export const TestProvider = ({children}) => {
         }
         return questions[questionNumber];
     };
+
+    const calculateScoreForTest = async(testype, playerId) => {
+        const scoreTotal = questions?.reduce((accumulator, currentValue) => {
+            return accumulator + currentValue.score;
+          }, 0);
+        if(score/scoreTotal>75){
+            updateCurrentLevel(testype);    
+        }
+        if(JSON.parse(localStorage.getItem("account"))?.level && !player?.userId){
+            const account = {
+                currentCourse: null,
+                currentBlock: null,
+                currentLesson: null,
+                level: determineLevel()+1
+            }
+            localStorage.setItem("account", JSON.stringify(account));
+        }
+        if(player?.id){
+            player.expPoint += 10;
+            await updatePlayer(player);
+            createNewStreakItem(playerId);
+        }
+        else {
+            const account = JSON.parse(localStorage.getItem("acount"));
+            if(account?.expoint){
+
+                account.expPoint += 10;
+            }
+            else {
+                account.expPoint = 10;
+            }
+            localStorage.setItem("acount", JSON.stringify(account));
+        }
+    }
 
     const createNewStreakItem = async(playerId) => {
         await createNewStreak({playerId});
@@ -206,6 +214,7 @@ export const TestProvider = ({children}) => {
         localStorage.removeItem("skippedQuestionNumber")
         localStorage.removeItem("chosenAnswers");
         localStorage.removeItem("answers");
+        localStorage.removeItem("timer");
         setQuestions([]);
         setSkippedQuestions([]);
         setAnswerQuestion([]);
@@ -255,6 +264,8 @@ export const TestProvider = ({children}) => {
             skippedQuestionNumber,
             chosenAnswers,
             answers,
+            tests,
+            calculateScoreForTest,
             setTestDetail,
             setChosenAnswers,
             setSkippedQuestionNumber,
@@ -268,7 +279,8 @@ export const TestProvider = ({children}) => {
             saveTestDetailInLocalStorage,
             resetAllCachingTestDetails,
             setSkippedQuestions,
-            getAnswers
+            getAnswers,
+            getAllTestAtTestType
         }}>
             {children}
         </TestContext.Provider>

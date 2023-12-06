@@ -10,7 +10,6 @@ export const PracticeProvider = ({children}) => {
         const {data} = await getPracticesByCourseId(courseId);
         setPractices(data?.data)
     }
-
     return (
         <PracticeContext.Provider
             value={{

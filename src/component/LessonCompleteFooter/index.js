@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import Style from "../../pages/Lesson/Lesson.module.scss";
 import { useParams } from "react-router";
+import { Timer } from "../Timer";
 const cx = classNames.bind(Style);
 
 function LessonFooter(props) {
@@ -39,6 +40,8 @@ function LessonFooter(props) {
                 <button className={cx("skip-btn", "btn")} onClick={props.skipQuestion}>
                   Bỏ qua
                 </button>
+                {props.testDetail && <Timer/>}
+                
                 <button disabled={props.answerActive.indexOf(true)!==-1?false:true} 
                   style={props.answerActive.indexOf(true)!==-1?{backgroundColor:"rgb(221,244,255)", color: "rgb(24,153,214)"}:null}
                  className={cx("check-btn", "btn", "disabled")} onClick={props.checkQuestion}>

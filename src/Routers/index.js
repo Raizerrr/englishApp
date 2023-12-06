@@ -40,7 +40,7 @@ const publicRoutes = [
   { path: "/payment", component: Payment, layout: PremiumLayout },
   { path: "/payment/success", component: PaymentSuccess, layout: null },
   { path: "/payment/error", component: ErrorPayment, layout: null },
-  { path: "/thptqgexams", component: THPTQGExams },
+  { path: "/allTestOfType/:allTestType", component: THPTQGExams },
   { path: "/learn", component: learn },
   { path: "/", component: learn },
   { path: "/leaderBoard", component: LeaderBoard },

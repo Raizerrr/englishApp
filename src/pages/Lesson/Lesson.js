@@ -15,7 +15,6 @@ import LessonHeader from "../../component/LessonHeader";
 import ResultModal from "../../component/ResultModal";
 import SkippedPopup from "../../component/Popup/SkiippedPopup";
 import DontClosePopup from "../../component/Popup/DontClosePopup";
-import { Timer } from "../../component/Timer";
 
 const cx = classNames.bind(Style);
 
@@ -67,6 +66,18 @@ function Lesson() {
       }
       fetchData();
     }
+
+    const handleBeforeUnload = (event) => {
+      const message = "Bạn có chắc muốn rời khỏi trang?";
+      event.returnValue = message; // Chuẩn cho các trình duyệt cũ
+      return message; // Chuẩn cho các trình duyệt mới
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload); 
+    };
   }, []);
 
   useEffect(() => {
@@ -200,7 +211,6 @@ function Lesson() {
 
   return (
     <>
-      <Timer/>
       <div className="container-fluid p-0">
         <div className={cx("d-none", { ["show"]: triggerPopup })}>
           {directPopup==="close" ? (
@@ -231,7 +241,7 @@ function Lesson() {
           {/* footer */}
 
           <div className={cx("footer-lesson-container")}>
-            <LessonCompleteFooter ClickToOpenModal={OpenModalHandle}  checkQuestion={checkQuestion} skipQuestion={skipQuestion} returnHome={returnHome} answerActive={answerActive}/>
+            <LessonCompleteFooter testDetail={testDetail} ClickToOpenModal={OpenModalHandle}  checkQuestion={checkQuestion} skipQuestion={skipQuestion} returnHome={returnHome} answerActive={answerActive}/>
           </div>
           {/* footer */}
 

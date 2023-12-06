@@ -10,7 +10,7 @@ const cx = classNames.bind(Style);
 
 function Practices() {
   const {getPractices, practices} = usePracticeContext();
-  const {setTestDetail} = useTestContext();
+  const {setTestDetail, } = useTestContext();
   const {courseId} = useParams();
   const navigate = useNavigate();
 
@@ -19,7 +19,7 @@ function Practices() {
   }, [])
 
   const handleClick = (practice) => {
-    setTestDetail(practice);
+    localStorage.setItem("testDetail", JSON.stringify(practice))
     navigate(`/readQuestionPage/normal/${practice?.id}`);
   }
   
