@@ -8,18 +8,10 @@ function PremiumLayout({ children }) {
   return (
     <>
       <div className="contaner-fluid">
-        <div className={cx("premium-container", "p-5")}>
+        <div className={cx("premium-container", "p-0", "py-5")}>
           <PremiumHeader />
-          <div
-            className={cx(
-              "d-flex",
-              "justify-content-center",
-              "align-items-center",
-              "my-5"
-            )}
-          >
-            {children}
-          </div>
+
+          {children}
         </div>
       </div>
     </>

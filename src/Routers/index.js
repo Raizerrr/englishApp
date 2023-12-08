@@ -22,12 +22,15 @@ import Lesson from "../pages/Lesson/Lesson";
 import Setting from "../pages/SettingPage/Setting";
 import ChangePassword from "../pages/ChangePassword";
 import Notification from "../pages/Notification";
+import { PaymentSuccess } from "../pages/Payment/SuccessPayment";
+import { ErrorPayment } from "../pages/Payment/ErrorPayment";
 import SuperPackInfomation from "../pages/SuperpackInformation";
 import EmailRequestPending from "../pages/EmailRequestPending";
 import Practices from "../pages/Practices";
 import ReadQuestionPage from "../pages/ReadQuestionPage";
 import THPTQGExams from "../pages/THPTQGExams";
 import Payment from "../pages/Payment";
+import Page404 from "../pages/Page404";
 
 //pubic routes
 const publicRoutes = [
@@ -37,9 +40,16 @@ const publicRoutes = [
   { path: "/readQuestionPage", component: ReadQuestionPage },
   { path: "/thptqgexams", component: THPTQGExams },
   { path: "/leaderBoard", component: LeaderBoard },
+  {
+    path: "/payment/success",
+    component: PaymentSuccess,
+    layout: PremiumLayout,
+  },
+  { path: "/payment/error", component: ErrorPayment, layout: PremiumLayout },
   { path: "/license", component: License, layout: OnlySidebarLayout },
   { path: "/premium", component: PremiumIntro, layout: PremiumLayout },
   { path: "/payment", component: Payment, layout: PremiumLayout },
+  { path: "/page404", component: Page404, layout: null },
   { path: "/quest", component: Quest },
   { path: "/shop", component: Shop },
   { path: "/profile", component: Profile, layout: ProfileLayout },

@@ -1,5 +1,6 @@
 .premium-container{
     min-height: 100vh;
+    height: 100%;
     width: 100%;
     background: radial-gradient(216% 106% at 6% 3%,rgba(38,246,99,.3) 0,rgba(38,138,255,.3) 52%,rgba(252,85,255,.3) 100%),rgb(0,4,55);
 
@@ -44,11 +45,11 @@
             border-radius: 1.5rem;
             .hightlight-background{
                 position: absolute;
-                top: 10%;
-                bottom: 10%;
+                top: 0;
+                bottom: 0;
                 background-color: #cccccc6d;
-                width: 20%;
-                right: 5%;
+                width: 100px;
+                right: 20px;
                 border-radius: 1.5rem;
               }
             .premium-content{
@@ -98,5 +99,10 @@
                 box-shadow: none;
             }
         }
+    }
+}
+@media screen and (max-width : 768px){
+    .hightlight-background{
+        right: 10px !important;
     }
 }

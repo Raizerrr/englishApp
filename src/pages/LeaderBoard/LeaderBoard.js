@@ -72,7 +72,7 @@ function LeaderBoard() {
               Top kn trong Tuần
             </h1>
             <div className={cx("leaderboard", "d-flex", "flex-column", "py-2")}>
-              <div className={cx("leaderboard-list", "px-3")}>
+              <div className={cx("leaderboard-list", "px-0", "px-sm-3")}>
                 <div
                   className={cx(
                     "leaderboard-item",
@@ -91,7 +91,8 @@ function LeaderBoard() {
                         <div
                           className={cx(
                             "col-2",
-                            "d-flex",
+                            "d-none",
+                            "d-sm-flex",
                             "justify-content-center"
                           )}
                         >
@@ -119,7 +120,7 @@ function LeaderBoard() {
                         </div>
                       </div>
                     </div>
-                    <div className={cx("col-2")}>
+                    <div className={cx("col-1")}>
                       <div className={cx("user-exp-leaderboard-container")}>
                         10
                       </div>
@@ -144,7 +145,8 @@ function LeaderBoard() {
                         <div
                           className={cx(
                             "col-2",
-                            "d-flex",
+                            "d-none",
+                            "d-sm-flex",
                             "justify-content-center"
                           )}
                         >
@@ -172,7 +174,7 @@ function LeaderBoard() {
                         </div>
                       </div>
                     </div>
-                    <div className={cx("col-2")}>
+                    <div className={cx("col-1")}>
                       <div className={cx("user-exp-leaderboard-container")}>
                         10
                       </div>
@@ -197,7 +199,8 @@ function LeaderBoard() {
                         <div
                           className={cx(
                             "col-2",
-                            "d-flex",
+                            "d-none",
+                            "d-sm-flex",
                             "justify-content-center"
                           )}
                         >
@@ -225,7 +228,7 @@ function LeaderBoard() {
                         </div>
                       </div>
                     </div>
-                    <div className={cx("col-2")}>
+                    <div className={cx("col-1")}>
                       <div className={cx("user-exp-leaderboard-container")}>
                         10
                       </div>
@@ -250,7 +253,8 @@ function LeaderBoard() {
                         <div
                           className={cx(
                             "col-2",
-                            "d-flex",
+                            "d-none",
+                            "d-sm-flex",
                             "justify-content-center"
                           )}
                         >
@@ -278,7 +282,7 @@ function LeaderBoard() {
                         </div>
                       </div>
                     </div>
-                    <div className={cx("col-2")}>
+                    <div className={cx("col-1")}>
                       <div className={cx("user-exp-leaderboard-container")}>
                         1
                       </div>
@@ -301,7 +305,8 @@ function LeaderBoard() {
                     <div
                       className={cx(
                         "col-2",
-                        "d-flex",
+                        "d-none",
+                        "d-sm-flex",
                         "justify-content-center"
                       )}
                     >
@@ -325,7 +330,7 @@ function LeaderBoard() {
                     </div>
                   </div>
                 </div>
-                <div className={cx("col-2")}>
+                <div className={cx("col-1")}>
                   <div className={cx("user-exp-leaderboard-container")}>
                     1 Kn
                   </div>

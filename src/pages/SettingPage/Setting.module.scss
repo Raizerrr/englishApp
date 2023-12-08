@@ -51,7 +51,7 @@ html{
     }
     
     .setting-item-label{
-        text-align: right;
+        
         width: 150px;
         padding-right: 32px;
         font-size: 15px;
@@ -118,7 +118,7 @@ html{
     }
     
     .setting-item-label{
-        text-align: right;
+        
         width: 150px;
         font-size: 15px;
         font-weight: 700;
@@ -260,7 +260,7 @@ html{
 
 @media screen and (max-width : 768px){
     .setting-container{
-        margin-left: 100px;
+        margin-left: 0px;
     }
     .save-setting-btn-container{
         position: absolute;

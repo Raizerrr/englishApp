@@ -18,7 +18,7 @@ function Shop() {
     <div>
       <div className={cx("d-none", { ["show"]: showBuyingPopup })}>
         <BuyingPopup ClickToClosePopup={ClickToShowPopupHandle} />
-        <CantBuyingPopup ClickToClosePopup={ClickToShowPopupHandle} />
+        {/* <CantBuyingPopup ClickToClosePopup={ClickToShowPopupHandle} /> */}
       </div>
       <div className={cx("container", "d-flex", "justify-content-center")}>
         <div className={cx("shop-container")}>
@@ -66,32 +66,36 @@ function Shop() {
                       className="w-100 h-100"
                     />
                   </div>
-                  <div className="col-7">
-                    <div className={cx("heart-item-title", "py-3")}>
-                      Hồi phục Trái tim
+                  <div className="col-10">
+                    <div className="row">
+                      <div className="col-12 col-sm-8">
+                        <div className={cx("heart-item-title", "py-3")}>
+                          Hồi phục Trái tim
+                        </div>
+                        <p>
+                          Lấp đầy trái tim để không phải lo lắng mắc lỗi sai
+                          trong bài học
+                        </p>
+                      </div>
+                      <div className="col-12 col-sm-4 d-flex align-items-center">
+                        <button
+                          className={cx(
+                            "shop-purcherse-btn",
+                            "py-3",
+                            "w-sm-100",
+                            "rounded-4"
+                          )}
+                          onClick={ClickToShowPopupHandle}
+                        >
+                          <img
+                            src="https://d35aaqx5ub95lt.cloudfront.net/images/gems/45c14e05be9c1af1d7d0b54c6eed7eee.svg"
+                            alt=""
+                            className="pe-3"
+                          />
+                          100
+                        </button>
+                      </div>
                     </div>
-                    <p>
-                      Lấp đầy trái tim để không phải lo lắng mắc lỗi sai trong
-                      bài học
-                    </p>
-                  </div>
-                  <div className="col-3 d-flex align-items-center">
-                    <button
-                      className={cx(
-                        "shop-purcherse-btn",
-                        "py-3",
-                        "w-100",
-                        "rounded-4"
-                      )}
-                      onClick={ClickToShowPopupHandle}
-                    >
-                      <img
-                        src="https://d35aaqx5ub95lt.cloudfront.net/images/gems/45c14e05be9c1af1d7d0b54c6eed7eee.svg"
-                        alt=""
-                        className="pe-3"
-                      />
-                      100
-                    </button>
                   </div>
                 </div>
               </li>
@@ -104,25 +108,28 @@ function Shop() {
                       className="w-100 h-100 "
                     />
                   </div>
-                  <div className="col-7">
-                    <div className={cx("heart-item-title", "py-3")}>
-                      Trái tim Vô hạn
+                  <div className="col-10">
+                    <div className="row">
+                      <div className="col-12 col-sm-8">
+                        <div className={cx("heart-item-title", "py-3")}>
+                          Trái tim Vô hạn
+                        </div>
+                        <p>Không bao giờ hết trái tim khi học với Super!</p>
+                      </div>
+                      <div className="col-12 col-sm-4 d-flex align-items-center">
+                        <Link
+                          to={"/premium"}
+                          className={cx(
+                            "shop-purcherse-btn",
+                            "py-3",
+                            "rounded-4",
+                            "premium-color"
+                          )}
+                        >
+                          Thử Miễn phí
+                        </Link>
+                      </div>
                     </div>
-                    <p>Không bao giờ hết trái tim khi học với Super!</p>
-                  </div>
-                  <div className="col-3 d-flex align-items-center">
-                    <Link
-                      to={"/premium"}
-                      className={cx(
-                        "shop-purcherse-btn",
-                        "py-3",
-                        "w-100",
-                        "rounded-4",
-                        "premium-color"
-                      )}
-                    >
-                      Thử Miễn phí
-                    </Link>
                   </div>
                 </div>
               </li>
@@ -140,36 +147,40 @@ function Shop() {
                       className="w-100 h-100"
                     />
                   </div>
-                  <div className="col-7">
-                    <div className={cx("heart-item-title", "py-3")}>
-                      Streak Freeze
+                  <div className="col-10">
+                    <div className="row">
+                      <div className="col-12 col-sm-8">
+                        <div className={cx("heart-item-title", "py-3")}>
+                          Streak Freeze
+                        </div>
+                        <p className={cx("limited-item")}>
+                          Giới hạn trong ngày : (0/2)
+                        </p>
+                        <p>
+                          Streak Freeze cho phép bạn giữ nguyên streak trong một
+                          ngày bạn không có hoạt động nào.
+                        </p>
+                      </div>
+                      <div className="col-12 col-sm-4 d-flex align-items-center">
+                        <button
+                          className={cx(
+                            "shop-purcherse-btn",
+                            "py-3",
+
+                            "rounded-4",
+                            "streak-frezze-color"
+                          )}
+                          onClick={ClickToShowPopupHandle}
+                        >
+                          <img
+                            src="https://d35aaqx5ub95lt.cloudfront.net/images/gems/45c14e05be9c1af1d7d0b54c6eed7eee.svg"
+                            alt=""
+                            className="pe-3"
+                          />
+                          100
+                        </button>
+                      </div>
                     </div>
-                    <p className={cx("limited-item")}>
-                      Giới hạn trong ngày : (0/2)
-                    </p>
-                    <p>
-                      Streak Freeze cho phép bạn giữ nguyên streak trong một
-                      ngày bạn không có hoạt động nào.
-                    </p>
-                  </div>
-                  <div className="col-3 d-flex align-items-center">
-                    <button
-                      className={cx(
-                        "shop-purcherse-btn",
-                        "py-3",
-                        "w-100",
-                        "rounded-4",
-                        "streak-frezze-color"
-                      )}
-                      onClick={ClickToShowPopupHandle}
-                    >
-                      <img
-                        src="https://d35aaqx5ub95lt.cloudfront.net/images/gems/45c14e05be9c1af1d7d0b54c6eed7eee.svg"
-                        alt=""
-                        className="pe-3"
-                      />
-                      100
-                    </button>
                   </div>
                 </div>
               </li>

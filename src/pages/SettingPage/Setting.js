@@ -49,12 +49,12 @@ function Setting() {
           </div>
           <div className="py-5">
             <div className="row">
-              <div className="col-3">
+              <div className="col-12 col-sm-3 ms-5 ms-sm-0 d-flex d-sm-block justify-content-start align-items-center ps-5 ps-sm-0 text-start text-sm-end  d-flex d-sm-block justify-content-start align-items-center ps-5 ps-sm-0">
                 <label htmlFor="" className={cx("setting-item-label", "me-5")}>
                   Ảnh hồ sơ
                 </label>
               </div>
-              <div className="col-9 ps-5">
+              <div className=" col-12 col-sm-9 ps-5">
                 <label
                   htmlFor="upload-file-btn"
                   className={cx("upload-file-btn", "ms-5")}
@@ -82,12 +82,12 @@ function Setting() {
           </div>
           <div className="mb-5">
             <div className="row">
-              <div className="col-3">
+              <div className="col-12 col-sm-3 ms-5 ms-sm-0 d-flex d-sm-block justify-content-start align-items-center ps-5 ps-sm-0 text-start text-sm-end">
                 <label htmlFor="" className={cx("setting-item-label", "me-5")}>
                   Tên
                 </label>
               </div>
-              <div className="col-9 ps-5">
+              <div className="col-10 col-sm-9 ps-5">
                 <input
                   type="text"
                   className={cx(
@@ -105,12 +105,12 @@ function Setting() {
           </div>
           <div className="mb-5">
             <div className="row">
-              <div className="col-3">
+              <div className="col-12 col-sm-3 ms-5 ms-sm-0 d-flex d-sm-block justify-content-start align-items-center ps-5 ps-sm-0 text-start text-sm-end ">
                 <label htmlFor="" className={cx("setting-item-label", "me-5")}>
                   Tên đăng nhập
                 </label>
               </div>
-              <div className="col-9 ps-5">
+              <div className="col-10 col-sm-9 ps-5">
                 <input
                   type="text"
                   className={cx(
@@ -128,12 +128,12 @@ function Setting() {
           </div>
           <div className="mb-5">
             <div className="row">
-              <div className="col-3">
+              <div className="col-12 col-sm-3 ms-5 ms-sm-0 d-flex d-sm-block justify-content-start align-items-center ps-5 ps-sm-0 text-start text-sm-end ">
                 <label htmlFor="" className={cx("setting-item-label", "me-5")}>
                   Email
                 </label>
               </div>
-              <div className="col-9 ps-5">
+              <div className="col-10 col-sm-9 ps-5">
                 <input
                   type="text"
                   className={cx(
@@ -150,8 +150,8 @@ function Setting() {
             </div>
           </div>
           <div className="row">
-            <div className="col-3"></div>
-            <div className="col-9 ps-5 mb-4">
+            <div className="col-12 col-sm-3 ms-5 ms-sm-0 d-flex d-sm-block justify-content-start align-items-center ps-5 ps-sm-0 text-start text-sm-end "></div>
+            <div className="col-10 col-sm-9 ps-5 mb-4">
               <h1>
                 <a href="" className={cx("btn", "setting-account-btn", "ms-5")}>
                   {" "}
@@ -161,7 +161,7 @@ function Setting() {
             </div>
           </div>
           <div className="row">
-            <div className="col-3"></div>
+            <div className="col-12 col-sm-3 ms-5 ms-sm-0 d-flex d-sm-block justify-content-start align-items-center ps-5 ps-sm-0 text-start text-sm-end "></div>
             <div className={cx("col-9", "ps-5", " mb-4")}>
               <h1>
                 <a

@@ -54,7 +54,12 @@ function Sidebar() {
               to="/learn"
             >
               <FontAwesomeIcon style={{ fontSize: "20px" }} icon={faHome} />
-              <span className="d-none d-md-inline-block m-0 ms-md-4  ">
+              <span
+                className={cx(
+                  "d-none d-md-inline-block m-0 ms-md-4",
+                  "sidebar-title"
+                )}
+              >
                 Học
               </span>
             </Link>
@@ -71,7 +76,12 @@ function Sidebar() {
               )}
             >
               <FontAwesomeIcon style={{ fontSize: "20px" }} icon={faDumbbell} />
-              <span className="d-none d-md-inline-block m-0 ms-md-4  ">
+              <span
+                className={cx(
+                  "d-none d-md-inline-block m-0 ms-md-4",
+                  "sidebar-title"
+                )}
+              >
                 Luyện tập
               </span>
 
@@ -100,7 +110,12 @@ function Sidebar() {
               to="/leaderBoard"
             >
               <FontAwesomeIcon style={{ fontSize: "20px" }} icon={faShield} />
-              <span className="d-none d-md-inline-block ms-md-4">
+              <span
+                className={cx(
+                  "d-none d-md-inline-block m-0 ms-md-4",
+                  "sidebar-title"
+                )}
+              >
                 Bảng Xếp Hạng
               </span>
             </Link>
@@ -116,7 +131,14 @@ function Sidebar() {
               to="/quest"
             >
               <FontAwesomeIcon style={{ fontSize: "20px" }} icon={faScroll} />
-              <span className="d-none d-md-inline-block ms-md-4">Nhiệm vụ</span>
+              <span
+                className={cx(
+                  "d-none d-md-inline-block m-0 ms-md-4",
+                  "sidebar-title"
+                )}
+              >
+                Nhiệm vụ
+              </span>
             </Link>
 
             <Link
@@ -130,7 +152,14 @@ function Sidebar() {
               to="/shop"
             >
               <FontAwesomeIcon style={{ fontSize: "20px" }} icon={faShop} />
-              <span className="d-none d-md-inline-block ms-md-4">Cửa Hàng</span>
+              <span
+                className={cx(
+                  "d-none d-md-inline-block m-0 ms-md-4",
+                  "sidebar-title"
+                )}
+              >
+                Cửa Hàng
+              </span>
             </Link>
 
             <Link
@@ -144,7 +173,14 @@ function Sidebar() {
               to="/profile"
             >
               <FontAwesomeIcon style={{ fontSize: "20px" }} icon={faUser} />
-              <span className="d-none d-md-inline-block ms-md-4">Hồ Sơ</span>
+              <span
+                className={cx(
+                  "d-none d-md-inline-block m-0 ms-md-4",
+                  "sidebar-title"
+                )}
+              >
+                Hồ Sơ
+              </span>
             </Link>
 
             <div
@@ -159,7 +195,14 @@ function Sidebar() {
               )}
             >
               <FontAwesomeIcon style={{ fontSize: "20px" }} icon={faEllipsis} />
-              <span className="d-none d-md-inline-block ms-md-4">Xem Thêm</span>
+              <span
+                className={cx(
+                  "d-none d-md-inline-block m-0 ms-md-4",
+                  "sidebar-title"
+                )}
+              >
+                Xem Thêm
+              </span>
               <div className={cx("sub-menu", "rounded-5")}>
                 <ul className={cx("sub-menu-list")}>
                   <li className={cx("rounded-4", "sub-menu-item")}>

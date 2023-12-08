@@ -273,7 +273,10 @@ function Tabs() {
               "mt-5"
             )}
           >
-            <button type="submit" className={cx("btn", "purcharse-btn")}>
+            <button
+              type="submit"
+              className={cx("btn", "purcharse-btn", "px-0")}
+            >
               Bắt đầu 14 ngày dùng thử miễn phí
             </button>
           </div>

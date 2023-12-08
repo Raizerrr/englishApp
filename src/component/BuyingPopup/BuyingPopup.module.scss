@@ -1,10 +1,13 @@
 
 
 .buying-popup-wrapper{
-    position: fixed;
+    position: absolute;
     z-index: 2;
-    min-height: 100vh;
-    min-width: 100vh;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    
     .overlay{
         background-color: rgba(0, 0, 0, 0.65);
         position: fixed;
@@ -17,16 +20,17 @@
         position: relative;
         border-radius: 1.5rem;
         background-color: #fff;
-        min-height: 50vh;
-        min-width: 80%;
+        height: 375px;
+        width: 35%;
+        min-width: 350px;
         z-index: 3;
-        transform: translate(17%, 0%);
+        
         overflow: hidden;
         .absolute-box{
             position: absolute;
             width: 150%;
             transform: translate(-16%,0%);
-            height: 20vh;
+            height: 15vh;
             background-color: rgb(88,204,2);
             border-radius: 1.5rem 1.5rem 50% 50%;
         }
@@ -41,7 +45,7 @@
             font-size: 20px
         }
         .content-container{
-            margin-top: 20vh;
+            margin-top: 15vh;
             .buying-popup-title{
                 font-size: 25px;
                 font-weight: 700;
