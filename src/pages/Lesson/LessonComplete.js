@@ -8,16 +8,16 @@ function LessonComplete() {
       <div className="container justify-content-center align-items-center d-flex">
         <div className={cx("lesson-complete-container")}>
           <div className={cx("conrats-container", "text-center")}>
-            <h1 className={cx("conrats-title", "my-3")}>
+            <h1 className={cx("conrats-title", "my-3", "fs-1")}>
               Quá Đỉnh! Bạn đã hoàn thành bài học
             </h1>
-            <p className={cx("conrats-small-title", "mt-3")}>
+            <p className={cx("conrats-small-title", "mt-3", "fs-3")}>
               Cố gắng tiếp tục lộ trình thật tốt nhé!
             </p>
           </div>
           <div className={cx("result-contaner")}>
             <div className="row">
-              <div className="col justify-content-end align-items-center d-flex">
+              <div className="col-12 col-md-6 justify-content-center justify-content-md-end align-items-center d-flex mb-3">
                 <div className={cx("exp-point-container", "pt-3", "rounded-4")}>
                   <h1 className={cx("exp-point-container-title")}>
                     Tổng điểm KN
@@ -40,7 +40,7 @@ function LessonComplete() {
                   </div>
                 </div>
               </div>
-              <div className="col">
+              <div className="col-12 col-md-6 justify-content-center justify-content-md-start align-items-center d-flex mb-3">
                 <div className={cx("point-container", "pt-3", "rounded-4")}>
                   <h1 className={cx("point-container-title")}>Chính xác</h1>
                   <div

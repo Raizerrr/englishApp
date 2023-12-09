@@ -10,11 +10,18 @@ function ReadLayout() {
     <>
       <div className="container d-flex justify-content-center align-items-center">
         <div className={cx("read-layout-container")}>
-          <h1 className={cx("read-layout-title", "text-start")}>
+          <h1 className={cx("read-layout-title", "text-start", "fs-1", "mb-5")}>
             Điền vào chỗ trống
           </h1>
-          <div className={cx("question-container", "mb-5")}>
-            <p className={cx("question")}>
+          <div
+            className={cx(
+              "question-container",
+              "mb-5",
+              "d-flex",
+              "justify-content-center"
+            )}
+          >
+            <p className={cx("question", "text-start", "fs-4")}>
               My birthday ... in January. Lorem ipsum dolor sit amet consectetur
               adipisicing elit. Velit ut quo voluptates exercitationem ducimus
               animi rerum quis voluptatum similique nostrum quisquam, fuga eius

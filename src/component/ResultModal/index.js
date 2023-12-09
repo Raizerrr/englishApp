@@ -61,7 +61,7 @@ function ResultModal(props) {
             </div>
             <div className={cx("result-display-container")}>
               <div className="row">
-                <div className=" col-6 col-lg-4 col-xxl-3">
+                <div className="col-12 col-sm-6 col-lg-4 col-xxl-3">
                   <div
                     className={cx(
                       "result-display",
@@ -96,7 +96,9 @@ function ResultModal(props) {
                     >
                       <FontAwesomeIcon icon={faClose} />
                     </div> */}
-                    <div className={cx("question-result-title")}>title</div>
+                    <div className={cx("question-result-title", "fs-3")}>
+                      title
+                    </div>
                     <div className={cx("result-answer-container", "py-3")}>
                       <div className={cx("wrong-answer-container", "pb-2")}>
                         <h1 className={cx("wrong-answer-title", "title")}>
@@ -117,7 +119,7 @@ function ResultModal(props) {
                     </div>
                   </div>
                 </div>
-                <div className=" col-6 col-lg-4 col-xxl-3">
+                <div className="col-12 col-sm-6 col-lg-4 col-xxl-3">
                   <div
                     className={cx(
                       "result-display",
@@ -152,10 +154,14 @@ function ResultModal(props) {
                     >
                       <FontAwesomeIcon icon={faClose} />
                     </div>
-                    <div className={cx("question-result-title")}>title</div>
+                    <div className={cx("question-result-title", "fs-3")}>
+                      title
+                    </div>
                     <div className={cx("result-answer-container", "py-3")}>
                       <div className={cx("wrong-answer-container", "pb-2")}>
-                        <h1 className={cx("wrong-answer-title", "title")}>
+                        <h1
+                          className={cx("wrong-answer-title", "title", "fs-5")}
+                        >
                           Đáp án sai
                         </h1>
                         <div className={cx("wrong-answer", "answer")}>
@@ -163,7 +169,13 @@ function ResultModal(props) {
                         </div>
                       </div>
                       <div className={cx("correct-answer-container", "pb-2")}>
-                        <h1 className={cx("correct-answer-title", "title")}>
+                        <h1
+                          className={cx(
+                            "correct-answer-title",
+                            "title",
+                            "fs-5"
+                          )}
+                        >
                           Đáp án đúng
                         </h1>
                         <div className={cx("correct-answer", "answer")}>

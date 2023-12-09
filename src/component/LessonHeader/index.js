@@ -8,13 +8,14 @@ const cx = classNames.bind(Style);
 
 function LessonHeader() {
   return (
-    <div className="row justify-content-center align-items-center">
-      <div className="col-1">
+    <div className="row justify-content-center align-items-center px-5">
+      <div className="col-1 col-sm-2 p-0 ps-sm-5">
         <div
           className={cx(
             "close-btn-container",
             "d-flex",
-            "justify-content-end",
+            "justify-content-center",
+            "justify-content-sm-end",
             "align-items-center"
           )}
         >
@@ -23,7 +24,7 @@ function LessonHeader() {
           </a>
         </div>
       </div>
-      <div className="col-10">
+      <div className="col-10 col-sm-8">
         <div
           className={cx(
             "progess-bar-container",
@@ -35,12 +36,13 @@ function LessonHeader() {
           <div className={cx("progess-bar")}></div>
         </div>
       </div>
-      <div className="col-1">
+      <div className="col-1 col-sm-2">
         <div
           className={cx(
             "heart-container",
             "d-flex",
-            "justify-content-start",
+            "justify-content-center",
+            "justify-content-sm-start",
             "align-items-center"
           )}
         >

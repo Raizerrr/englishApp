@@ -10,7 +10,9 @@ function WriteLayout() {
     <>
       <div className="container d-flex justify-content-center align-items-center">
         <div className={cx("write-layout-container")}>
-          <h1 className={cx("write-layout-title", "text-start")}>
+          <h1
+            className={cx("write-layout-title", "text-start", "fs-1", "mb-5")}
+          >
             Viết lại bằng Tiếng Việt
           </h1>
           <div className="row">
@@ -29,10 +31,14 @@ function WriteLayout() {
                   className={cx(
                     "question-container",
                     "mb-3",
-                    "position-relative"
+                    "position-relative",
+                    "d-flex",
+                    "justify-content-center"
                   )}
                 >
-                  <p className={cx("question")}>My birthday is in January.</p>
+                  <p className={cx("question", "text-start", "fs-4")}>
+                    My birthday is in January.
+                  </p>
                 </div>
                 <div className={cx("triptagon")}></div>
               </div>

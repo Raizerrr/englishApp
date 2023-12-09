@@ -10,7 +10,9 @@ function SpeakLayout() {
     <>
       <div className="container d-flex justify-content-center align-items-center">
         <div className={cx("speak-layout-container")}>
-          <h1 className={cx("speak-secton-title", "text-start")}>
+          <h1
+            className={cx("speak-secton-title", "text-start", "fs-1", "mb-5")}
+          >
             Nói lại theo câu sau
           </h1>
 

@@ -10,7 +10,9 @@ function ListenLayout() {
     <>
       <div className="container d-flex justify-content-center align-items-center">
         <div className={cx("listen-layout-container")}>
-          <h1 className={cx("listen-secton-title")}>Nghe và trả lời câu hỏi</h1>
+          <h1 className={cx("listen-secton-title", "fs-1", "mb-5")}>
+            Nghe và trả lời câu hỏi
+          </h1>
           <div
             className={cx(
               "listen-button-container",

@@ -12,7 +12,7 @@ const cx = classNames.bind(Style);
 function ExplainAnswer(props) {
   return (
     <>
-      <div className={cx("explain-answer-container", "p-5")}>
+      <div className={cx("explain-answer-container", "p-5", "my-5")}>
         <div className="position-relative">
           <button
             className={cx("btn", "back-btn")}
