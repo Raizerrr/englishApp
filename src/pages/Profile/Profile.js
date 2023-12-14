@@ -1,9 +1,17 @@
 import classNames from "classnames/bind";
 import Style from "./Profile.module.scss";
+import Follower from "../../component/Layout/ProfileLayout/Follower";
+import { useState } from "react";
 
 const cx = classNames.bind(Style);
 
-function Profile() {
+function Profile(props) {
+  const [modalState, setModalState] = useState(false);
+
+  const toggleModalHandle = () => {
+    setModalState(!modalState);
+    alert("hello");
+  };
   return (
     <div
       className={cx(
@@ -45,8 +53,16 @@ function Profile() {
             </div>
           </div>
         </div>
+        <div className={cx("add-friend-section", "d-block", "d-lg-none")}>
+          {/* <h1 className={cx("process-section-title", "my-2", "title")}>
+            Bạn bè
+          </h1> */}
+          <Follower clickToOpenHandle={toggleModalHandle} />
+        </div>
         <div className={cx("process-section", "mt-5")}>
-          <h1 className={cx("process-section-title", "my-2")}>Thống Kê</h1>
+          <h1 className={cx("process-section-title", "my-2", "title")}>
+            Thống kê
+          </h1>
           <div className="row">
             <div className={cx("col-6", "my-3", "mx-0")}>
               <div
@@ -176,7 +192,9 @@ function Profile() {
           </div>
         </div>
         <div className={cx("archievment-section", "mt-5")}>
-          <h1 className={cx("achievment-section-title")}>Thành Tích</h1>
+          <h1 className={cx("achievment-section-title", "title")}>
+            Thành tích
+          </h1>
           <div className={cx("achievment-container")}>
             <ul className={cx("achievment-list", "mt-3")}>
               {/* achievment */}

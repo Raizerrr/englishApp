@@ -21,12 +21,15 @@ function Sidebar() {
         <div
           className={cx(
             "container",
-            "px-3",
+            "p-0",
+            "px-sm-3",
             "border-right",
             "nav-list-container"
           )}
         >
-          <div className={cx("d-flex", "flex-column", "nav-list")}>
+          <div
+            className={cx("d-flex", "flex-row", "flex-sm-column", "nav-list")}
+          >
             <div
               className={cx(
                 "my-4",
@@ -49,7 +52,8 @@ function Sidebar() {
                 "nav-item",
                 "rounded-4",
                 "text-center",
-                "text-md-start"
+                "text-md-start",
+                "isActive"
               )}
               to="/learn"
             >

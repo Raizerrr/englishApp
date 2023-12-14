@@ -6,10 +6,10 @@ const cx = classNames.bind(Style);
 function UserEnviroment() {
   return (
     <>
-      <div className="row">
+      <div className="row w-100">
         <div
           className={cx(
-            "col-3",
+            "col-4",
             "d-flex",
             "justify-content-around",
             "align-items-center",
@@ -24,7 +24,7 @@ function UserEnviroment() {
         </div>
         <div
           className={cx(
-            "col-3",
+            "col-4",
             "d-flex",
             "justify-content-around",
             "align-items-center",
@@ -39,7 +39,7 @@ function UserEnviroment() {
         </div>
         <div
           className={cx(
-            "col-3",
+            "col-4",
             "d-flex",
             "justify-content-around",
             "align-items-center",

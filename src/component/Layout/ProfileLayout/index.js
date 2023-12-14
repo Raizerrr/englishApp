@@ -3,6 +3,7 @@ import Style from "../ProfileLayout/ProfileLayout.module.scss";
 import Sidebar from "../DefaultLayout/Sidebar";
 import Follower from "./Follower";
 import AddFriendModal from "../../AddFriendModal";
+import UserEnviroment from "../../../component/Layout/LayoutsComponent/UserEnviroment";
 import { useState } from "react";
 
 const cx = classNames.bind(Style);
@@ -29,6 +30,9 @@ function ProfileLayout({ children }) {
             </div>
           </div>
           <div className={cx("d-none", "sticky", "col-lg-4", "d-lg-block")}>
+            <div className="py-4">
+              <UserEnviroment />
+            </div>
             <Follower clickToOpenHandle={toggleModalHandle} />
           </div>
         </div>

@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import Style from "../Follower/Follower.module.scss";
-import UserEnviroment from "../../LayoutsComponent/UserEnviroment";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBell,
@@ -27,17 +27,14 @@ function Follower(props) {
 
   return (
     <>
-      <div className="container my-4">
+      <div className="container-fluid p-0 p-lg-3 my-4">
         <div className={cx("follower-section-container")}>
-          <div className="pb-5">
-            <UserEnviroment />
-          </div>
           <div className={cx("follower-container")}>
             <div className={cx("friend-header", "row", "mb-3")}>
-              <div className="col-8">
-                <h1 className={cx("friend-section-title")}>Friends</h1>
+              <div className="col-7 col-xl-8">
+                <h1 className={cx("friend-section-title", "title")}>Bạn bè</h1>
               </div>
-              <div className="col-4">
+              <div className="col-5 col-xl-4">
                 <div className="row justify-content-center align-items-center">
                   <div className="col-4">
                     <div
@@ -125,11 +122,12 @@ function Follower(props) {
                     "w-100",
                     "py-1",
                     "px-3",
-                    "rounded-3"
+                    "rounded-4"
                   )}
+                  placeholder="Tên hoặc tên người dùng"
                 />
                 <button
-                  className={cx("close-filter-friend-btn", "p-1")}
+                  className={cx("close-filter-friend-btn", "rounded-5")}
                   onClick={() => setShowFriendFilter(!showFriendFilter)}
                 >
                   <FontAwesomeIcon icon={faClose} />
@@ -141,7 +139,7 @@ function Follower(props) {
               <ul className={cx("friend-list")}>
                 <li className={cx("friend-display", "mb-3", "py-2", "px-3")}>
                   <div className="row">
-                    <div className="col-lg-4 col-xl-2">
+                    <div className="col-4 col-xl-2">
                       <div className={cx("friend-avatar-container")}>
                         <div
                           className={cx("user-status", "online-status")}
@@ -158,7 +156,7 @@ function Follower(props) {
                         />
                       </div>
                     </div>
-                    <div className=" col-lg-8 col-xl-10 px-3 py-2">
+                    <div className=" col-8 col-xl-10 px-3 py-2">
                       <h3 className={cx("friend-name", "my-0")}>Phu le</h3>
                       <small className={cx("friend-status")}>Online</small>
                     </div>
@@ -166,7 +164,7 @@ function Follower(props) {
                 </li>
                 <li className={cx("friend-display", "mb-3", "py-2", "px-3")}>
                   <div className="row">
-                    <div className="col-lg-4 col-xl-2">
+                    <div className="col-4 col-xl-2">
                       <div className={cx("friend-avatar-container")}>
                         <div
                           className={cx("user-status", "offline-status")}
@@ -183,7 +181,7 @@ function Follower(props) {
                         />
                       </div>
                     </div>
-                    <div className="col-lg-8 col-xl-10 px-3 py-2">
+                    <div className="col-8 col-xl-10 px-3 py-2">
                       <h3 className={cx("friend-name", "my-0")}>Phu le</h3>
                       <small className={cx("friend-status")}>Offline</small>
                     </div>
@@ -191,7 +189,7 @@ function Follower(props) {
                 </li>
                 <li className={cx("friend-display", "mb-3", "py-2", "px-3")}>
                   <div className="row">
-                    <div className="col-lg-4 col-xl-2">
+                    <div className="col-4 col-xl-2">
                       <div className={cx("friend-avatar-container")}>
                         <div
                           className={cx("user-status", "hang-on-status")}
@@ -208,7 +206,7 @@ function Follower(props) {
                         />
                       </div>
                     </div>
-                    <div className="col-lg-8 col-xl-10 px-3 py-2">
+                    <div className="col-8 col-xl-10 px-3 py-2">
                       <h3 className={cx("friend-name", "my-0")}>Phu le</h3>
                       <small className={cx("friend-status")}>Hang on</small>
                     </div>

@@ -11,8 +11,29 @@
     z-index: 7;
 }
 
+.mobile-header{
+    position: fixed;
+    height: 100px;
+    z-index: 20;
+    left: 0;
+    box-shadow: 1px 2px 0px 1px #cccccc3a;
+    right: 0;
+    background-color: #fff;
+}
+.content>*{
+    transition: width 1s ease-in-out;
+}
+
 @media screen and (max-width : 768px){
     .course-container{
         margin-left: 75px;
+    }
+}
+@media screen and (max-width : 576px){
+    .course-container{
+        margin-left: 0px;
+    }
+    .content{
+        margin-top: 110px;
     }
 }

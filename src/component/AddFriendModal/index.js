@@ -49,7 +49,7 @@ function AddFriendModal(props) {
                 "search-friend-to-add-input",
                 "px-3",
                 "py-2",
-                "rounded-3"
+                "rounded-4"
               )}
             />
             <button className={cx("search-user-btn", "p-2")}>
@@ -65,9 +65,7 @@ function AddFriendModal(props) {
               "px-3"
             )}
           >
-            <div
-              className={cx("user-searched-list-container", "rounded-3", "p-2")}
-            >
+            <div className={cx("user-searched-list-container", "rounded-4")}>
               {/* <ul className={cx("user-searched-list")}>
                   <li className={cx("user-searched-item")}>
                     <div className="row">

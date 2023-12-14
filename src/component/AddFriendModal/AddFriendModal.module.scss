@@ -17,12 +17,12 @@
         right: 0;
     }
         .add-friend-container{
-            background-color: #eee;
+            background-color: #fff;
             min-height: 60%;
             min-width: 50%;
             border-radius: 1rem;
             min-height: 70vh;
-            
+            box-shadow: 0px 2px 0px 3px #cccccc9a;
             .close-btn{
                 position: absolute;
                 top: 4px;
@@ -37,19 +37,22 @@
                 }
             }
             .search-friend-to-add-input-container{
+               
                 .search-friend-to-add-input{
                     width: 80%;
                     border-color: transparent;
                     font-size: 15px;
                     color: #252d3f;
                     font-weight: 600;
+                    border: 1px solid #ccc;
                 }
                 .search-user-btn{
                     position: absolute;
                     right: 11%;
-                    top: 6%;
+                    top: 0%;
                     border-color: transparent;
                     background-color: transparent;
+                    
                     &:hover{
                         opacity: .5;
                     }
@@ -63,6 +66,7 @@
                 min-width: 82%;
                 overflow-y: auto;
                 overflow-x: hidden;
+                border: 1px solid #ccc;
                 scrollbar-gutter: stable;
                 &::-webkit-scrollbar{
                     width: 1px ;
@@ -83,7 +87,7 @@
 
                     .friend-list{
                         list-style-type: none;
-                        padding: 16px;
+                        padding: 16px 0;
                         .friend-display{
                             &:hover{
                                 background-color: #cccccc3a;
@@ -132,7 +136,7 @@
                 padding: 8px 80px;
                 border-radius: 15px;
                 border: 1px solid #ccc;
-                box-shadow: 0 2px 0 2px #ccc;
+                box-shadow: 0 2px 0 0px #ccc;
                 font-size: 18px;
                 background-color: #fff;
                 font-weight: 600;

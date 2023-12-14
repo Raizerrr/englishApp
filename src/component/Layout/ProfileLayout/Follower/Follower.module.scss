@@ -55,10 +55,11 @@
         .friend-section-title{
             
             
-            font-size: 20px;
+            font-size: 23px;
             font-weight: 700;
-            color: #aaa;
+            color: #000;
             padding-bottom: 10px;
+            line-height: 2.75rem;
         }
         .friend-header-btn{
             
@@ -80,19 +81,22 @@
             color: #262d3f;
             outline: none;
             border: 1px solid #ccc;
-            box-shadow: 0 2px 0 #ccc;
-            &:focus{
-                
-
-            }
+            box-shadow: 0 1px 1px 1px #ccc;
+            
         }
         .close-filter-friend-btn{
             position: absolute;
-            top: 1rem;
+            
             color: #aaa;
+            top: 30%;
+            bottom: 0;
+            font-size: 12px;
             background-color: #ccc;
             border-color: transparent;
-            right: 0;
+            right: .75rem;
+            width: 20px;
+            height: 20px;
+            
             
             &:hover{
                 color: #000;
