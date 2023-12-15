@@ -271,3 +271,9 @@ html{
         margin-left: 75px;
     }
 }
+@media screen and (max-width : 576px){
+    
+    .setting-layout-container{
+        margin-left: 0;
+    }
+}

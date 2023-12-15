@@ -6,8 +6,10 @@
     
     position: fixed;
     z-index: 3;
-    min-width: 100%;
-    min-height: 100vh;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
     .add-friend-overlay{
         
         position: fixed;
@@ -18,10 +20,10 @@
     }
         .add-friend-container{
             background-color: #fff;
-            min-height: 60%;
-            min-width: 50%;
+            height: 70%;
+            width: 50%;
+            
             border-radius: 1rem;
-            min-height: 70vh;
             box-shadow: 0px 2px 0px 3px #cccccc9a;
             .close-btn{
                 position: absolute;
@@ -148,5 +150,18 @@
                 }
             }
         
+    }
+}
+
+@media screen and (max-width : 768px){
+    .add-friend-container{
+        height: 70%;
+         width: 80% !important;
+     }
+}
+@media screen and (max-width : 576px){
+    .add-friend-container{
+       height: 70%;
+        width: 100% !important;
     }
 }

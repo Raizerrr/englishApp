@@ -40,6 +40,7 @@ function UserEnviroment() {
         <div
           className={cx(
             "col-4",
+
             "d-flex",
             "justify-content-around",
             "align-items-center",

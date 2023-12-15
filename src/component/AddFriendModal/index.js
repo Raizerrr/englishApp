@@ -69,7 +69,7 @@ function AddFriendModal(props) {
               {/* <ul className={cx("user-searched-list")}>
                   <li className={cx("user-searched-item")}>
                     <div className="row">
-                      <div className="col-2">
+                      <div className="col-3 col-lg-2">
                         <div className="user-searched-avatar-container">
                           <img
                             src=""
@@ -91,10 +91,17 @@ function AddFriendModal(props) {
 
               <ul className={cx("friend-list")}>
                 <li
-                  className={cx("friend-display", "mb-3", "py-3", "rounded-3")}
+                  className={cx(
+                    "friend-display",
+                    "mb-3",
+                    "py-3",
+                    "rounded-3",
+                    "mx-3",
+                    "mx-sm-0"
+                  )}
                 >
                   <div className="row">
-                    <div className="col-2 d-flex justify-content-center">
+                    <div className="col-3 col-lg-2 d-flex justify-content-center">
                       <div className={cx("friend-avatar-container")}>
                         <img
                           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"
@@ -108,17 +115,24 @@ function AddFriendModal(props) {
                         />
                       </div>
                     </div>
-                    <div className="col-10 px-3 py-2">
+                    <div className="col-9 col-lg-10 px-3 py-2">
                       <h3 className={cx("friend-name", "my-0")}>Phu le</h3>
                       <small className={cx("friend-nick-name")}>Raizer</small>
                     </div>
                   </div>
                 </li>
                 <li
-                  className={cx("friend-display", "mb-3", "py-3", "rounded-3")}
+                  className={cx(
+                    "friend-display",
+                    "mb-3",
+                    "py-3",
+                    "rounded-3",
+                    "mx-3",
+                    "mx-sm-0"
+                  )}
                 >
                   <div className="row">
-                    <div className="col-2 d-flex justify-content-center">
+                    <div className="col-3 col-lg-2 d-flex justify-content-center">
                       <div className={cx("friend-avatar-container")}>
                         <img
                           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0P6wm44mHnNrjQMQ7EdGgsz5iT4rsqnY_4Q&usqp=CAU"
@@ -132,7 +146,7 @@ function AddFriendModal(props) {
                         />
                       </div>
                     </div>
-                    <div className="col-10 px-3 py-2">
+                    <div className="col-9 col-lg-10 px-3 py-2">
                       <h3 className={cx("friend-name", "my-0")}>Phu le</h3>
                       <small className={cx("friend-nick-name")}>Raizer</small>
                     </div>

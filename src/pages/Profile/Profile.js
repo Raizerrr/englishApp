@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import Style from "./Profile.module.scss";
 import Follower from "../../component/Layout/ProfileLayout/Follower";
+import AddFriendModal from "../../component/AddFriendModal";
 import { useState } from "react";
 
 const cx = classNames.bind(Style);
@@ -10,7 +11,6 @@ function Profile(props) {
 
   const toggleModalHandle = () => {
     setModalState(!modalState);
-    alert("hello");
   };
   return (
     <div
@@ -24,6 +24,9 @@ function Profile(props) {
       )}
     >
       <div className={cx("profile-container", "my-3")}>
+        <div className={cx("d-none", { ["show"]: modalState })}>
+          <AddFriendModal clickToOpenHandle={toggleModalHandle} />
+        </div>
         <div className={cx("user-infor-section", "my-3", "pb-4")}>
           <div className="d-flex justify-content-between ">
             <div>

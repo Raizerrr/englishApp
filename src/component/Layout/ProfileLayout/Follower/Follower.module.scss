@@ -32,8 +32,8 @@
     background-color: #fff;
     overflow-y: auto;
     scrollbar-gutter: stable;
-    max-height: 80vh;
-    min-height: 80vh;
+    height: 80vh;
+    
     box-shadow: 0  0px 2px #ccc;
    &::-webkit-scrollbar{
     width: 2px ;
@@ -157,4 +157,10 @@
        
     }
     
+}
+
+@media screen and (max-width : 992px){
+    .follower-container{
+        height: 300px !important;
+    }
 }
