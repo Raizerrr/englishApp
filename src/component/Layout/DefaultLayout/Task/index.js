@@ -49,7 +49,7 @@ function Task() {
 
               <Link
                 to={"/premium"}
-                className={cx("premium-submit-btn", "btn", "rounded-4")}
+                className={cx("premium-submit-btn", "btn", "rounded-4", "fs-5")}
               >
                 Thử 2 tuần miễn phí
               </Link>

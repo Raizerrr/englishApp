@@ -33,6 +33,8 @@ function Sidebar() {
             <div
               className={cx(
                 "my-4",
+                "d-none",
+                "d-sm-block",
                 "nav-item",
                 "d-flex",
                 "justify-content-center",
@@ -49,6 +51,7 @@ function Sidebar() {
             <Link
               className={cx(
                 "mb-2",
+
                 "nav-item",
                 "rounded-4",
                 "text-center",

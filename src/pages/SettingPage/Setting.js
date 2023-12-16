@@ -1,5 +1,6 @@
 import classNames from "classnames/bind";
 import Style from "./Setting.module.scss";
+import SettingNav from "../../component/Layout/SettingLayout/SettingNav";
 
 const cx = classNames.bind(Style);
 
@@ -148,6 +149,9 @@ function Setting() {
                 />
               </div>
             </div>
+          </div>
+          <div className="d-block d-xxl-none">
+            <SettingNav />
           </div>
           <div className="row">
             <div className="col-12 col-sm-3 ms-5 ms-sm-0 d-flex d-sm-block justify-content-start align-items-center ps-5 ps-sm-0 text-start text-sm-end "></div>

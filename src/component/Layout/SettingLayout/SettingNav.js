@@ -8,7 +8,16 @@ function SettingNav({ avatar }) {
   return (
     <div>
       <div className="container position-relative">
-        <div className={cx("setting-nav-container", "rounded-5", "py-3")}>
+        <div
+          className={cx(
+            "position-relative",
+            "position-lg-absolute",
+            "setting-nav-container",
+            "rounded-5",
+            "py-3",
+            "mb-5"
+          )}
+        >
           <ul className={cx("setting-nav-list")}>
             <li className={cx("settting-nav-item")}>
               <div className="row">
