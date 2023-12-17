@@ -28,7 +28,14 @@ function Sidebar() {
           )}
         >
           <div
-            className={cx("d-flex", "flex-row", "flex-sm-column", "nav-list")}
+            className={cx(
+              "d-flex",
+              "flex-row",
+              "flex-sm-column",
+              "nav-list",
+
+              "px-sm-0"
+            )}
           >
             <div
               className={cx(

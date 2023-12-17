@@ -54,7 +54,11 @@ const publicRoutes = [
   { path: "/shop", component: Shop },
   { path: "/profile", component: Profile, layout: ProfileLayout },
   { path: "/setting", component: Setting, layout: SettingLayout },
-  { path: "/changePassword", component: ChangePassword, layout: SettingLayout },
+  {
+    path: "/setting/changePassword",
+    component: ChangePassword,
+    layout: SettingLayout,
+  },
   { path: "signin/changePassword", component: ChangePassword, layout: null },
   {
     path: "signin/emailRequestPending",
@@ -62,12 +66,16 @@ const publicRoutes = [
     layout: null,
   },
   {
-    path: "/superInfomation",
+    path: "/setting/superInfomation",
     component: SuperPackInfomation,
     layout: SettingLayout,
   },
 
-  { path: "/notification", component: Notification, layout: SettingLayout },
+  {
+    path: "/setting/notification",
+    component: Notification,
+    layout: SettingLayout,
+  },
   { path: "/lesson", component: Lesson, layout: null },
   { path: "/signin", component: LoginLayout, layout: null },
   { path: "register", component: Register, layout: null },

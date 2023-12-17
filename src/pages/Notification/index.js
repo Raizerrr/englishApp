@@ -1,5 +1,6 @@
 import classNames from "classnames/bind";
 import Style from "./../../pages/SettingPage/Setting.module.scss";
+import { Link } from "react-router-dom";
 
 const cx = classNames.bind(Style);
 
@@ -15,7 +16,25 @@ function Notification() {
         )}
       >
         <div className={cx("notification-container", "my-3")}>
-          <h1 className={cx("setting-title", "my-3")}>Thông báo</h1>
+          <Link to={"/setting"} className={cx("back-to-setting-btn", "btn")}>
+            Trở vể
+          </Link>
+          <div className="d-flex flex-row justify-content-between align-items-center">
+            <h1 className={cx("setting-title", "my-3")}>Thông Báo</h1>
+
+            <div
+              className={cx(
+                "d-flex",
+                "justify-content-center",
+                "align-items-center",
+                "my-3"
+              )}
+            >
+              <button className={cx("save-setting-btn", "disabled")}>
+                lưu thay đổi
+              </button>
+            </div>
+          </div>
           <h1 className={cx("notifi-small-title", "mt-5", "mb-5", "pb-2")}>
             Tổng quan
           </h1>

@@ -6,7 +6,7 @@ const cx = classNames.bind(Style);
 function learn() {
   return (
     <div>
-      <div className={cx("container", "my-4")}>
+      <div className={cx("container-fluid", "my-4")}>
         {/* course section  */}
 
         <div className="row">

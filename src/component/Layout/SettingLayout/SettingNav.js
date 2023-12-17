@@ -10,8 +10,7 @@ function SettingNav({ avatar }) {
       <div className="container position-relative">
         <div
           className={cx(
-            "position-relative",
-            "position-lg-absolute",
+            "position-fixed",
             "setting-nav-container",
             "rounded-5",
             "py-3",
@@ -57,17 +56,26 @@ function SettingNav({ avatar }) {
               </Link>
             </li>
             <li className={cx("setting-nav-item", "nav-item")}>
-              <Link to={"/changePassword"} className={cx("item-title", "btn")}>
+              <Link
+                to={"/setting/changePassword"}
+                className={cx("item-title", "btn")}
+              >
                 Mật Khẩu
               </Link>
             </li>
             <li className={cx("setting-nav-item", "nav-item")}>
-              <Link to={"/superInfomation"} className={cx("item-title", "btn")}>
+              <Link
+                to={"/setting/superInfomation"}
+                className={cx("item-title", "btn")}
+              >
                 Super Pack
               </Link>
             </li>
             <li className={cx("setting-nav-item", "nav-item")}>
-              <Link to={"/notification"} className={cx("item-title", "btn")}>
+              <Link
+                to={"/setting/notification"}
+                className={cx("item-title", "btn")}
+              >
                 Thông Báo
               </Link>
             </li>

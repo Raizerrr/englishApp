@@ -157,7 +157,10 @@ function Setting() {
             <div className="col-12 col-sm-3 ms-5 ms-sm-0 d-flex d-sm-block justify-content-start align-items-center ps-5 ps-sm-0 text-start text-sm-end "></div>
             <div className="col-10 col-sm-9 ps-5 mb-4">
               <h1>
-                <a href="" className={cx("btn", "setting-account-btn", "ms-5")}>
+                <a
+                  href="/"
+                  className={cx("btn", "setting-account-btn", "ms-5")}
+                >
                   {" "}
                   ĐĂNG XUẤT
                 </a>
@@ -169,7 +172,7 @@ function Setting() {
             <div className={cx("col-9", "ps-5", " mb-4")}>
               <h1>
                 <a
-                  href=""
+                  href="/"
                   className={cx(
                     "btn",
                     "setting-account-btn",

@@ -12,7 +12,7 @@ const cx = classNames.bind(Style);
 function DefaultLayout({ children }) {
   return (
     <>
-      <div className="container-fluid p-0 pe-2">
+      <div className="container-fluid ps-0">
         {/* <div className={cx("welcome-modal-wrapper")}>
           <WelcomeModal />
         </div> */}

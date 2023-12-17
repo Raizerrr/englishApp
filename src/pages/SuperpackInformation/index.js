@@ -13,10 +13,14 @@ function SuperPackInformation() {
           "container",
           "d-flex",
           "justify-content-center",
-          "align-items-center"
+          "align-items-center",
+          "my-4"
         )}
       >
         <div className={cx("super-inf-container")}>
+          <Link to={"/setting"} className={cx("back-to-setting-btn", "btn")}>
+            Trở vể
+          </Link>
           <div className={cx("card", "card-container", "my-4")}>
             <div className="card-body">
               <div className="row">

@@ -41,6 +41,26 @@ html{
         transform: translate(0, 4px);
     }
 }
+.back-to-setting-btn{
+    text-transform: uppercase;
+    border: none;
+    background: #fff;
+    border: 2px solid #cccccc5b !important;
+    padding: 1.25rem;
+    box-shadow: 0 4px 2px 0 #ccc;
+    border-radius: 16px;
+    font-size: 15px;
+    font-weight: 700;
+    color: rgb(28,176,246) !important;
+    margin-bottom: 12px;
+    &:active {
+        box-shadow: none;
+        transform: translate(0, 4px);
+    }
+    &:hover{
+        opacity: .7;
+    }
+}
 
 .setting-container{
     max-width: 600px;
@@ -256,6 +276,11 @@ html{
             }
             
         }
+    }
+}
+@media only screen and (max-width: 1250px) {
+    .setting-nav-container{
+        position: relative !important;
     }
 }
 
