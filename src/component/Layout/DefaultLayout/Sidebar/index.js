@@ -34,7 +34,7 @@ function Sidebar() {
               className={cx(
                 "my-4",
                 "d-none",
-                "d-sm-block",
+                "d-sm-flex",
                 "nav-item",
                 "d-flex",
                 "justify-content-center",

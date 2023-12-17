@@ -14,19 +14,26 @@
 .mobile-header{
     position: fixed;
     height: 100px;
-    z-index: 20;
-    left: 0;
+    z-index: 5;
+    left: 275px;
     box-shadow: 1px 2px 0px 1px #cccccc3a;
     right: 0;
     background-color: #fff;
 }
-.content>*{
-    transition: width 1s ease-in-out;
+.content{
+    transition: all .25s ease-in-out;
 }
 
 @media screen and (max-width : 768px){
     .course-container{
         margin-left: 75px;
+    }
+    .content{
+        margin-top: 110px;
+        margin-bottom: 120px;
+    }
+    .mobile-header{
+        left: 80px;
     }
 }
 @media screen and (max-width : 576px){
@@ -37,4 +44,15 @@
         margin-top: 110px;
         margin-bottom: 120px;
     }
+    .mobile-header{
+        left: 0;
+    }
+}
+@media screen and (max-width : 992px){
+   
+    .content{
+        margin-top: 110px;
+        margin-bottom: 120px;
+    }
+    
 }

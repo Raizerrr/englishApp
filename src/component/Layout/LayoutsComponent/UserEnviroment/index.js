@@ -11,7 +11,7 @@ function UserEnviroment() {
           className={cx(
             "col-4",
             "d-flex",
-            "justify-content-around",
+            "justify-content-evenly",
             "align-items-center",
             "streak-container"
           )}
